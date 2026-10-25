@@ -1,0 +1,88 @@
+classDiagram
+direction LR
+class RestaurantCLI {
+  -controller: GameController
+  +run()
+}
+class GameController {
+  -currentTurn: int
+  -phase: TurnPhase
+  +startTurn() GameView
+  +getView() GameView
+  +submitWaiterAction(action) ActionResult
+  +submitChefAction(action) ActionResult
+  +finishTurn() GameView
+}
+class Restaurant {
+  -waitingQueue: List~Customer~
+  +seatCustomer(customerId, tableId) ActionResult
+  +placeOrder(customerId) ActionResult
+  +serveOrder(orderId, turn) ActionResult
+  +advancePreparation(orderId, turn) ActionResult
+  +advanceEating(turn)
+  +settlePayment(customerId, turn) ActionResult
+  +applyWaitingPenalty(turn)
+  +getSummary()
+}
+class Customer {
+  -id: int
+  -satisfaction: int
+  -status: CustomerStatus
+  -readyToPayTurn: Integer
+  +chooseMenuItem(items) MenuItem
+  +waitingPenalty() int
+  +quoteBillCents(item) int
+}
+class Table {
+  -id: int
+  -occupant: Customer
+  +isAvailable() boolean
+  ~seat(customer)
+  ~release()
+}
+class MenuItem {
+  -name: String
+  -priceCents: int
+  -preparationUnits: int
+}
+class Order {
+  -id: int
+  -status: OrderStatus
+  -preparedUnits: int
+  -billCents: int
+  -readyTurn: Integer
+  -servedTurn: Integer
+  -paidTurn: Integer
+  -satisfactionAtPayment: Integer
+  ~advanceOneUnit(turn)
+  ~markServed(turn)
+  ~markPaid(turn, satisfaction)
+  ~cancel()
+}
+class Waiter {
+  -lastActionTurn: int
+  +execute(action, restaurant, turn) ActionResult
+}
+class Chef {
+  -lastActionTurn: int
+  +execute(action, restaurant, turn) ActionResult
+}
+class Cashier {
+  -lastActionTurn: int
+  +processPayment(restaurant, turn) ActionResult
+}
+RestaurantCLI --> GameController : uses
+GameController "1" *-- "1" Restaurant : owns
+GameController "1" *-- "1" Waiter
+GameController "1" *-- "1" Chef
+GameController "1" *-- "1" Cashier
+Restaurant "1" *-- "0..6" Customer : registers
+Restaurant "1" *-- "2" Table
+Restaurant "1" *-- "0..6" Order : retains
+Restaurant "1" *-- "3" MenuItem
+Table "0..1" --> "0..1" Customer : occupant
+Order "0..1" --> "1" Customer : belongs to
+Order "0..*" --> "1" MenuItem : item
+Waiter ..> Restaurant : coordinates through
+Chef ..> Restaurant : coordinates through
+Cashier ..> Restaurant : coordinates through
