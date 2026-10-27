@@ -1,3 +1,4 @@
+package config;
 import java.util.Set;
 
 public final class GameConfig{
