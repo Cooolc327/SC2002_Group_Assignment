@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class WatingQueue {
+public class WaitingQueue {
     private final List<Customer> customers = new ArrayList<>();
 
     //-------------------------------Queue Management-----------------------------------
