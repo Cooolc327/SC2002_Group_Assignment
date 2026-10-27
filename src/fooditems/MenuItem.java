@@ -9,7 +9,9 @@ public class MenuItem {
         this.priceCents = priceCents;
         this.prepUnits = prepUnits;
     }
+    
 
+    //Getters
     public String getName(){
         return this.name;
     }
@@ -21,4 +23,11 @@ public class MenuItem {
     public int prepUnits(){
         return this.prepUnits;
     }
+
+    //To show Formatted Price in dollars
+    public String getFormattedPrice(){
+        return String.format("$%d.%02d", priceCents / 100, priceCents % 100);
+    }
+
+    
 }
