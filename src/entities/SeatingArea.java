@@ -41,6 +41,22 @@ public class SeatingArea {
         if (table==null){
             throw new IllegalStateException("No free table available");
         }
+        return seat(customer, table.getId());
+    }
+
+    //Validate all conditions before changing the queue, table or customer.
+    public Table seat(Customer customer, int tableId){
+        if (customer == null || !queue.contains(customer)){
+            throw new IllegalStateException("Customer is not in the queue");
+        }
+        if (customer.getState() != CustomerState.WAITING){
+            throw new IllegalStateException(customer.describe()+ " is not waiting");
+        }
+        Table table = tables.stream().filter(t -> t.getId() == tableId).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Unknown table " + tableId));
+        if (!table.isFree()){
+            throw new IllegalStateException("Table " + tableId + " is already occupied");
+        }
         if (!queue.remove(customer)){
             throw new IllegalStateException(customer.describe()+ " is not in the queue");
         }
@@ -52,7 +68,8 @@ public class SeatingArea {
 
     //Remove a customer from the seating area, either from the queue or from a table
     public void removeCustomer(Customer customer){
-        if (queue.remove(customer)){
+        if (queue.contains(customer)){
+            queue.remove(customer);
             return; //Customer was in the queue and has been removed
         }
 
