@@ -1,3 +1,7 @@
+package staff;
+
+import entities.Customer;
+
 public class Cashier {
     private int lastActionTurn = 0;
 

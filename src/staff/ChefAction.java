@@ -1,3 +1,5 @@
+package staff;
+
 public class ChefAction {
     public enum Type { PREPARE, SKIP }
     private final Type type;

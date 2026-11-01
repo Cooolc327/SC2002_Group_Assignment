@@ -1,12 +1,14 @@
+package staff;
 public class Waiter {
     private int lastActionTurn = 0;
 
     public ActionResult execute(WaiterAction action, Restaurant restaurant, int turn) {
-        if (action.getType() == WaiterAction.Type.SKIP) {
-            return ActionResult.ok("Waiter waits this turn.");
-        }
         if (lastActionTurn == turn) {
-            return ActionResult.fail("The Waiter has already completed a task this turn.");
+            return ActionResult.fail("The Waiter has already acted this turn.");
+        }
+        if (action.getType() == WaiterAction.Type.SKIP) {
+            lastActionTurn = turn;
+            return ActionResult.ok("Waiter waits this turn.");
         }
         ActionResult result;
         switch (action.getType()) {
