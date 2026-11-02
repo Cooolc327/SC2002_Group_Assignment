@@ -1,11 +1,15 @@
 package unit;
 
+import contracts.ActionResult;
+import domain.Restaurant;
 import entities.Customer;
 import entities.RegularCustomer;
 import fooditems.Menu;
 import fooditems.MenuItem;
 import java.util.List;
 import orders.BillCalculator;
+import orders.Order;
+import view.GameView.OrderView;
 
 // Price calculation tests for BillCalculator
 public final class BillCalculatorTest {
@@ -20,6 +24,7 @@ public final class BillCalculatorTest {
         run("10 percent customer discount on every menu item", BillCalculatorTest::customerDiscount);
         run("discounts round to the nearest cent", BillCalculatorTest::rounding);
         run("invalid amounts and discounts are rejected", BillCalculatorTest::invalidInput);
+        run("taking an order locks the discounted bill", BillCalculatorTest::orderLocksBill);
         System.out.println("BILL_CALCULATOR=PASS scenarios=" + scenarios + " assertions=" + assertions);
     }
 
@@ -60,6 +65,20 @@ public final class BillCalculatorTest {
         throwsType(IllegalArgumentException.class, () -> BillCalculator.applyDiscount(-1, 10));
         throwsType(IllegalArgumentException.class, () -> BillCalculator.applyDiscount(900, -1));
         throwsType(IllegalArgumentException.class, () -> BillCalculator.applyDiscount(900, 101));
+    }
+
+    //Customer 1 chooses Salad, so a 10% discount gives an $8.10 bill on the real Order
+    private static void orderLocksBill() {
+        Restaurant restaurant = new Restaurant(Order::new);
+        restaurant.beginTurn(1);
+        restaurant.registerArrival(new DiscountedCustomer(1));
+        check(restaurant.seatCustomer(1, 1).accepted(), "seat customer 1");
+        ActionResult ordered = restaurant.placeOrder(1);
+        check(ordered.accepted(), ordered.message());
+        check(ordered.message().contains("Salad") && ordered.message().contains("$8.10"),
+                "order message shows the bill: " + ordered.message());
+        OrderView order = restaurant.getOrderViews().get(0);
+        eq(810, order.billCents(), "bill stored on the order");
     }
 
     //-------------------------------Helpers-----------------------------------
