@@ -17,20 +17,27 @@ import fooditems.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
+import orders.Order;
 import view.GameSummary;
 import view.GameView;
 
 /**
- * Executable member-A tests. FakeOrder and RecordingStaff are test doubles,
- * not member C/D production implementations or evidence of a playable release.
+ * Executable member-A tests. --production-orders uses the real Order.
+ * RecordingStaff remains a test double for call-order assertions; the separate
+ * Stage1SmokeTest exercises the real StaffTeam, Main and CLI.
  */
 public final class MemberACoreTest {
+    private static boolean productionOrders;
     private static int scenarios;
     private static int assertions;
 
     private MemberACoreTest() {}
 
     public static void main(String[] args) {
+        if (args.length > 1 || (args.length == 1 && !args[0].equals("--production-orders"))) {
+            throw new IllegalArgumentException("Usage: MemberACoreTest [--production-orders]");
+        }
+        productionOrders = args.length == 1;
         run("18 turns, arrival schedule and defeat", MemberACoreTest::idleDefeat);
         run("phase limits and invalid-action retries", MemberACoreTest::invalidRetries);
         run("ordering, serving, eating and payment timing", MemberACoreTest::serviceTiming);
@@ -45,7 +52,8 @@ public final class MemberACoreTest {
         run("order factory failure leaves no partial order", MemberACoreTest::factoryFailure);
         run("seating validation is atomic", MemberACoreTest::seatingValidation);
         run("victory boundaries", MemberACoreTest::resultBoundaries);
-        System.out.println("MEMBER_A_CORE=PASS scenarios=" + scenarios + " assertions=" + assertions);
+        System.out.println("MEMBER_A_CORE=PASS scenarios=" + scenarios + " assertions=" + assertions
+                + " orders=" + (productionOrders ? "production" : "fake"));
     }
 
     private static void idleDefeat() {
@@ -143,7 +151,7 @@ public final class MemberACoreTest {
     }
 
     private static void pastaTimeline() {
-        Restaurant r = new Restaurant(FakeOrder::new);
+        Restaurant r = new Restaurant(MemberACoreTest::createTestOrder);
         r.beginTurn(1);
         r.registerArrival(new RegularCustomer(3)); // id 3 deterministically chooses Pasta.
         accepted(r.seatCustomer(3, 1));
@@ -206,7 +214,7 @@ public final class MemberACoreTest {
     }
 
     private static void abandonment(int preparationUnits) {
-        Restaurant r = new Restaurant(FakeOrder::new);
+        Restaurant r = new Restaurant(MemberACoreTest::createTestOrder);
         for (int turn = 1; turn <= 13; turn++) {
             r.beginTurn(turn);
             if (turn == 1) {
@@ -237,7 +245,7 @@ public final class MemberACoreTest {
 
     private static void paymentPriority(boolean tied) {
         // Domain fixture builds two eligible customers; staff quotas are tested above.
-        Restaurant r = new Restaurant(FakeOrder::new);
+        Restaurant r = new Restaurant(MemberACoreTest::createTestOrder);
         for (int turn = 1; turn <= 4; turn++) {
             r.beginTurn(turn);
             if (turn == 1) {
@@ -304,7 +312,7 @@ public final class MemberACoreTest {
     private static void factoryFailure() {
         boolean[] invalid = {true};
         Restaurant r = new Restaurant((id, c, item, bill) ->
-                new FakeOrder(id, c, item, invalid[0] ? bill + 1 : bill));
+                createTestOrder(id, c, item, invalid[0] ? bill + 1 : bill));
         r.beginTurn(1);
         r.registerArrival(new RegularCustomer(1));
         accepted(r.seatCustomer(1, 1));
@@ -406,8 +414,13 @@ public final class MemberACoreTest {
         System.out.println("PASS " + name);
     }
 
+    private static OrderPort createTestOrder(int id, Customer customer, MenuItem item, int bill) {
+        return productionOrders ? new Order(id, customer, item, bill)
+                : new FakeOrder(id, customer, item, bill);
+    }
+
     private static final class Fixture {
-        final Restaurant restaurant = new Restaurant(FakeOrder::new);
+        final Restaurant restaurant = new Restaurant(MemberACoreTest::createTestOrder);
         final RecordingStaff staff = new RecordingStaff();
         final GameController game = new GameController(restaurant, staff);
 
@@ -457,7 +470,7 @@ public final class MemberACoreTest {
         }
     }
 
-    /** Test-only order implementation; C supplies/adapts the production Order. */
+    /** Deterministic order substitute selected by the default isolated core run. */
     private static final class FakeOrder implements OrderPort {
         private final int id;
         private final int customerId;

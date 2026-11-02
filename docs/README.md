@@ -1,15 +1,18 @@
 # Stage 1 Design Materials
 
-## Implemented member A core
+## Integrated Stage 1 and E handoff
 
-- [Member A implementation and integration](Member_A_Integration.md): implemented
-  responsibilities, project location, C/D interface contracts, CLI call sequence,
-  source changes, verified scenarios and reproducible victory/defeat runs.
-- [Project README](../README.md): current integration status and test command.
+- [E acceptance handoff](Stage_1_E_Handoff.md): test commands, expected outputs,
+  manual acceptance matrix, evidence format and the stage-1 release gate.
+- [Member A implementation and integration](Member_A_Integration.md): ownership,
+  implemented C/D wiring, CLI call sequence, state boundaries and replay table.
+- [Project README](../README.md): build, play, developer checks and replay commands.
+- [Replay inputs](../test/replays/README.md): real Main/CLI stdin fixtures.
 
-Run `bash scripts/test-member-a.sh` from the repository root. The member-A core
-suite verifies 14 scenarios and 344 assertions with test-only order/staff adapters.
-Production Order, staff and CLI integration is still required.
+Run `bash scripts/run.sh` to play or `bash scripts/test-stage1.sh` for A's development
+checks. The latter runs 14 core scenarios and 344 assertions with the production
+Order plus 5 production smoke scenarios and 62 assertions. Independent E
+acceptance is pending; no stage-1 release tag is created by these scripts.
 
 ## Earlier design proposal
 

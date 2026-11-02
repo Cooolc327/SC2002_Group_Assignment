@@ -1,46 +1,93 @@
 # SC2002 Restaurant Rush
 
 Java command-line, turn-based restaurant management coursework.
+[GitHub repository](https://github.com/Cooolc327/SC2002_Group_Assignment)
 
-## Current implementation
+## Stage 1 handoff status
 
-Member A handoff updated on 31 October 2026. Open the repository folder that
-contains src, test, scripts and docs; run the checks below from that root.
+Updated on 3 November 2026. The base-setting game connects the controller,
+restaurant coordination, customers, seating, menu, production Order, staff and
+CLI through Main. Member A's development checks pass; member E's independent
+Stage 1 acceptance and release decision are pending.
 
-The Stage 1 member-A core is implemented: turn coordination, restaurant domain
-coordination, immutable views, statistics, and final victory/defeat evaluation.
-It uses the existing customer, seating and menu modules.
+This handoff contains Stage 1 only. Create the stage-1 tag after E has recorded
+acceptance on the exact commit to be released. Stage 2/3 are separate work.
 
-Member C's production Order and member D's staff/CLI still need to be connected
-through the documented contracts. This is not yet a complete playable Stage 1
-release; do not create the stage-1 release tag until those integrations pass.
-
-## Verify member A
+## Build and play
 
 Requirements: JDK 17 or later and Bash. No network access, external libraries,
-Maven, or Gradle are required.
+Maven or Gradle are needed. Open the repository root containing src, test,
+scripts and docs.
 
-    bash scripts/test-member-a.sh
+```bash
+bash scripts/run.sh
+```
 
-The script compiles all Java source and tests with Java 17 compatibility,
-all compiler warnings enabled, and warnings treated as errors. It then runs
-the member-A integration tests in a temporary build directory.
+The command builds production source into build/classes and launches Main.
+Choose a zero-based option for the Waiter and then the Chef on each turn.
+The game always completes 18 turns. Customers choose Salad, Burger and Pasta
+cyclically by id; the manager sets service and kitchen priorities.
 
-The tests use clearly identified test doubles for C's Order and D's staff.
-They verify A's code; they do not verify C/D production implementations or
-provide the final interactive game.
+To compile without launching:
 
-See [Member A integration and verification](docs/Member_A_Integration.md)
-for ownership, exact interfaces, reproducible runs, and remaining integration.
+```bash
+bash scripts/build.sh
+```
 
-Verified member-A results: 14 scenarios and 344 assertions pass. The reproducible
-victory run completes 18 turns with 5 paid customers, $66.00 revenue and 79.20
-average paid satisfaction. The all-WAIT run completes 18 turns in defeat.
-These results use the test-only order and staff adapters described above.
+## Developer checks before E acceptance
 
-## Design material
+```bash
+bash scripts/test-stage1.sh
+```
 
-The earlier [Stage 1 design proposal](docs/Stage_1_Design_Discussion_EN.md)
-records the proposed architecture. The member-A integration document describes
-the implemented interfaces and differences from that proposal. The final UML
-must be updated to match the final integrated code.
+This compiles all source/tests with Java 17 compatibility, -Xlint:all and -Werror.
+It runs:
+
+- 14 core scenarios and 344 assertions using the production Order. RecordingStaff
+  remains a test double for call-order assertions.
+- 5 smoke scenarios and 62 assertions using real Order, staff, StaffTeam and
+  Main/CLI, including victory, defeat and invalid-input replays.
+
+Expected markers:
+
+```text
+MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
+STAGE1_SMOKE=PASS scenarios=5 assertions=62
+STAGE1_DEVELOPMENT_CHECKS=PASS
+```
+
+The last marker is followed by the local log-directory path. Logs are written to
+build/stage1-checks; build output and logs are ignored by Git. A failed check
+returns a nonzero exit code. These development checks do not constitute E's
+independent acceptance.
+
+The original isolated A test command is also available:
+
+```bash
+bash scripts/test-member-a.sh
+```
+
+It uses test-only order/staff substitutes and labels the order mode as fake.
+
+## Reproduce both endings with the real CLI
+
+```bash
+bash scripts/run.sh < test/replays/stage1-victory.txt
+bash scripts/run.sh < test/replays/stage1-defeat.txt
+```
+
+| Run | Turns | Paid | Revenue | Average paid satisfaction | Unhappy departures |
+| --- | --- | --- | --- | --- | --- |
+| Victory | 18 | 5 | $66.00 | 79.20 | 0 |
+| All-WAIT defeat | 18 | 0 | $0.00 | N/A | 2 |
+
+## Team documentation
+
+- [E acceptance handoff](docs/Stage_1_E_Handoff.md): exact test steps, expected
+  results, acceptance matrix and release gate.
+- [A integration notes](docs/Member_A_Integration.md): ownership, implemented
+  interfaces, turn sequence, state boundaries and human-readable replay.
+- [Replay inputs](test/replays/README.md).
+- [Earlier Stage 1 design proposal](docs/Stage_1_Design_Discussion_EN.md): retained
+  design history. E should synchronize diagrams and final reporting with the
+  accepted implementation.
