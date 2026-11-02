@@ -33,6 +33,13 @@ public abstract class Customer {
         return items.get((id-1) % items.size());
     }
 
+    //-----------------------------------Billing-----------------------------------------------------------
+
+    //Percentage taken off this customer's bill. No discount by default; customer types with a discount override this
+    public int getBillDiscountPercent(){
+        return 0;
+    }
+
 
     //-------------------------------------Satisfaction management------------------------------------
     
