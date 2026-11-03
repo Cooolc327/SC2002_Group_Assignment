@@ -28,7 +28,7 @@ public abstract class Customer {
     //-----------------------------------Food serving rule-------------------------------------------------
    
     //Choose a menu item for the customer based on their id and the menu provided
-    public MenuItem chooseItem(Menu menu){
+    public MenuItem chooseMenuItem(Menu menu){
         List<MenuItem> items = menu.getItems();
         return items.get((id-1) % items.size());
     }

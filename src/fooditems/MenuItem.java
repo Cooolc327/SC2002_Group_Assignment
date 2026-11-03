@@ -29,5 +29,8 @@ public class MenuItem {
         return String.format("$%d.%02d", priceCents / 100, priceCents % 100);
     }
 
+    public int getPrepUnits(){
+        return this.prepUnits;
+    }
     
 }
