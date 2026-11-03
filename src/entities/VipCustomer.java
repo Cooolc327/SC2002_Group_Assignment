@@ -3,7 +3,7 @@ package entities;
 public class VipCustomer extends Customer {
     
     private static final int LOSS_PER_TURN=5; //VIP customers lose 5 satisfaction points per turn while waiting for food
-    private static final int BILL_DISCOUNT_PERCENT=20; //VIP customers receive a 20% discount on their bill
+    private static final int BILL_DISCOUNT_PERCENT=10; //VIP customers receive a 10% discount on their bill
 
     public VipCustomer(int id) {
         super(id);
