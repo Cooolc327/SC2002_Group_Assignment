@@ -11,6 +11,11 @@
 - No Discount Given
 - Distinct Order Preference or reaction to service
 
+## 3.CustomerFactory
+- Decides what type of customer each arrival will be, removing the need for the turnController to decide
+- New types of customers does not have to be edited into the controller itself
+- For our case, we also added Seeded randomisation of the customers, ensuring that 1 VIP and 1 Critic will appear in each game, at different turns each run
+
 
 
 
