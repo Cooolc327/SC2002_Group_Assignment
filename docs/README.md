@@ -2,6 +2,12 @@
 
 ## Integrated Stage 1 and E handoff
 
+- [Manual-based Stage 1 checklist in Chinese](Stage_1_Manual_Checklist_ZH.md):
+  6 November remote comparison, local review integration, requirement-by-requirement
+  evidence, guided gameplay and remaining UML/AI-history/acceptance/tag work.
+- [6 November development verification](verification/Stage_1_2026-11-06.md):
+  exact production source hashes, commands, results and verification limits.
+
 - [E acceptance handoff](Stage_1_E_Handoff.md): test commands, expected outputs,
   manual acceptance matrix, evidence format and the stage-1 release gate.
 - [Member A implementation and integration](Member_A_Integration.md): ownership,

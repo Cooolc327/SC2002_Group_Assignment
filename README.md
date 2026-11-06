@@ -1,93 +1,224 @@
-# SC2002 Restaurant Rush
+# Restaurant Rush
 
-Java command-line, turn-based restaurant management coursework.
-[GitHub repository](https://github.com/Cooolc327/SC2002_Group_Assignment)
+SC2002 Object-Oriented Design & Programming · Group `<LAB>_Grp<N>` (TODO) ·
+Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
-## Stage 1 handoff status
+| Member | Role |
+| --- | --- |
+| Lichen Yin | A: game control and restaurant coordination (`control`, `domain`, `view`), design document and UML |
+| Xavier | B: customers, tables, waiting queue, seating, menu and game configuration |
+| Bernice Koh | C: orders and pricing |
+| Advika Bhambri | D: staff (Waiter, Chef, Cashier) and command-line interface |
+| Rishika Garg | E: integration (`Main`, `Order`, `StaffTeam`), testing and report |
 
-Updated on 3 November 2026. The base-setting game connects the controller,
-restaurant coordination, customers, seating, menu, production Order, staff and
-CLI through Main. Member A's development checks pass; member E's independent
-Stage 1 acceptance and release decision are pending.
+> TODO (team): confirm the role column before submission.
 
-This handoff contains Stage 1 only. Create the stage-1 tag after E has recorded
-acceptance on the exact commit to be released. Stage 2/3 are separate work.
+## Stage 1 review status
 
-## Build and play
+Reviewed on 6 November 2026. The local `codex/stage-1-review` branch combines
+A's handoff (`e595fa9`) and Rishika's Stage 1 update (`542a689`), preserving
+both histories. It includes build/check scripts, real CLI replays and the
+PowerShell BOM input fix. This review branch has not been published.
 
-Requirements: JDK 17 or later and Bash. No network access, external libraries,
-Maven or Gradle are needed. Open the repository root containing src, test,
-scripts and docs.
+Remote `main` is still `705fd37`; [PR #4](https://github.com/Cooolc327/SC2002_Group_Assignment/pull/4)
+is open. No `stage-1` tag existed at the time of review. Development checks pass;
+E's independent acceptance record remains pending. These are separate statuses.
 
-```bash
-bash scripts/run.sh
-```
+Follow the [manual-based Stage 1 checklist](docs/Stage_1_Manual_Checklist_ZH.md)
+for the requirement map, observed evidence, remaining work and guided checks.
 
-The command builds production source into build/classes and launches Main.
-Choose a zero-based option for the Waiter and then the Chef on each turn.
-The game always completes 18 turns. Customers choose Salad, Burger and Pasta
-cyclically by id; the manager sets service and kitchen priorities.
+## Overview
 
-To compile without launching:
+You are the manager of a small restaurant in this turn-based Java command-line game. Every turn you decide what the
+Waiter and the Chef do. After 18 turns the game checks whether you served enough paying,
+satisfied customers to win.
 
-```bash
-bash scripts/build.sh
-```
+| Stage | Adds | Status | Tag |
+| --- | --- | --- | --- |
+| 1 | Regular customers, menu, Waiter/Chef/Cashier, full turn sequence, victory/defeat | Runnable candidate; acceptance/tag pending | Not created |
+| 2 | VIP and Critic customers | Separate remote work branches; not integrated into this baseline | Pending |
+| 3 | Host, ComboMeal, Happy Hour | Outside this Stage 1 review | Pending |
 
-## Developer checks before E acceptance
+## Requirements
 
-```bash
-bash scripts/test-stage1.sh
-```
+JDK 17 or later. No external libraries, no build tool, works offline.
 
-This compiles all source/tests with Java 17 compatibility, -Xlint:all and -Werror.
-It runs:
+## Build and run
 
-- 14 core scenarios and 344 assertions using the production Order. RecordingStaff
-  remains a test double for call-order assertions.
-- 5 smoke scenarios and 62 assertions using real Order, staff, StaffTeam and
-  Main/CLI, including victory, defeat and invalid-input replays.
+From the repository root.
 
-Expected markers:
+Bash (Linux, macOS, Git Bash):
 
-```text
-MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
-STAGE1_SMOKE=PASS scenarios=5 assertions=62
-STAGE1_DEVELOPMENT_CHECKS=PASS
-```
+    bash scripts/build.sh
+    bash scripts/run.sh
 
-The last marker is followed by the local log-directory path. Logs are written to
-build/stage1-checks; build output and logs are ignored by Git. A failed check
-returns a nonzero exit code. These development checks do not constitute E's
-independent acceptance.
+Windows PowerShell:
 
-The original isolated A test command is also available:
+    javac --release 17 -Xlint:all -Werror -d out (Get-ChildItem -Recurse src -Filter *.java).FullName
+    java -cp out Main
 
-```bash
-bash scripts/test-member-a.sh
-```
+## Project structure
 
-It uses test-only order/staff substitutes and labels the order mode as fake.
+    src/
+      Main.java     entry point: wires Restaurant, StaffTeam, GameController and the CLI
+      cli/          boundary: RestaurantCLI reads choices and prints the game state
+      control/      control: GameController (turn sequence), TurnPhase, GameResult
+      domain/       Restaurant: coordinates changes involving customers, tables and orders
+      entities/     Customer, RegularCustomer, CustomerState, Table, WaitingQueue, SeatingArea
+      fooditems/    Menu, MenuItem
+      orders/       Order (preparation progress, status, locked bill)
+      staff/        Waiter, Chef, Cashier, StaffTeam (per-turn allowances)
+      contracts/    action records and interfaces between modules (WaiterAction, ChefAction, OrderPort, StaffGateway, ActionResult)
+      view/         read-only snapshots for the CLI (GameView, GameSummary)
+      config/       GameConfig: base-setting constants
+    test/           automated tests and replay inputs (test/replays/ and test/runs/)
+    scripts/        portable Bash build, run and development-check commands
+    docs/           design discussion and UML
 
-## Reproduce both endings with the real CLI
+## How to play
 
-```bash
-bash scripts/run.sh < test/replays/stage1-victory.txt
-bash scripts/run.sh < test/replays/stage1-defeat.txt
-```
+**Base setting:**
+- 18 turns, 2 tables
+- Staff: one Waiter (one task per turn), one Chef (one preparation unit per turn), one Cashier (one payment per turn, automatic)
+- One Regular customer arrives at the start of turns 1, 4, 7, 10, 13 and 16
+- **Win** if, after turn 18, you have at least 4 paid customers, revenue of at least $45.00 and an average paid satisfaction of at least 60. Otherwise you lose.
 
-| Run | Turns | Paid | Revenue | Average paid satisfaction | Unhappy departures |
-| --- | --- | --- | --- | --- | --- |
-| Victory | 18 | 5 | $66.00 | 79.20 | 0 |
-| All-WAIT defeat | 18 | 0 | $0.00 | N/A | 2 |
+| Menu item | Price | Prep units |
+| --- | --- | --- |
+| Salad | $9.00 | 1 |
+| Burger | $15.00 | 1 |
+| Pasta | $18.00 | 2 |
 
-## Team documentation
+**Each turn:**
+1. **Arrivals:** the scheduled customer joins the queue at satisfaction 100.
+2. **Waiter:** seat a queued customer, take a seated customer's order, serve a READY order, or wait.
+3. **Chef:** advance one order by one unit, or wait. The Waiter acts first. A dish that becomes READY this turn can be served next turn at the earliest.
+4. **Eating and payment:** a customer served on an earlier turn finishes eating and becomes READY_TO_PAY. The Cashier then collects from the oldest eligible customer. A customer who became READY_TO_PAY this turn cannot pay until a later turn.
+5. **Waiting penalty:** every customer not yet served loses 8 satisfaction. A customer who reaches 0 leaves without paying.
+6. **Result:** shown after turn 18. There is no early ending.
 
-- [E acceptance handoff](docs/Stage_1_E_Handoff.md): exact test steps, expected
-  results, acceptance matrix and release gate.
-- [A integration notes](docs/Member_A_Integration.md): ownership, implemented
-  interfaces, turn sequence, state boundaries and human-readable replay.
-- [Replay inputs](test/replays/README.md).
-- [Earlier Stage 1 design proposal](docs/Stage_1_Design_Discussion_EN.md): retained
-  design history. E should synchronize diagrams and final reporting with the
-  accepted implementation.
+Each prompt lists the valid options by number. Type a number and press Enter, for example:
+
+    Waiter tasks (one per turn):
+      0) Wait
+      1) Seat customer #2 at Table 2
+    Choice: 1
+      OK: Seated customer 2 at table 2
+
+## Rules and assumptions
+
+- **Food choice:** customers are numbered 1–6 in arrival order. Customer *n* orders menu item `(n − 1) mod 3`: Salad, Burger, Pasta, Salad, Burger, Pasta. The manager never chooses food.
+- **Money:** stored as integer cents (`int`/`long`) and shown as dollars with two decimals. The bill is fixed when the order is taken.
+- **Satisfaction:** Regular customers lose 8 per turn while WAITING, SEATED or ORDERED (including while their dish is READY but not yet served), with a minimum of 0. Served, eating and ready-to-pay customers lose nothing.
+- **Abandonment:** a customer who reaches 0 leaves. Their order is cancelled, even if it is READY, and their table is freed. A customer who is never seated leaves at the end of their 13th turn.
+- **Payment:**
+  - The Cashier picks the customer who has been READY_TO_PAY longest. If two became ready on the same turn, the lower customer number pays first.
+  - The satisfaction at the moment of payment is recorded and used for the average. With no payments, the average shows N/A.
+  - The victory check uses the exact average, with no rounding.
+- **Invalid input:**
+  - A non-number or an out-of-range number gets an explanation and the prompt repeats, without using the staff task.
+  - An action the game rejects explains why and does not use the task.
+  - If input ends, the game exits cleanly.
+- **Turn-16 customer:** this customer cannot pay within 18 turns, so at most 5 customers can pay (intended by the brief).
+
+## Test notes
+
+**Development regression checks** (Bash):
+
+    bash scripts/test-stage1.sh
+
+All production and test Java sources compile with `--release 17 -Xlint:all -Werror`.
+Expected results:
+
+    MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
+    STAGE1_SMOKE=PASS scenarios=5 assertions=62
+    STAGE1_DEVELOPMENT_CHECKS=PASS
+
+The core suite uses the production Order and a recording staff test double.
+The smoke suite separately uses real Order, StaffTeam, staff and Main/CLI.
+Logs are in `build/stage1-checks/` (Git-ignored). These checks are development
+verification, not a completed E acceptance record.
+
+`bash scripts/test-member-a.sh` still runs the isolated core suite with fake
+orders/staff. `test/CustomerSeatingTest.java` is an empty placeholder and does
+not supply additional executed tests.
+
+**Reproducible runs:** each file holds one zero-based menu choice per line, the Waiter's choice then the Chef's, for 18 turns. Both replay directories are retained: A's all-WAIT defeat and Rishika's one-customer defeat intentionally produce different results.
+
+| Run | Input | Strategy | Expected final result |
+| --- | --- | --- | --- |
+| Victory | [test/runs/stage1-victory.txt](test/runs/stage1-victory.txt) | Waiter: serve, else take order, else seat. Chef: always prepare the oldest order | **VICTORY**: 5 paid, $66.00, avg 79.20, 0 departures |
+| One-customer defeat | [test/runs/stage1-defeat.txt](test/runs/stage1-defeat.txt) | Look after customer 1 only, then wait for the rest of the game | **DEFEAT**: 1 paid, $9.00, avg 84.00, 1 departure |
+
+The A fixtures additionally cover no payments and the required N/A average:
+
+| Run | Input | Expected final result |
+| --- | --- | --- |
+| Victory (same choices) | [test/replays/stage1-victory.txt](test/replays/stage1-victory.txt) | VICTORY; 5 paid, $66.00, average 79.20, 0 departures |
+| All-WAIT defeat | [test/replays/stage1-defeat.txt](test/replays/stage1-defeat.txt) | DEFEAT; 0 paid, $0.00, average N/A, 2 departures |
+
+Run the Bash launcher directly:
+
+    bash scripts/run.sh < test/runs/stage1-victory.txt
+    bash scripts/run.sh < test/runs/stage1-defeat.txt
+    bash scripts/run.sh < test/replays/stage1-defeat.txt
+
+After the PowerShell build above:
+
+    Get-Content test\runs\stage1-victory.txt | java -cp out Main
+
+See [A replay notes](test/replays/README.md), [Rishika replay notes](test/runs/README.md)
+and [the 18-turn action table](docs/Member_A_Integration.md#victory-replay-using-the-current-menu-rule).
+
+## Stage 1 design summary
+
+| Class | Responsibility |
+| --- | --- |
+| `GameController` | Runs the six turn steps in order, accepts staff actions only in the right phase, evaluates the result |
+| `Restaurant` | Keeps customers, tables and orders consistent during seating, ordering, serving, payment and abandonment, and computes statistics |
+| `Customer` (abstract) / `RegularCustomer` | Satisfaction, food choice, legal state transitions. Subclasses supply the per-turn satisfaction loss |
+| `Table`, `WaitingQueue`, `SeatingArea` | Table occupancy and the arrival-order queue |
+| `Order` | Preparation progress, status (PLACED → PREPARING → READY → SERVED → PAID / CANCELLED), locked bill, satisfaction at payment |
+| `Waiter`, `Chef`, `Cashier`, `StaffTeam` | Each enforces its own one-action-per-turn allowance. A rejected action does not use it up |
+| `RestaurantCLI` | Shows `GameView` snapshots and collects choices. It contains no game rules |
+
+The [existing class diagram](docs/UML/Stage_1_Class_Diagram.svg) and
+[design discussion](docs/Stage_1_Design_Discussion_EN.md) are **earlier proposals**.
+They must be aligned with the actual Stage 1 code before being used as final
+evidence. Differences include StaffGateway/StaffTeam, SeatingArea/WaitingQueue,
+RegularCustomer, OrderPort and CustomerState; the old food-choice proposal also
+differs from the current cyclic rule.
+
+The briefing requires one matching class diagram per stage (three total),
+one complex Stage 2 or Stage 3 sequence diagram, and individual reflections.
+See the [complete Stage 1 checklist](docs/Stage_1_Manual_Checklist_ZH.md).
+
+## Stage links
+
+- Stage 1: no tag yet. Add the verified tag link after a runnable Stage 1 snapshot has been accepted and tagged.
+- [Original A-to-E handoff](docs/Stage_1_E_Handoff.md); record acceptance against the exact final candidate SHA.
+- Stage 1 → 2 comparison: TODO
+- Stage 2 → 3 comparison: TODO
+
+## AI history and submission evidence
+
+The briefing requires each member's **full ordered project conversations**
+(prompts, replies and follow-ups), stored on that member's own repository branch.
+A summary alone is insufficient. No `ai-history/` folders were found on the
+fetched branch tips during this review; the team must verify and add the actual
+histories, then put working links here. Do not replace them with reconstructed
+summaries or link to nonexistent folders.
+
+| Member | Full history link |
+| --- | --- |
+| Lichen Yin | Pending |
+| Xavier | Pending |
+| Bernice Koh | Pending |
+| Advika Bhambri | Pending |
+| Rishika Garg | Pending |
+
+Final submission is due **15 November 2026, 23:59 Singapore time**. The group ZIP
+must include code/build instructions, README stage comparisons and video
+timestamps, PDF report (three class diagrams, one later-stage sequence diagram,
+design/results and individual reflections), an approximately 15-minute video
+with every member explaining a part, and the signed original-work/GAI forms.

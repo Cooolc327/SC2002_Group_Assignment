@@ -8,6 +8,16 @@ Order, staff, StaffTeam and CLI. A provides the controller/domain coordination,
 shared contracts/views, reproducible build/run/check commands, replay fixtures
 and integration notes. The game contains Stage 1 features only.
 
+## Review update on 6 November 2026
+
+The original handoff instructions below describe `codex/stage-1-a-handoff`
+commit `e595fa9`. A newer **local-only** `codex/stage-1-review` combines this
+handoff with Rishika's `542a689` (BOM fix, README and replay inputs). It has
+not been pushed and is not the remote PR #4 head. Before E tests the new
+candidate, publish the intended branch and record its exact SHA. Follow the
+[manual-based checklist](Stage_1_Manual_Checklist_ZH.md) for the current
+comparison, additional briefing requirements and remaining work.
+
 ## Version to test
 
 Test the exact commit on branch codex/stage-1-a-handoff. Record its SHA with

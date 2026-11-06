@@ -219,7 +219,7 @@ public class RestaurantCLI {
                 System.out.println("\nInput ended. Exiting game.");
                 System.exit(0);
             }
-            String line = in.nextLine().trim();
+            String line = in.nextLine().replace("﻿", "").trim();   // PowerShell pipes may prepend a BOM
             try {
                 return Integer.parseInt(line);
             } catch (NumberFormatException e) {
