@@ -2,6 +2,10 @@
 
 核对日期：2026 年 11 月 6 日。本文结合 assignment manual、project briefing 和实际代码，供 Member A 与 E 逐步复核。程序开发检查已通过；人工复核、E 的独立验收、远端整合与 stage-1 tag 尚未完成。每一步都列出操作、预期结果、证据和后续动作，不把自动测试当作任何成员的签字。
 
+本次个人分支整理更新：当前分支为 `lichen/stage_1`，承接复核提交 `b64651d`，保留 A 的实现/交接以及 Rishika 更新的历史；`ai-history/stage-1/` 已保存三段真实相关会话，共 131 条消息和 8 张截图，覆盖范围与截止点见该目录 README。其他成员记录、E 验收和 stage-1 tag 仍需分别完成。下方远端状态表保留前一次核对时的事实，并更新当前使用入口。
+
+人工走查已经通过截图确认到第 6 回合开始：C1/Order1 PAID、收到 $9、满意度快照 84、T1 释放；C2 Burger READY，未计入收入。用户明确未检查 Chef 错误输入，之后退出游戏；Pasta 和完整胜负的人工走查尚未完成，不能把之前的操作建议当成已执行证据。
+
 ## 0 当前版本与本次同步
 
 唯一工作仓库：
@@ -16,10 +20,10 @@
 | A 原交接版本 | `codex/stage-1-a-handoff`，`e595fa94b4a69a560f7d1b1007bcd3bdb0fc5514` |
 | PR #4 | 仍 open，未合并；GitHub 上未见 review 或评论中的验收记录 |
 | Rishika 新提交 | `542a6891a1544dd211a3b779d41a3fe6ee342bf1`，README、BOM 输入兼容、out/ 忽略和两组回放 |
-| 本地复核分支 | `codex/stage-1-review`，整合 A 与 Rishika 的上述版本，修正 README 状态说明；尚未发布到远端 |
+| 当前个人分支 | `lichen/stage_1`，承接 `b64651d` 的整合内容和历史，并增加完整个人 AI 对话记录；远端身份以发布后的 SHA 核验为准 |
 | Stage 2 工作 | `origin/Xavier-Stage2` 与 `origin/bernice/stage-2-pricing` 已 fetch 到本地，保留在各自分支，未混入 Stage 1 |
 | stage-1 tag | 本地和远端均没有 |
-| AI history | 在已抓取的远端分支 tip 中，未找到 ai-history/ 或 ai_history/ 路径；不能据此排除其他位置存在记录 |
+| AI history | Lichen 的三段相关原始会话已整理到 ai-history/stage-1；其他成员的记录和 README 链接仍待各自补齐/核实 |
 
 本次没有修改 main，也没有合并远端 PR 或创建/推送 tag。Rishika 的 README 原来写了 Stage 1 Done 并链接一个不存在的 tag；复核版本改为候选版本、验收和 tag 待完成，保留 A 的构建/测试脚本。
 
@@ -57,7 +61,7 @@ java -version
 javac -version
 ```
 
-预期：目录正确、当前分支为 `codex/stage-1-review`，没有未提交的文件。把完整 SHA、系统和 JDK 版本写到复核记录。只记录分支名不够，因为分支以后会移动。
+预期：目录正确、当前分支为 `lichen/stage_1`，没有未提交的文件。把完整 SHA、系统和 JDK 版本写到复核记录。只记录分支名不够，因为分支以后会移动。
 
 本次运行使用 Temurin JDK 21.0.12，通过 `--release 17` 构建。README 要求 JDK 17 或以上；本次没有声称在真实 JDK 17 运行时执行过。如果 E 用另一台机器复测，应记录那台机器实际的版本。
 
@@ -204,7 +208,7 @@ bash scripts/run.sh < test/runs/stage1-defeat.txt
 | M29 | 可复现胜利和失败测试笔记 | 两组 stdin 文件、README 与本文件 | 通过 |
 | M30 | GitHub 上真实可运行的 stage-1 tag | 远端 tags 与本地 git tag | **待完成** |
 | M31 | Stage 1 类图匹配对应代码 | 现有 UML 与实现对照 | **待修正**，见第 9 步 |
-| M32 | 完整个人 AI history 及 README 有效链接 | 已抓取远端 tip 路径、README | **待补充/确认其他位置** |
+| M32 | 完整个人 AI history 及 README 有效链接 | ai-history/stage-1 与 root README | **Lichen 已整理三个可恢复会话；其他成员及可能的其他聊天仍待确认** |
 
 “最久等待优先”和一次多位 READY_TO_PAY 等边界不容易只靠正常 CLI 准备；已有 domain fixtures 会直接构建这些状态。不能为了演示而给生产游戏加作弊入口，也不要把 fixture 中的人数/时序当成基础配置。
 
@@ -280,11 +284,11 @@ Member A 的 reflection 可先收集事实素材，再用自己的话写：你�
 
 ## 11 E 独立复核与缺陷关闭
 
-本地 `codex/stage-1-review` 尚未推送，E 现在从 GitHub 打开 PR #4 只能拿到旧候选版本 `e595fa9`，拿不到这里新整合的 BOM 修复、回放和核对清单。
+当前候选个人分支是 `lichen/stage_1`，包含之前 `b64651d` 的复核代码与本次 AI history/文档。PR #4 仍指向旧候选 `e595fa9`；E 应通过当前个人分支获取新版本，并记录精确 SHA。
 
-准备交接时要先把本次候选版本发布到团队约定的分支/PR；新的 `codex/stage-1-review` 可以作为独立 PR，再协调原 PR #4，避免重复合并同一份 A 改动。不要误把“本地有了”说成“远端 main 已整合”。
+发布个人分支后，可以从 `lichen/stage_1` 准备团队整合 PR，并协调原 PR #4，避免重复合并同一份 A 改动。个人分支发布不代表 main 已整合，也不代表 stage-1 tag 已创建。
 
-E 应拿到最终候选版本的精确 SHA，执行第 2 至 7 步和独立场景，并填 [原交接表](Stage_1_E_Handoff.md) 的实际验收栏。那个文件中的旧分支指令是原交接版本，发布新候选后应一起更新，不让 E 测错分支。
+E 应拿到最终候选版本的精确 SHA，执行第 2 至 7 步和独立场景，并填 [原交接表](Stage_1_E_Handoff.md) 的实际验收栏。交接文件的当前分支指令已更新为 `lichen/stage_1`，仍需记录 E 实际测试的 SHA。
 
 记录模板：
 
@@ -356,6 +360,6 @@ bash "$stage1_check_dir/scripts/run.sh" < "$stage1_check_dir/test/replays/stage1
 
 ## 14 当前结论与下一次会话入口
 
-**Stage 1 的生产调用链已接通，现有开发检查与新回放通过。远端尚未完成发布收尾。** 本次新内容在本地复核分支，不在远端 main。尚待：人工走查、E 独立记录、Stage 1 图/设计对齐、真实个人 AI history 与相关链接、发布候选版本并保存 runnable stage-1 tag。
+**Stage 1 的生产调用链已接通，现有开发检查与新回放通过。** 当前个人分支为 `lichen/stage_1`；Lichen 的三个相关 Codex 会话已按原文整理并链接，人工走查确认了 C1 的完整服务链。尚待：后续人工场景、E 独立记录、Stage 1 图/设计对齐、其他个人 AI 对话与成员链接的完整性确认、团队整合与 runnable stage-1 tag。
 
 下一次按第 2 步确认版本，再按第 4、5 步从第一个 Waiter 提示亲自走六回合；遇到某一行不符，就用回合数、输入和实际输出定位，而不跳过。自动检查不需在代码未改变时反复重跑；把时间用于尚未完成的人工证据和图文对齐。

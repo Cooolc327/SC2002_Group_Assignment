@@ -2,6 +2,10 @@
 
 ## Integrated Stage 1 and E handoff
 
+Current personal branch: `lichen/stage_1`.
+[Lichen's Stage 1 AI conversation history](../ai-history/stage-1/README.md)
+contains the recovered original planning/implementation, design and audit chats.
+
 - [Manual-based Stage 1 checklist in Chinese](Stage_1_Manual_Checklist_ZH.md):
   6 November remote comparison, local review integration, requirement-by-requirement
   evidence, guided gameplay and remaining UML/AI-history/acceptance/tag work.

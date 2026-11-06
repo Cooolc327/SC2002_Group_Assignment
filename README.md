@@ -15,10 +15,14 @@ Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
 ## Stage 1 review status
 
-Reviewed on 6 November 2026. The local `codex/stage-1-review` branch combines
-A's handoff (`e595fa9`) and Rishika's Stage 1 update (`542a689`), preserving
-both histories. It includes build/check scripts, real CLI replays and the
-PowerShell BOM input fix. This review branch has not been published.
+Reviewed on 6 November 2026. Lichen's personal branch
+[`lichen/stage_1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1)
+consolidates A's implementation (`c992ee3`), handoff (`e595fa9`) and integrated
+review (`b64651d`, including Rishika's `542a689`). Their original commit histories
+are preserved. It includes build/check scripts, real CLI replays, the PowerShell
+BOM fix and [Lichen's full Stage 1 AI history](ai-history/stage-1/README.md).
+The older A branches remain historical references; this is the current
+personal Stage 1 branch.
 
 Remote `main` is still `705fd37`; [PR #4](https://github.com/Cooolc327/SC2002_Group_Assignment/pull/4)
 is open. No `stage-1` tag existed at the time of review. Development checks pass;
@@ -204,14 +208,15 @@ See the [complete Stage 1 checklist](docs/Stage_1_Manual_Checklist_ZH.md).
 
 The briefing requires each member's **full ordered project conversations**
 (prompts, replies and follow-ups), stored on that member's own repository branch.
-A summary alone is insufficient. No `ai-history/` folders were found on the
-fetched branch tips during this review; the team must verify and add the actual
-histories, then put working links here. Do not replace them with reconstructed
-summaries or link to nonexistent folders.
+A summary alone is insufficient. Lichen's full available history is linked
+below: three related conversations, 131 messages and eight screenshots, with
+the export scope/cutoff documented. Other members' links remain pending.
+Do not replace full conversations with reconstructed summaries or link to
+nonexistent folders.
 
 | Member | Full history link |
 | --- | --- |
-| Lichen Yin | Pending |
+| Lichen Yin | [Stage 1 full AI history](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1) |
 | Xavier | Pending |
 | Bernice Koh | Pending |
 | Advika Bhambri | Pending |

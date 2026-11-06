@@ -10,34 +10,34 @@ and integration notes. The game contains Stage 1 features only.
 
 ## Review update on 6 November 2026
 
-The original handoff instructions below describe `codex/stage-1-a-handoff`
-commit `e595fa9`. A newer **local-only** `codex/stage-1-review` combines this
-handoff with Rishika's `542a689` (BOM fix, README and replay inputs). It has
-not been pushed and is not the remote PR #4 head. Before E tests the new
-candidate, publish the intended branch and record its exact SHA. Follow the
-[manual-based checklist](Stage_1_Manual_Checklist_ZH.md) for the current
-comparison, additional briefing requirements and remaining work.
+The original handoff was `codex/stage-1-a-handoff` commit `e595fa9`.
+Lichen's current personal branch is `lichen/stage_1`. It contains the integrated
+review `b64651d` (including Rishika's `542a689`) plus personal AI history and
+updated documentation. The production source remains the reviewed Stage 1 code.
+PR #4 still points to the old handoff; it is not the current personal branch.
+Follow the [manual-based checklist](Stage_1_Manual_Checklist_ZH.md) for the
+requirement map, current paths and remaining acceptance work.
 
 ## Version to test
 
-Test the exact commit on branch codex/stage-1-a-handoff. Record its SHA with
-`git rev-parse HEAD`; a branch name alone is not a permanent test identity.
-The branch starts from integrated main commit 705fd37.
+Use branch `lichen/stage_1` and record its exact SHA using `git rev-parse HEAD`.
+A branch name alone is not a permanent test identity. The consolidated history
+includes integrated main `705fd37`, original A work and the newer review.
 
-On a clean checkout of the repository:
+On a clean checkout of the repository, after this personal branch is published:
 
 ```bash
 git fetch origin
-git switch codex/stage-1-a-handoff
-git pull --ff-only
+git switch lichen/stage_1
+git pull --ff-only origin lichen/stage_1
 git rev-parse HEAD
 java -version
 javac -version
 bash scripts/test-stage1.sh
 ```
 
-If the PR has already been merged, use the accepted merge commit instead and
-record that SHA. No message or automated output here is E's sign-off.
+If a candidate is subsequently merged, test and record the accepted merge SHA.
+No message or automated output here is E's sign-off.
 
 ## Commands and expected results
 
