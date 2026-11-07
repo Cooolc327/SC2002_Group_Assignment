@@ -219,9 +219,7 @@ Both execution order and eligibility checks enforce the timing rules: a dish fin
 
 The sketch shows the main classes, relationships, and selected operations. Turn phases, customer/order states, action requests, and read-only snapshots are defined in Sections 4 and 5. Their separate boxes and routine query methods are omitted for readability.
 
-![Stage 1 UML class diagram](UML/Stage_1_Class_Diagram.png)
-
-[Open the scalable SVG](UML/Stage_1_Class_Diagram.svg) · [Open the editable Mermaid source](UML/Stage_1_Class_Diagram.mmd)
+[Open the Stage 1 class diagram (PDF)](UML/Stage1_UML_Diagram.pdf)
 
 Notation: **+** public query or business entry point; **−** private field; **~** operation internal to the domain package; a filled diamond denotes composition; dashed arrows denote call dependencies. MenuItem fields are immutable.
 
