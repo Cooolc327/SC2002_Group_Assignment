@@ -6,7 +6,7 @@ actual agent execution, not an E signature or independent human review.
 
 ## Immutable version identity
 
-- Tested implementation candidate commit: `CANDIDATE_COMMIT`.
+- Tested implementation candidate commit: `df7cf0a113e729c8c134bb661cf474e1b59efbfb`.
 - Source unchanged from main `f24c18679dca2d5f20c124427fd685f787ca5e33`
   and personal baseline `8abd4804de442486984ac080aaf67dbb27640b87`.
 - Release: annotated Git tag `stage-1`; resolve its exact commit using
@@ -48,6 +48,18 @@ bash scripts/run.sh < test/runs/stage1-defeat.txt
 | Class diagram | One-page vector PDF rendered and visually reviewed; type/encapsulation notes corrected |
 | Transcript integrity | 161 original messages and 8 PNG attachments checked against the three source logs |
 | Documentation links | Local links resolve; tag/branch links are verified at publication |
+
+The exact committed candidate was exported to a clean path containing spaces, then
+built/tested from an external working directory with network access denied:
+
+```bash
+/usr/bin/sandbox-exec -p '(version 1) (allow default) (deny network*)' python run_clean_verification.py
+```
+
+The wrapper invokes the repository scripts and three actual Main replays; the
+[execution log](stage-1/clean-verification.log) records their complete output.
+[Timeline checks](stage-1/timeline-verification.log) also inspected the Pasta
+transition turns, early target and actual payment ids in the real CLI trace.
 
 Full test output and selected process logs are committed in [stage-1/](stage-1/).
 [Replay notes](../Stage_1_Test_Notes.md) define exact input, strategy and expected
