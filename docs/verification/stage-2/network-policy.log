@@ -1,0 +1,4 @@
+macOS sandbox-exec profile: (version 1) (allow default) (deny network*)
+The clean verification runner checked that a loopback connect attempt returned EPERM/EACCES before executing any checks.
+All child Bash, javac and Java processes inherited the deny-network policy.
+The runner completed all builds, suites and three external Main replays successfully.

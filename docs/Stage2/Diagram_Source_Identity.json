@@ -71,7 +71,7 @@
     "Both PDFs are vector drawings without raster XObjects; rendered and visually inspected",
     "Both choice traces ran with production controller/staff/orders and were replayed through actual default Main",
     "Normal input is byte-identical to the existing Stage 2 victory fixture",
-    "Source files match the previously tested implementation; no game code changed for drawing"
+    "At drawing time, source bytes matched the then-tested implementation; pre-tag whitespace-only cleanup is recorded separately"
   ],
   "artifacts_sha256": {
     "Stage2_UML_Diagram.drawio": "64205070fb5e6f84706121e61da553659e6af0340f9e638726b33909fce0e1cd",

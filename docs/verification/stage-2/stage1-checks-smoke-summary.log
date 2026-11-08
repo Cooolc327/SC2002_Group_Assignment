@@ -1,0 +1,10 @@
+PASS real Order and StaffTeam timing, retries and table release
+PASS production staff enforce per-turn allowances
+PASS real Main/CLI victory (log cli-victory.log)
+PASS real Main/CLI defeat (log cli-defeat.log)
+PASS real Main/CLI invalid-input-victory (log cli-invalid-input-victory.log)
+PASS real Main/CLI chef-invalid-input-victory (log cli-chef-invalid-input-victory.log)
+PASS real Main/CLI bom-victory (log cli-bom-victory.log)
+PASS real Main/CLI placed-order-abandonment (log cli-placed-order-abandonment.log)
+PASS real Main/CLI ready-order-abandonment (log cli-ready-order-abandonment.log)
+STAGE1_SMOKE=PASS scenarios=9 assertions=94

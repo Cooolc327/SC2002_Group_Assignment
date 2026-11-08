@@ -1,0 +1,30 @@
+PASS customer without a discount pays the menu price
+PASS 10 percent customer discount on every menu item
+PASS discounts round to the nearest cent
+PASS invalid amounts and discounts are rejected
+PASS taking an order locks the discounted bill
+BILL_CALCULATOR=PASS scenarios=5 assertions=26
+PASS menu holds the three base items
+PASS new order starts PLACED with its bill
+PASS one-unit Salad goes straight to READY
+PASS two-unit Pasta goes PREPARING then READY
+PASS dish is served on a later turn than READY
+PASS payment needs SERVED and records satisfaction
+PASS only unserved orders can be cancelled
+ORDER_MENU=PASS scenarios=7 assertions=65
+PASS seeded six-customer schedule, positive IDs and invalid ID rejection
+PASS polymorphic waiting losses, service immunity and Critic preference
+PASS actual mixed arrivals and exact all-WAIT state after 18 turns
+PASS invalid arrival factories leave the turn unchanged and permit retry
+PASS real mixed-customer victory, VIP payment and final unfinished Critic order
+PASS Critic chooses Pasta and follows READY, SERVED, eating and payment timing
+PASS real Critic abandonment cancels an order with 0 preparation units
+PASS real Critic abandonment cancels an order with 1 preparation units
+PASS real Critic abandonment cancels an order with 2 preparation units
+PASS real mixed Main/CLI victory
+PASS real mixed Main/CLI defeat
+PASS real mixed Main/CLI waiter-retry-victory
+PASS real mixed Main/CLI chef-retry-victory
+PASS real mixed Main/CLI bom-victory
+STAGE2_INTEGRATION=PASS scenarios=14 assertions=506
+STAGE2_DEVELOPMENT_CHECKS=PASS logs=/private/tmp/sc2002-stage2-pretag-h_w81tm2/clean candidate with spaces/build/stage2-checks

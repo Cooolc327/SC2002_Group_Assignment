@@ -62,9 +62,11 @@ and original timing are covered by the Regular core/smoke suites.
 
 ## Current execution provenance
 
-Candidate execution is pending in the first preparation commit. The final
+Candidate `f8a70258fe3300318a00cb913d45abefa1a552b5` passed all checks and three actual Main replays from a clean
+committed archive under a deny-network policy, with a path containing spaces
+and commands run from an external cwd. The
 [pre-tag verification record](../verification/Stage_2_Pre_Tag_2026-11-08.md)
-will give the exact tested commit, environment, commands, actual logs, offline
-and clean-archive checks. Agent execution is not an E signature or an unperformed
+gives the exact tested commit, environment, commands, actual logs and source
+identity for the subsequent evidence-only follow-up. Agent execution is not an E signature or an unperformed
 human walk-through. Actual Windows and an actual JDK 17 runtime are not claimed
 when checks run on macOS/JDK 21 using `--release 17`.

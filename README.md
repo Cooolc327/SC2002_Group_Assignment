@@ -3,19 +3,21 @@
 SC2002 Object-Oriented Design & Programming. Java 17+, offline command-line game.
 Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
-## Stage 2 candidate, tag held
+## Stage 2 verified candidate, tag held
 
 Personal branch: [`lichen/stage_2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2), extended from
 published [`stage-1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1). B and C source histories are retained.
 Code, automated checks, Stage 2 class diagram, VIP sequence diagram, acceptance
 checklist and Lichen's complete available AI continuation are prepared. Clean
-committed-archive validation is recorded in a follow-up verification commit.
+committed-archive validation passed on 8 November 2026 under a deny-network
+policy, including external-cwd launch from a path containing spaces. The
+verification record and logs are an evidence-only follow-up commit.
 **The stage-2 tag step is deliberately held; this is not a published stage-2 tag.**
 
 | Stage | Features | Status |
 | --- | --- | --- |
 | 1 | Regular customers, full turn sequence, both endings | Published runnable [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
-| 2 | VIP/Critic behaviour and customer-specific billing | Candidate branch; pre-tag verification record below |
+| 2 | VIP/Critic behaviour and customer-specific billing | Verified candidate branch; stage-2 tag held |
 | 3 | Host, ComboMeal, Happy Hour | Not implemented in this version |
 
 - [Acceptance checklist](docs/Stage2/Stage_2_Acceptance_Checklist_ZH.md)
@@ -135,7 +137,7 @@ Exact committed-archive provenance is in the pre-tag verification record.
   [Diagram notes](docs/Stage2/Diagram_Notes.md) link editable sources, source
   hashes and a replayed single-choice alternative (average 77.80).
 - [Stage 1 to Stage 2 candidate comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...lichen/stage_2);
-  the verification record adds the exact tested commit.
+  [tested implementation f8a7025](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/f8a70258fe3300318a00cb913d45abefa1a552b5).
 - Stage 2 to 3 comparison: pending Stage 3.
 
 The briefing requires three class diagrams (one per stage) and one complex
