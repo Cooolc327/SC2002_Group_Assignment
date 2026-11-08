@@ -1,4 +1,13 @@
-# Stage 1 Documentation
+# Project documentation
+
+Current work: [Stage 2 local code integration](Stage2/Integration_Notes.md).
+The [Stage 2 diagram notes](Stage2/Diagram_Notes.md) link the new class and VIP
+sequence diagrams, editable sources and replay evidence. [Stage 2 acceptance](Stage2/Stage_2_Acceptance_Checklist_ZH.md),
+[full AI continuation](../ai-history/stage-2/README.md), [change analysis](Stage2/Stage_1_to_2_Changes.md)
+and the [pre-tag record](verification/Stage_2_Pre_Tag_2026-11-08.md) complete the
+candidate evidence. The stage-2 tag is held for a later instruction.
+
+## Published Stage 1 documentation
 
 The runnable release is `stage-1` on personal branch `lichen/stage_1`.
 
@@ -15,7 +24,9 @@ The runnable release is `stage-1` on personal branch `lichen/stage_1`.
 - [Lichen's full available Stage 1 AI history](../ai-history/stage-1/README.md).
 - [Root README](../README.md): build/run, stages, tests and team evidence links.
 
-Run `bash scripts/run.sh` or `bash scripts/test-stage1.sh`. Core: 14 scenarios/
+On the current Stage 2 code, run `bash scripts/run.sh --regular` for Regular-only
+regression, or `bash scripts/test-stage1.sh` for the baseline checks. Use the
+`stage-1` tag for the actual historical Stage 1 version. Core: 14 scenarios/
 344 assertions with real Order and recording staff. Production smoke: 9 scenarios/
 94 assertions with real Order/staff/StaffTeam/Main/CLI. Mandatory gameplay and
 checks require no external Java dependencies or network service.

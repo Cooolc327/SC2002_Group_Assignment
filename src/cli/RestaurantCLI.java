@@ -20,10 +20,16 @@ import view.GameView.TableView;
 public class RestaurantCLI {
     private final GameController controller;
     private final Scanner in;
+    private final String setupDescription;
 
     public RestaurantCLI(GameController controller, Scanner in) {
+        this(controller, in, "");
+    }
+
+    public RestaurantCLI(GameController controller, Scanner in, String setupDescription) {
         this.controller = controller;
         this.in = in;
+        this.setupDescription = setupDescription;
     }
 
     public void run() {
@@ -93,10 +99,15 @@ public class RestaurantCLI {
     //-------------------------------Display-----------------------------------
 
     private void printIntro(GameView view) {
-        System.out.println("=== Restaurant Rush (Stage 1) ===");
+        System.out.println("=== Restaurant Rush (Stage 2) ===");
+        if (!setupDescription.isEmpty()) {
+            System.out.println(setupDescription);
+        }
         System.out.println("You are the manager. Each turn: customers arrive -> you choose the Waiter task -> you choose");
         System.out.println("the Chef task -> served customers eat -> the Cashier collects one payment automatically ->");
         System.out.println("everyone not yet served loses satisfaction.");
+        System.out.println("Waiting loss: Regular 8, VIP 5, Critic 12. VIP bills are 10% off.");
+        System.out.println("Critics choose the dish with the most preparation units (first menu item breaks ties).");
         System.out.println("Goal after turn " + GameConfig.MAX_TURNS + ": at least " + GameConfig.MIN_PAID_CUSTOMERS
                 + " paid customers, revenue at least " + money(GameConfig.MIN_REVENUE_CENTS)
                 + ", average satisfaction at least " + GameConfig.MIN_AVG_SATISFACTION + ".");

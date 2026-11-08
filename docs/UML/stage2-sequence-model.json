@@ -1,0 +1,2599 @@
+{
+  "participants": [
+    [
+      "M",
+      "Manager",
+      "<<actor>>"
+    ],
+    [
+      "CLI",
+      "cli:RestaurantCLI",
+      "<<boundary>>"
+    ],
+    [
+      "C",
+      "game:GameController",
+      "<<control>>"
+    ],
+    [
+      "Fn",
+      "factoryFn:IntFunction",
+      "<<Java method reference>>"
+    ],
+    [
+      "F",
+      "customers:CustomerFactory",
+      "<<factory>>"
+    ],
+    [
+      "S",
+      "staff:StaffTeam",
+      "<<StaffGateway>>"
+    ],
+    [
+      "W",
+      "waiter:Waiter",
+      "<<entity>>"
+    ],
+    [
+      "Ch",
+      "chef:Chef",
+      "<<entity>>"
+    ],
+    [
+      "Ca",
+      "cashier:Cashier",
+      "<<entity>>"
+    ],
+    [
+      "R",
+      "restaurant:Restaurant",
+      "<<domain>>"
+    ],
+    [
+      "V",
+      "vip:VipCustomer",
+      "<<created on turn 4>>"
+    ],
+    [
+      "B",
+      "BillCalculator",
+      "<<static utility>>"
+    ],
+    [
+      "OFn",
+      "orderFn:OrderPort.Factory",
+      "<<Order::new>>"
+    ],
+    [
+      "O",
+      "order2:Order",
+      "<<created on turn 5>>"
+    ],
+    [
+      "A",
+      "seating:SeatingArea",
+      "<<entity>>"
+    ],
+    [
+      "G",
+      "GameResult",
+      "<<enumeration>>"
+    ]
+  ],
+  "events": [
+    {
+      "kind": "note",
+      "label": "Starting conditions: default seed 24369; entering turn 4 of stage2-victory.txt. Customer #1 was served on turn 3 and occupies Table 1; Table 2 is free. VIP #2 has not arrived yet. r = restaurant; results are returned as ActionResult / GameView."
+    },
+    {
+      "kind": "section",
+      "label": "TURN 4 - arrival and seating"
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "Fn",
+      "label": "apply(2) [arrival turn]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "F",
+      "label": "createCustomer(2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "F",
+      "b": "V",
+      "label": "VipCustomer(2)",
+      "ret": false,
+      "create": true
+    },
+    {
+      "kind": "message",
+      "a": "F",
+      "b": "Fn",
+      "label": "vip {WAITING, sat=100}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "C",
+      "label": "vip",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "registerArrival(vip)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "addToQueue(vip)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {AWAIT_WAITER}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose SEAT #2 at Table 2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(SEAT(2,2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(SEAT(2,2),r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(SEAT(2,2),r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "seatCustomer(2,2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "seat(vip,2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "A",
+      "b": "V",
+      "label": "seat() -> SEATED",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Successful ActionResult returns through Waiter / StaffTeam / GameController; Waiter lastActionTurn=4 and phase=AWAIT_CHEF. CLI selects Chef WAIT through submitChefAction -> StaffTeam.executeChef -> Chef.execute; phase becomes AUTO. Queue/table mutation occurs inside SeatingArea.seat()."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "empty [no readyToPayTurn < 4]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "applyWaitingPenalty()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "V",
+      "label": "getSatistfactionLossPerTurn() = 5",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "VIP satisfaction becomes 95. Customer #1 becomes READY_TO_PAY on turn 4 but cannot pay until turn 5. The same finishTurn ordering is used on every turn: eating -> Cashier -> penalty -> completeTurn -> result evaluation."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "completeTurn(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(summary4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS [turnsUsed < 18]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {TURN_ENDED}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "section",
+      "label": "TURN 5 - manager choice and actual VIP order"
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[manager takes VIP order now; main branch follows the recorded victory priority rule]",
+      "op": "alt"
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose TAKE_ORDER #2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(TAKE_ORDER(2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(TAKE_ORDER(2),r,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(TAKE_ORDER(2),r,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "placeOrder(2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "chooseItem(menu)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "Burger {base price=1500 cents}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "B",
+      "label": "billFor(vip,Burger)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "V",
+      "label": "getBillDiscountPercent()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "B",
+      "label": "10",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "B",
+      "label": "applyDiscount(1500,10) = 1350",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "R",
+      "label": "1350 cents",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "OFn",
+      "label": "create(2,vip,Burger,1350)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "OFn",
+      "b": "O",
+      "label": "Order(2,vip,Burger,1350)",
+      "ret": false,
+      "create": true
+    },
+    {
+      "kind": "message",
+      "a": "OFn",
+      "b": "R",
+      "label": "order2 {PLACED; billCents=1350}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "placeOrder() -> ORDERED",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "OrderPort.Factory.create(2,vip,Burger,1350) is bound to Order::new. Restaurant validates the fresh order, stores it, and returns success. The bill is final on the Order. Successful Waiter execution records its allowance; controller phase becomes AWAIT_CHEF. Invalid input/action would retry without advancing phase or using allowance."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "getView() [fresh Chef options]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose PREPARE Order 2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitChefAction(PREPARE(2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeChef(PREPARE(2),r,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ch",
+      "label": "execute(PREPARE(2),r,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ch",
+      "b": "R",
+      "label": "advancePreparation(2,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "advanceOneUnit(5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "Order 2 becomes READY with preparedUnits=1 and readyTurn=5. The Waiter has already acted and cannot serve again this turn. Chef success returns through StaffTeam; phase becomes AUTO."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Automatic Cashier chain as on turn 4: customer #1 is now eligible and pays $9.00; Table 1 is released. Those Order 1 / Customer 1 messages are outside this VIP lifeline and are intentionally collapsed here."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "applyWaitingPenalty() -> sat=90",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "completeTurn(5); GameResult.evaluate(summary5) returns IN_PROGRESS. The order being READY does not stop waiting loss: VIP is still ORDERED until served."
+    },
+    {
+      "kind": "section",
+      "label": "TURN 6 - serve the dish on a later turn"
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose SERVE Order 2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(SERVE(2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(SERVE(2),r,6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(SERVE(2),r,6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "serveOrder(2,6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markServed(6) [READY; readyTurn 5 < 6]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "serve(6) -> SERVED",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Waiter success; Chef WAIT; CLI calls finishTurn(). Staff capacity is still one task / preparation unit per turn."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "finishedEating(6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "false [6 is not > servedTurn 6]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Cashier finds no eligible VIP. Waiting penalty leaves a SERVED customer unchanged; completeTurn(6) and result evaluation follow. VIP satisfaction stays 90."
+    },
+    {
+      "kind": "section",
+      "label": "TURN 7 - one full turn of eating; no immediate payment"
+    },
+    {
+      "kind": "ref",
+      "label": "startTurn() on turn 7 also creates Regular customer #3. From the recorded policy: Waiter seats #3; Chef waits. Those non-VIP messages are collapsed. CLI then calls finishTurn()."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "finishedEating(7) [7 > servedTurn 6]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "true; READY_TO_PAY; readyToPayTurn=7",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "empty [VIP readyToPayTurn 7 is not < 7]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Penalty applies only to unserved customers: VIP remains at 90. completeTurn(7); evaluate -> IN_PROGRESS."
+    },
+    {
+      "kind": "section",
+      "label": "TURN 8 - automatic payment, snapshot and table release"
+    },
+    {
+      "kind": "ref",
+      "label": "startTurn() on turn 8; recorded staff choices take Regular #3 order and prepare its first Pasta unit. CLI then calls finishTurn()."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "OptionalInt(2) [7 < 8; oldest eligible]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "settlePayment(2,8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markPaid(8,90) -> PAID",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "pay() -> PAID",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "removeCustomer(vip)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "SeatingArea calls Table 2.release(). Order 2 retains billCents=1350, paidTurn=8 and satisfactionAtPayment=90. Revenue is computed from PAID orders; unpaid/abandoned orders are excluded."
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "success [one payment this turn]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "S",
+      "label": "success; lastActionTurn=8",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "C",
+      "label": "success",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "completeTurn(8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(summary8)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS [only 8 turns used]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {paid=2, revenue=$22.50, avg=87.00}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "section",
+      "label": "TURNS 9-18 - complete the game; same victory/defeat criteria"
+    },
+    {
+      "kind": "frame",
+      "label": "[remaining turns 9..18; no early ending]",
+      "op": "loop"
+    },
+    {
+      "kind": "ref",
+      "label": "For every turn: arrivals on 10/13/16; one Waiter choice, then one Chef choice; advanceEating -> automatic oldest payment -> per-customer penalty / abandonment -> completeTurn. All other-customer interactions follow stage2-victory.txt."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(restaurant.getSummary())",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[turnsUsed < 18]",
+      "op": "alt"
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "divider",
+      "label": "[turnsUsed = 18]"
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "VICTORY [paid=5; 6450 >= 4500; 402 >= 60*5]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {FINISHED, VICTORY}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "TAKE_ORDER branch final outcome: 18/18 turns; 5 paid; $64.50; average paid satisfaction 80.40; zero unhappy departures. CLI prints the final result. Critic #6 cannot pay before the deadline, as intended."
+    },
+    {
+      "kind": "divider",
+      "label": "[manager chooses WAIT on turn 5; same priority rule resumes on turn 6]"
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose WAIT instead of TAKE_ORDER #2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Separate counterfactual replay: VIP orders/prepares on turn 6, is served on turn 7, becomes READY_TO_PAY on turn 8 and pays on turn 9. Its payment snapshot is 85. The remaining customers are also scheduled by the same priority rule. Final result: VICTORY, 5 paid, $64.50, satisfaction sum 389, average 77.80. Thus one staff-priority choice changes timing and satisfaction, while both runs still win."
+    },
+    {
+      "kind": "note",
+      "label": "Scope: one complex Stage 2 use case with a separately replayed alternative. ref frames abbreviate existing interactions; they do not add methods to the code. OptionalInt/getSummary return details and pure GameView construction are abbreviated. Parameters r and action factories are shorthand for actual Restaurant / action records."
+    }
+  ],
+  "frames": [
+    {
+      "op": "alt",
+      "label": "[manager takes VIP order now; main branch follows the recorded victory priority rule]",
+      "start": 37,
+      "end": 127,
+      "dividers": [
+        [
+          124,
+          "[manager chooses WAIT on turn 5; same priority rule resumes on turn 6]"
+        ]
+      ]
+    },
+    {
+      "op": "loop",
+      "label": "[remaining turns 9..18; no early ending]",
+      "start": 115,
+      "end": 122,
+      "dividers": []
+    },
+    {
+      "op": "alt",
+      "label": "[turnsUsed < 18]",
+      "start": 118,
+      "end": 122,
+      "dividers": [
+        [
+          120,
+          "[turnsUsed = 18]"
+        ]
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "kind": "note",
+      "label": "Starting conditions: default seed 24369; entering turn 4 of stage2-victory.txt. Customer #1 was served on turn 3 and occupies Table 1; Table 2 is free. VIP #2 has not arrived yet. r = restaurant; results are returned as ActionResult / GameView.",
+      "y": 215,
+      "h": 49,
+      "lines": [
+        "Starting conditions: default seed 24369; entering turn 4 of stage2-victory.txt. Customer #1 was served on turn 3 and occupies Table 1; Table 2 is free. VIP #2 has not arrived yet. r = restaurant; results are returned as ActionResult / GameView."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 4 - arrival and seating",
+      "y": 264,
+      "h": 46,
+      "lines": [
+        "TURN 4 - arrival and seating"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false,
+      "y": 310,
+      "h": 30,
+      "lines": [
+        "startTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "Fn",
+      "label": "apply(2) [arrival turn]",
+      "ret": false,
+      "create": false,
+      "y": 340,
+      "h": 30,
+      "lines": [
+        "apply(2) [arrival turn]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "F",
+      "label": "createCustomer(2)",
+      "ret": false,
+      "create": false,
+      "y": 370,
+      "h": 30,
+      "lines": [
+        "createCustomer(2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "F",
+      "b": "V",
+      "label": "VipCustomer(2)",
+      "ret": false,
+      "create": true,
+      "y": 400,
+      "h": 65,
+      "lines": [
+        "VipCustomer(2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "F",
+      "b": "Fn",
+      "label": "vip {WAITING, sat=100}",
+      "ret": true,
+      "create": false,
+      "y": 465,
+      "h": 30,
+      "lines": [
+        "vip {WAITING, sat=100}"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "C",
+      "label": "vip",
+      "ret": true,
+      "create": false,
+      "y": 495,
+      "h": 30,
+      "lines": [
+        "vip"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(4)",
+      "ret": false,
+      "create": false,
+      "y": 525,
+      "h": 30,
+      "lines": [
+        "beginTurn(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "registerArrival(vip)",
+      "ret": false,
+      "create": false,
+      "y": 555,
+      "h": 30,
+      "lines": [
+        "registerArrival(vip)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "addToQueue(vip)",
+      "ret": false,
+      "create": false,
+      "y": 585,
+      "h": 30,
+      "lines": [
+        "addToQueue(vip)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {AWAIT_WAITER}",
+      "ret": true,
+      "create": false,
+      "y": 615,
+      "h": 30,
+      "lines": [
+        "GameView {AWAIT_WAITER}"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose SEAT #2 at Table 2",
+      "ret": false,
+      "create": false,
+      "y": 645,
+      "h": 30,
+      "lines": [
+        "choose SEAT #2 at Table 2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(SEAT(2,2))",
+      "ret": false,
+      "create": false,
+      "y": 675,
+      "h": 30,
+      "lines": [
+        "submitWaiterAction(SEAT(2,2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(SEAT(2,2),r,4)",
+      "ret": false,
+      "create": false,
+      "y": 705,
+      "h": 30,
+      "lines": [
+        "executeWaiter(SEAT(2,2),r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(SEAT(2,2),r,4)",
+      "ret": false,
+      "create": false,
+      "y": 735,
+      "h": 30,
+      "lines": [
+        "execute(SEAT(2,2),r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "seatCustomer(2,2)",
+      "ret": false,
+      "create": false,
+      "y": 765,
+      "h": 30,
+      "lines": [
+        "seatCustomer(2,2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "seat(vip,2)",
+      "ret": false,
+      "create": false,
+      "y": 795,
+      "h": 30,
+      "lines": [
+        "seat(vip,2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "A",
+      "b": "V",
+      "label": "seat() -> SEATED",
+      "ret": false,
+      "create": false,
+      "y": 825,
+      "h": 30,
+      "lines": [
+        "seat() -> SEATED"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Successful ActionResult returns through Waiter / StaffTeam / GameController; Waiter lastActionTurn=4 and phase=AWAIT_CHEF. CLI selects Chef WAIT through submitChefAction -> StaffTeam.executeChef -> Chef.execute; phase becomes AUTO. Queue/table mutation occurs inside SeatingArea.seat().",
+      "y": 855,
+      "h": 49,
+      "lines": [
+        "Successful ActionResult returns through Waiter / StaffTeam / GameController; Waiter lastActionTurn=4 and phase=AWAIT_CHEF. CLI selects Chef WAIT through submitChefAction -> StaffTeam.executeChef -> Chef.execute; phase becomes AUTO. Queue/table mutation occurs inside SeatingArea.seat()."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false,
+      "y": 904,
+      "h": 30,
+      "lines": [
+        "finishTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(4)",
+      "ret": false,
+      "create": false,
+      "y": 934,
+      "h": 30,
+      "lines": [
+        "advanceEating(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false,
+      "y": 964,
+      "h": 30,
+      "lines": [
+        "processPayment(r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false,
+      "y": 994,
+      "h": 30,
+      "lines": [
+        "processPayment(r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(4)",
+      "ret": false,
+      "create": false,
+      "y": 1024,
+      "h": 30,
+      "lines": [
+        "findOldestPayableCustomer(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "empty [no readyToPayTurn < 4]",
+      "ret": true,
+      "create": false,
+      "y": 1054,
+      "h": 30,
+      "lines": [
+        "empty [no readyToPayTurn < 4]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(4)",
+      "ret": false,
+      "create": false,
+      "y": 1084,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "applyWaitingPenalty()",
+      "ret": false,
+      "create": false,
+      "y": 1114,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "V",
+      "label": "getSatistfactionLossPerTurn() = 5",
+      "ret": false,
+      "create": false,
+      "y": 1144,
+      "h": 30,
+      "lines": [
+        "getSatistfactionLossPerTurn() = 5"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "VIP satisfaction becomes 95. Customer #1 becomes READY_TO_PAY on turn 4 but cannot pay until turn 5. The same finishTurn ordering is used on every turn: eating -> Cashier -> penalty -> completeTurn -> result evaluation.",
+      "y": 1174,
+      "h": 49,
+      "lines": [
+        "VIP satisfaction becomes 95. Customer #1 becomes READY_TO_PAY on turn 4 but cannot pay until turn 5. The same finishTurn ordering is used on every turn: eating -> Cashier -> penalty -> completeTurn -> result evaluation."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "completeTurn(4)",
+      "ret": false,
+      "create": false,
+      "y": 1223,
+      "h": 30,
+      "lines": [
+        "completeTurn(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(summary4)",
+      "ret": false,
+      "create": false,
+      "y": 1253,
+      "h": 30,
+      "lines": [
+        "evaluate(summary4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS [turnsUsed < 18]",
+      "ret": true,
+      "create": false,
+      "y": 1283,
+      "h": 30,
+      "lines": [
+        "IN_PROGRESS [turnsUsed < 18]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {TURN_ENDED}",
+      "ret": true,
+      "create": false,
+      "y": 1313,
+      "h": 30,
+      "lines": [
+        "GameView {TURN_ENDED}"
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 5 - manager choice and actual VIP order",
+      "y": 1343,
+      "h": 46,
+      "lines": [
+        "TURN 5 - manager choice and actual VIP order"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false,
+      "y": 1389,
+      "h": 30,
+      "lines": [
+        "startTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(5)",
+      "ret": false,
+      "create": false,
+      "y": 1419,
+      "h": 30,
+      "lines": [
+        "beginTurn(5)"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[manager takes VIP order now; main branch follows the recorded victory priority rule]",
+      "op": "alt",
+      "y": 1449,
+      "h": 49,
+      "lines": [
+        "[manager takes VIP order now; main branch follows the recorded victory priority rule]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose TAKE_ORDER #2",
+      "ret": false,
+      "create": false,
+      "y": 1498,
+      "h": 30,
+      "lines": [
+        "choose TAKE_ORDER #2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(TAKE_ORDER(2))",
+      "ret": false,
+      "create": false,
+      "y": 1528,
+      "h": 30,
+      "lines": [
+        "submitWaiterAction(TAKE_ORDER(2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(TAKE_ORDER(2),r,5)",
+      "ret": false,
+      "create": false,
+      "y": 1558,
+      "h": 30,
+      "lines": [
+        "executeWaiter(TAKE_ORDER(2),r,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(TAKE_ORDER(2),r,5)",
+      "ret": false,
+      "create": false,
+      "y": 1588,
+      "h": 30,
+      "lines": [
+        "execute(TAKE_ORDER(2),r,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "placeOrder(2)",
+      "ret": false,
+      "create": false,
+      "y": 1618,
+      "h": 30,
+      "lines": [
+        "placeOrder(2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "chooseItem(menu)",
+      "ret": false,
+      "create": false,
+      "y": 1648,
+      "h": 30,
+      "lines": [
+        "chooseItem(menu)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "Burger {base price=1500 cents}",
+      "ret": true,
+      "create": false,
+      "y": 1678,
+      "h": 30,
+      "lines": [
+        "Burger {base price=1500 cents}"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "B",
+      "label": "billFor(vip,Burger)",
+      "ret": false,
+      "create": false,
+      "y": 1708,
+      "h": 30,
+      "lines": [
+        "billFor(vip,Burger)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "V",
+      "label": "getBillDiscountPercent()",
+      "ret": false,
+      "create": false,
+      "y": 1738,
+      "h": 30,
+      "lines": [
+        "getBillDiscountPercent()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "B",
+      "label": "10",
+      "ret": true,
+      "create": false,
+      "y": 1768,
+      "h": 30,
+      "lines": [
+        "10"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "B",
+      "label": "applyDiscount(1500,10) = 1350",
+      "ret": false,
+      "create": false,
+      "y": 1798,
+      "h": 30,
+      "lines": [
+        "applyDiscount(1500,10) = 1350"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "R",
+      "label": "1350 cents",
+      "ret": true,
+      "create": false,
+      "y": 1828,
+      "h": 30,
+      "lines": [
+        "1350 cents"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "OFn",
+      "label": "create(2,vip,Burger,1350)",
+      "ret": false,
+      "create": false,
+      "y": 1858,
+      "h": 30,
+      "lines": [
+        "create(2,vip,Burger,1350)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "OFn",
+      "b": "O",
+      "label": "Order(2,vip,Burger,1350)",
+      "ret": false,
+      "create": true,
+      "y": 1888,
+      "h": 65,
+      "lines": [
+        "Order(2,vip,Burger,1350)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "OFn",
+      "b": "R",
+      "label": "order2 {PLACED; billCents=1350}",
+      "ret": true,
+      "create": false,
+      "y": 1953,
+      "h": 30,
+      "lines": [
+        "order2 {PLACED; billCents=1350}"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "placeOrder() -> ORDERED",
+      "ret": false,
+      "create": false,
+      "y": 1983,
+      "h": 30,
+      "lines": [
+        "placeOrder() -> ORDERED"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "OrderPort.Factory.create(2,vip,Burger,1350) is bound to Order::new. Restaurant validates the fresh order, stores it, and returns success. The bill is final on the Order. Successful Waiter execution records its allowance; controller phase becomes AWAIT_CHEF. Invalid input/action would retry without advancing phase or using allowance.",
+      "y": 2013,
+      "h": 49,
+      "lines": [
+        "OrderPort.Factory.create(2,vip,Burger,1350) is bound to Order::new. Restaurant validates the fresh order, stores it, and returns success. The bill is final on the Order. Successful Waiter execution records its allowance; controller phase becomes AWAIT_CHEF. Invalid input/action would retry without advancing phase or using allowance."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "getView() [fresh Chef options]",
+      "ret": false,
+      "create": false,
+      "y": 2062,
+      "h": 30,
+      "lines": [
+        "getView() [fresh Chef options]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose PREPARE Order 2",
+      "ret": false,
+      "create": false,
+      "y": 2092,
+      "h": 30,
+      "lines": [
+        "choose PREPARE Order 2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitChefAction(PREPARE(2))",
+      "ret": false,
+      "create": false,
+      "y": 2122,
+      "h": 30,
+      "lines": [
+        "submitChefAction(PREPARE(2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeChef(PREPARE(2),r,5)",
+      "ret": false,
+      "create": false,
+      "y": 2152,
+      "h": 30,
+      "lines": [
+        "executeChef(PREPARE(2),r,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ch",
+      "label": "execute(PREPARE(2),r,5)",
+      "ret": false,
+      "create": false,
+      "y": 2182,
+      "h": 30,
+      "lines": [
+        "execute(PREPARE(2),r,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ch",
+      "b": "R",
+      "label": "advancePreparation(2,5)",
+      "ret": false,
+      "create": false,
+      "y": 2212,
+      "h": 30,
+      "lines": [
+        "advancePreparation(2,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "advanceOneUnit(5)",
+      "ret": false,
+      "create": false,
+      "y": 2242,
+      "h": 30,
+      "lines": [
+        "advanceOneUnit(5)"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Order 2 becomes READY with preparedUnits=1 and readyTurn=5. The Waiter has already acted and cannot serve again this turn. Chef success returns through StaffTeam; phase becomes AUTO.",
+      "y": 2272,
+      "h": 49,
+      "lines": [
+        "Order 2 becomes READY with preparedUnits=1 and readyTurn=5. The Waiter has already acted and cannot serve again this turn. Chef success returns through StaffTeam; phase becomes AUTO."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false,
+      "y": 2321,
+      "h": 30,
+      "lines": [
+        "finishTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(5)",
+      "ret": false,
+      "create": false,
+      "y": 2351,
+      "h": 30,
+      "lines": [
+        "advanceEating(5)"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Automatic Cashier chain as on turn 4: customer #1 is now eligible and pays $9.00; Table 1 is released. Those Order 1 / Customer 1 messages are outside this VIP lifeline and are intentionally collapsed here.",
+      "y": 2381,
+      "h": 49,
+      "lines": [
+        "Automatic Cashier chain as on turn 4: customer #1 is now eligible and pays $9.00; Table 1 is released. Those Order 1 / Customer 1 messages are outside this VIP lifeline and are intentionally collapsed here."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(5)",
+      "ret": false,
+      "create": false,
+      "y": 2430,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty(5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "applyWaitingPenalty() -> sat=90",
+      "ret": false,
+      "create": false,
+      "y": 2460,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty() -> sat=90"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "completeTurn(5); GameResult.evaluate(summary5) returns IN_PROGRESS. The order being READY does not stop waiting loss: VIP is still ORDERED until served.",
+      "y": 2490,
+      "h": 49,
+      "lines": [
+        "completeTurn(5); GameResult.evaluate(summary5) returns IN_PROGRESS. The order being READY does not stop waiting loss: VIP is still ORDERED until served."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 6 - serve the dish on a later turn",
+      "y": 2539,
+      "h": 46,
+      "lines": [
+        "TURN 6 - serve the dish on a later turn"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false,
+      "y": 2585,
+      "h": 30,
+      "lines": [
+        "startTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(6)",
+      "ret": false,
+      "create": false,
+      "y": 2615,
+      "h": 30,
+      "lines": [
+        "beginTurn(6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose SERVE Order 2",
+      "ret": false,
+      "create": false,
+      "y": 2645,
+      "h": 30,
+      "lines": [
+        "choose SERVE Order 2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(SERVE(2))",
+      "ret": false,
+      "create": false,
+      "y": 2675,
+      "h": 30,
+      "lines": [
+        "submitWaiterAction(SERVE(2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(SERVE(2),r,6)",
+      "ret": false,
+      "create": false,
+      "y": 2705,
+      "h": 30,
+      "lines": [
+        "executeWaiter(SERVE(2),r,6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(SERVE(2),r,6)",
+      "ret": false,
+      "create": false,
+      "y": 2735,
+      "h": 30,
+      "lines": [
+        "execute(SERVE(2),r,6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "serveOrder(2,6)",
+      "ret": false,
+      "create": false,
+      "y": 2765,
+      "h": 30,
+      "lines": [
+        "serveOrder(2,6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markServed(6) [READY; readyTurn 5 < 6]",
+      "ret": false,
+      "create": false,
+      "y": 2795,
+      "h": 30,
+      "lines": [
+        "markServed(6) [READY; readyTurn 5 < 6]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "serve(6) -> SERVED",
+      "ret": false,
+      "create": false,
+      "y": 2825,
+      "h": 30,
+      "lines": [
+        "serve(6) -> SERVED"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Waiter success; Chef WAIT; CLI calls finishTurn(). Staff capacity is still one task / preparation unit per turn.",
+      "y": 2855,
+      "h": 49,
+      "lines": [
+        "Waiter success; Chef WAIT; CLI calls finishTurn(). Staff capacity is still one task / preparation unit per turn."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(6)",
+      "ret": false,
+      "create": false,
+      "y": 2904,
+      "h": 30,
+      "lines": [
+        "advanceEating(6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "finishedEating(6)",
+      "ret": false,
+      "create": false,
+      "y": 2934,
+      "h": 30,
+      "lines": [
+        "finishedEating(6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "false [6 is not > servedTurn 6]",
+      "ret": true,
+      "create": false,
+      "y": 2964,
+      "h": 30,
+      "lines": [
+        "false [6 is not > servedTurn 6]"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Cashier finds no eligible VIP. Waiting penalty leaves a SERVED customer unchanged; completeTurn(6) and result evaluation follow. VIP satisfaction stays 90.",
+      "y": 2994,
+      "h": 49,
+      "lines": [
+        "Cashier finds no eligible VIP. Waiting penalty leaves a SERVED customer unchanged; completeTurn(6) and result evaluation follow. VIP satisfaction stays 90."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 7 - one full turn of eating; no immediate payment",
+      "y": 3043,
+      "h": 46,
+      "lines": [
+        "TURN 7 - one full turn of eating; no immediate payment"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "startTurn() on turn 7 also creates Regular customer #3. From the recorded policy: Waiter seats #3; Chef waits. Those non-VIP messages are collapsed. CLI then calls finishTurn().",
+      "y": 3089,
+      "h": 49,
+      "lines": [
+        "startTurn() on turn 7 also creates Regular customer #3. From the recorded policy: Waiter seats #3; Chef waits. Those non-VIP messages are collapsed. CLI then calls finishTurn()."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(7)",
+      "ret": false,
+      "create": false,
+      "y": 3138,
+      "h": 30,
+      "lines": [
+        "advanceEating(7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "finishedEating(7) [7 > servedTurn 6]",
+      "ret": false,
+      "create": false,
+      "y": 3168,
+      "h": 30,
+      "lines": [
+        "finishedEating(7) [7 > servedTurn 6]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "true; READY_TO_PAY; readyToPayTurn=7",
+      "ret": true,
+      "create": false,
+      "y": 3198,
+      "h": 43,
+      "lines": [
+        "true; READY_TO_PAY;",
+        "readyToPayTurn=7"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false,
+      "y": 3241,
+      "h": 30,
+      "lines": [
+        "processPayment(r,7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false,
+      "y": 3271,
+      "h": 30,
+      "lines": [
+        "processPayment(r,7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(7)",
+      "ret": false,
+      "create": false,
+      "y": 3301,
+      "h": 30,
+      "lines": [
+        "findOldestPayableCustomer(7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "empty [VIP readyToPayTurn 7 is not < 7]",
+      "ret": true,
+      "create": false,
+      "y": 3331,
+      "h": 43,
+      "lines": [
+        "empty [VIP readyToPayTurn 7 is",
+        "not < 7]"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Penalty applies only to unserved customers: VIP remains at 90. completeTurn(7); evaluate -> IN_PROGRESS.",
+      "y": 3374,
+      "h": 49,
+      "lines": [
+        "Penalty applies only to unserved customers: VIP remains at 90. completeTurn(7); evaluate -> IN_PROGRESS."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 8 - automatic payment, snapshot and table release",
+      "y": 3423,
+      "h": 46,
+      "lines": [
+        "TURN 8 - automatic payment, snapshot and table release"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "startTurn() on turn 8; recorded staff choices take Regular #3 order and prepare its first Pasta unit. CLI then calls finishTurn().",
+      "y": 3469,
+      "h": 49,
+      "lines": [
+        "startTurn() on turn 8; recorded staff choices take Regular #3 order and prepare its first Pasta unit. CLI then calls finishTurn()."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(8)",
+      "ret": false,
+      "create": false,
+      "y": 3518,
+      "h": 30,
+      "lines": [
+        "advanceEating(8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,8)",
+      "ret": false,
+      "create": false,
+      "y": 3548,
+      "h": 30,
+      "lines": [
+        "processPayment(r,8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,8)",
+      "ret": false,
+      "create": false,
+      "y": 3578,
+      "h": 30,
+      "lines": [
+        "processPayment(r,8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(8)",
+      "ret": false,
+      "create": false,
+      "y": 3608,
+      "h": 30,
+      "lines": [
+        "findOldestPayableCustomer(8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "OptionalInt(2) [7 < 8; oldest eligible]",
+      "ret": true,
+      "create": false,
+      "y": 3638,
+      "h": 30,
+      "lines": [
+        "OptionalInt(2) [7 < 8; oldest eligible]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "settlePayment(2,8)",
+      "ret": false,
+      "create": false,
+      "y": 3668,
+      "h": 30,
+      "lines": [
+        "settlePayment(2,8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markPaid(8,90) -> PAID",
+      "ret": false,
+      "create": false,
+      "y": 3698,
+      "h": 30,
+      "lines": [
+        "markPaid(8,90) -> PAID"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "pay() -> PAID",
+      "ret": false,
+      "create": false,
+      "y": 3728,
+      "h": 30,
+      "lines": [
+        "pay() -> PAID"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "removeCustomer(vip)",
+      "ret": false,
+      "create": false,
+      "y": 3758,
+      "h": 30,
+      "lines": [
+        "removeCustomer(vip)"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "SeatingArea calls Table 2.release(). Order 2 retains billCents=1350, paidTurn=8 and satisfactionAtPayment=90. Revenue is computed from PAID orders; unpaid/abandoned orders are excluded.",
+      "y": 3788,
+      "h": 49,
+      "lines": [
+        "SeatingArea calls Table 2.release(). Order 2 retains billCents=1350, paidTurn=8 and satisfactionAtPayment=90. Revenue is computed from PAID orders; unpaid/abandoned orders are excluded."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "success [one payment this turn]",
+      "ret": true,
+      "create": false,
+      "y": 3837,
+      "h": 30,
+      "lines": [
+        "success [one payment this turn]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "S",
+      "label": "success; lastActionTurn=8",
+      "ret": true,
+      "create": false,
+      "y": 3867,
+      "h": 30,
+      "lines": [
+        "success; lastActionTurn=8"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "C",
+      "label": "success",
+      "ret": true,
+      "create": false,
+      "y": 3897,
+      "h": 30,
+      "lines": [
+        "success"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(8)",
+      "ret": false,
+      "create": false,
+      "y": 3927,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty(8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "completeTurn(8)",
+      "ret": false,
+      "create": false,
+      "y": 3957,
+      "h": 30,
+      "lines": [
+        "completeTurn(8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(summary8)",
+      "ret": false,
+      "create": false,
+      "y": 3987,
+      "h": 30,
+      "lines": [
+        "evaluate(summary8)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS [only 8 turns used]",
+      "ret": true,
+      "create": false,
+      "y": 4017,
+      "h": 30,
+      "lines": [
+        "IN_PROGRESS [only 8 turns used]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {paid=2, revenue=$22.50, avg=87.00}",
+      "ret": true,
+      "create": false,
+      "y": 4047,
+      "h": 43,
+      "lines": [
+        "GameView {paid=2,",
+        "revenue=$22.50, avg=87.00}"
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURNS 9-18 - complete the game; same victory/defeat criteria",
+      "y": 4090,
+      "h": 46,
+      "lines": [
+        "TURNS 9-18 - complete the game; same victory/defeat criteria"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[remaining turns 9..18; no early ending]",
+      "op": "loop",
+      "y": 4136,
+      "h": 49,
+      "lines": [
+        "[remaining turns 9..18; no early ending]"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "For every turn: arrivals on 10/13/16; one Waiter choice, then one Chef choice; advanceEating -> automatic oldest payment -> per-customer penalty / abandonment -> completeTurn. All other-customer interactions follow stage2-victory.txt.",
+      "y": 4185,
+      "h": 49,
+      "lines": [
+        "For every turn: arrivals on 10/13/16; one Waiter choice, then one Chef choice; advanceEating -> automatic oldest payment -> per-customer penalty / abandonment -> completeTurn. All other-customer interactions follow stage2-victory.txt."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(restaurant.getSummary())",
+      "ret": false,
+      "create": false,
+      "y": 4234,
+      "h": 30,
+      "lines": [
+        "evaluate(restaurant.getSummary())"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[turnsUsed < 18]",
+      "op": "alt",
+      "y": 4264,
+      "h": 49,
+      "lines": [
+        "[turnsUsed < 18]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS",
+      "ret": true,
+      "create": false,
+      "y": 4313,
+      "h": 30,
+      "lines": [
+        "IN_PROGRESS"
+      ]
+    },
+    {
+      "kind": "divider",
+      "label": "[turnsUsed = 18]",
+      "y": 4343,
+      "h": 49,
+      "lines": [
+        "[turnsUsed = 18]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "VICTORY [paid=5; 6450 >= 4500; 402 >= 60*5]",
+      "ret": true,
+      "create": false,
+      "y": 4392,
+      "h": 30,
+      "lines": [
+        "VICTORY [paid=5; 6450 >= 4500; 402 >= 60*5]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {FINISHED, VICTORY}",
+      "ret": true,
+      "create": false,
+      "y": 4422,
+      "h": 30,
+      "lines": [
+        "GameView {FINISHED, VICTORY}"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "TAKE_ORDER branch final outcome: 18/18 turns; 5 paid; $64.50; average paid satisfaction 80.40; zero unhappy departures. CLI prints the final result. Critic #6 cannot pay before the deadline, as intended.",
+      "y": 4452,
+      "h": 49,
+      "lines": [
+        "TAKE_ORDER branch final outcome: 18/18 turns; 5 paid; $64.50; average paid satisfaction 80.40; zero unhappy departures. CLI prints the final result. Critic #6 cannot pay before the deadline, as intended."
+      ]
+    },
+    {
+      "kind": "divider",
+      "label": "[manager chooses WAIT on turn 5; same priority rule resumes on turn 6]",
+      "y": 4501,
+      "h": 49,
+      "lines": [
+        "[manager chooses WAIT on turn 5; same priority rule resumes on turn 6]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "choose WAIT instead of TAKE_ORDER #2",
+      "ret": false,
+      "create": false,
+      "y": 4550,
+      "h": 43,
+      "lines": [
+        "choose WAIT instead of",
+        "TAKE_ORDER #2"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Separate counterfactual replay: VIP orders/prepares on turn 6, is served on turn 7, becomes READY_TO_PAY on turn 8 and pays on turn 9. Its payment snapshot is 85. The remaining customers are also scheduled by the same priority rule. Final result: VICTORY, 5 paid, $64.50, satisfaction sum 389, average 77.80. Thus one staff-priority choice changes timing and satisfaction, while both runs still win.",
+      "y": 4593,
+      "h": 49,
+      "lines": [
+        "Separate counterfactual replay: VIP orders/prepares on turn 6, is served on turn 7, becomes READY_TO_PAY on turn 8 and pays on turn 9. Its payment snapshot is 85. The remaining customers are also scheduled by the same priority rule. Final result: VICTORY, 5 paid, $64.50, satisfaction sum 389, average 77.80. Thus one staff-priority choice changes timing and satisfaction, while both runs still win."
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Scope: one complex Stage 2 use case with a separately replayed alternative. ref frames abbreviate existing interactions; they do not add methods to the code. OptionalInt/getSummary return details and pure GameView construction are abbreviated. Parameters r and action factories are shorthand for actual Restaurant / action records.",
+      "y": 4642,
+      "h": 49,
+      "lines": [
+        "Scope: one complex Stage 2 use case with a separately replayed alternative. ref frames abbreviate existing interactions; they do not add methods to the code. OptionalInt/getSummary return details and pure GameView construction are abbreviated. Parameters r and action factories are shorthand for actual Restaurant / action records."
+      ]
+    }
+  ],
+  "size": [
+    3220,
+    4766
+  ]
+}

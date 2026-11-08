@@ -179,7 +179,7 @@ public final class Stage1SmokeTest {
         Path log = logs.resolve("cli-" + name + ".log");
         Path java = Path.of(System.getProperty("java.home"), "bin", "java");
         Process process = new ProcessBuilder(java.toString(), "-cp",
-                System.getProperty("java.class.path"), "Main")
+                System.getProperty("java.class.path"), "Main", "--regular")
                 .redirectErrorStream(true).redirectOutput(log.toFile()).start();
         try (var stdin = process.getOutputStream()) {
             stdin.write(input.getBytes(StandardCharsets.UTF_8));
