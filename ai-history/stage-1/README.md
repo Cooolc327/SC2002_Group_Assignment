@@ -14,11 +14,11 @@ design and audit sessions are kept separately rather than interleaved.
 
 | File | Coverage | User messages | Assistant messages | Screenshots | Topic |
 | --- | --- | --- | --- | --- | --- |
-| [chat-01.md](chat-01.md) | 2026-10-25 13:19:35 to 2026-11-06 15:52:37 | 30 | 70 | 8 | Planning implementation integration code walkthroughs and manual testing |
+| [chat-01.md](chat-01.md) | 2026-10-25 13:19:35 to 2026-11-08 15:21:54 | 39 | 91 | 8 | Planning implementation integration code walkthroughs and manual testing |
 | [chat-02.md](chat-02.md) | 2026-10-25 14:09:51 to 2026-10-27 23:21:22 | 5 | 17 | 0 | Stage 1 class responsibilities interfaces UML design and explanation |
 | [chat-03.md](chat-03.md) | 2026-10-27 23:52:13 to 2026-10-28 00:00:22 | 2 | 7 | 0 | Member A scope requirements and initial repository audit |
 
-Total: **131 messages** (37 user, 94 assistant) and **8 user screenshots**.
+Total: **161 messages** (46 user, 115 assistant) and **8 user screenshots**.
 Screenshots are recovered as stored in the original conversation, retained
 under `assets/`, and linked at the corresponding messages. Their stored
 resolution may differ from the original screen-capture resolution.
@@ -47,8 +47,8 @@ and `SC2002_Restaurant_Rush_Group_Assignment(1).docx`.
   progress messages are included. System/developer instructions, automatic
   environment/page metadata, hidden reasoning and tool calls/results are not
   user/assistant chat replies and are excluded.
-- `chat-01.md` ends at the user's 6 November 2026, 15:52:37 request to consolidate
-  the personal branch and save this history. The current export operation's
+- `chat-01.md` ends at the user's 2026-11-08 15:21:54 instruction to let the
+  agent perform remaining tests instead of waiting for an absent E record. The current export operation's
   assistant reply and later conversations should be appended in a later update;
   they are not claimed to be present in this snapshot.
 - `chat-02.md` and `chat-03.md` contain the available related design/UML and
@@ -75,7 +75,6 @@ messages to make the development appear different. Update root README links
 when personal branches change. Each member maintains their own evidence.
 
 This branch contains the prior Member A commits and integrated Stage 1
-candidate. The current manual walk-through confirmed C1's lifecycle through
-payment at the start of turn 6; Chef invalid-input checks and the later manual
-Pasta/win/lose checks were not completed in that walk-through. Existing automated
-results are recorded separately from E's independent acceptance.
+candidate. The human walk-through confirmed C1's lifecycle through
+payment at the start of turn 6. Further verification is agent-run and recorded
+separately; no E signature or unperformed human walk-through is claimed.

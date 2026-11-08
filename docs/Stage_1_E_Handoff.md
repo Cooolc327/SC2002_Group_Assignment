@@ -1,94 +1,63 @@
-# Stage 1 Handoff from A to E
+# Stage 1 Verification and Review Handoff
 
-Prepared on 3 November 2026. Member A's Stage 1 integration and development
-checks are complete. E's independent acceptance is pending.
+Updated 8 November 2026. Stage 1 is released as `stage-1` from `lichen/stage_1`.
+Main integration is optional and separate. The source includes main `f24c186`
+and the existing A development, replay and test tools.
 
-This handoff reuses the team's existing customers, seating, menu, production
-Order, staff, StaffTeam and CLI. A provides the controller/domain coordination,
-shared contracts/views, reproducible build/run/check commands, replay fixtures
-and integration notes. The game contains Stage 1 features only.
+## Verification provenance
 
-## Review update on 6 November 2026
+No completed E acceptance entry was found in the repository or PR #5 reviews/
+comments at the start of this work. On 8 November the user instructed Codex to
+perform the remaining tests. The current record is an **agent-run verification**,
+not an E signature or independent human acceptance. The old requirement to wait
+for E before creating a tag is superseded by that instruction. E may still use
+the matrix below for an optional independent review.
 
-The original handoff was `codex/stage-1-a-handoff` commit `e595fa9`.
-Lichen's current personal branch is `lichen/stage_1`. It contains the integrated
-review `b64651d` (including Rishika's `542a689`) plus personal AI history and
-updated documentation. The production source remains the reviewed Stage 1 code.
-PR #4 still points to the old handoff; it is not the current personal branch.
-Follow the [manual-based checklist](Stage_1_Manual_Checklist_ZH.md) for the
-requirement map, current paths and remaining acceptance work.
+The [release record](verification/Stage_1_Release_2026-11-08.md) identifies the
+tested commit, environment, commands, actual results and limits. The tag resolves
+to the release commit with `git rev-parse stage-1^{commit}`. Do not use a moving
+branch name alone as permanent test identity.
 
-## Version to test
+## Build and reproduce
 
-Use branch `lichen/stage_1` and record its exact SHA using `git rev-parse HEAD`.
-A branch name alone is not a permanent test identity. The consolidated history
-includes integrated main `705fd37`, original A work and the newer review.
-
-On a clean checkout of the repository, after this personal branch is published:
+Use a clean checkout or archive of `stage-1`. JDK 17+ and Bash are sufficient;
+there are no external Java libraries or network services.
 
 ```bash
-git fetch origin
-git switch lichen/stage_1
-git pull --ff-only origin lichen/stage_1
+git fetch origin --tags
+git switch --detach stage-1
 git rev-parse HEAD
 java -version
 javac -version
+bash scripts/build.sh
 bash scripts/test-stage1.sh
+bash scripts/run.sh < test/replays/stage1-victory.txt
+bash scripts/run.sh < test/replays/stage1-defeat.txt
 ```
 
-If a candidate is subsequently merged, test and record the accepted merge SHA.
-No message or automated output here is E's sign-off.
+Return to `lichen/stage_1` before editing. Developer checks compile all Java
+with `--release 17 -Xlint:all -Werror`. Expected markers are 14 core scenarios/
+344 assertions with the real Order, and 9 production smoke scenarios/94
+assertions. The core uses recording staff; the smoke suite separately uses real
+staff/StaffTeam and child Main/CLI processes.
 
-## Commands and expected results
+CLI coverage includes victory, all-WAIT defeat, invalid Waiter input, invalid
+Chef input (text, empty line, integer overflow and out-of-range values), BOM
+input, and PLACED/READY abandonment. Domain fixtures additionally cover two-unit
+Pasta, PREPARING cancellation, FIFO payment/ties, atomic rejection, immutable
+snapshots and exact victory boundaries. The natural six-arrival schedule is
+verified separately from artificial domain edge-case fixtures.
 
-Requirements: JDK 17 or later and Bash. The game and checks work offline with
-no third-party Java dependencies. Run the commands from the repository root.
+Full generated logs are under `build/stage1-checks/` (ignored by Git).
+[Committed results and source/test hashes](verification/Stage_1_Release_2026-11-08.md)
+provide permanent evidence. See [test notes](Stage_1_Test_Notes.md) for all three
+replay outcomes; the two defeat fixtures intentionally differ.
 
-| Purpose | Command | Expected result |
-| --- | --- | --- |
-| Compile production source | bash scripts/build.sh | BUILD_STAGE1=PASS; classes in build/classes |
-| Play interactively | bash scripts/run.sh | Main launches the base-setting CLI |
-| Development regression checks | bash scripts/test-stage1.sh | 14 core scenarios/344 assertions with real Order; 5 smoke scenarios/62 assertions; all PASS |
-| Isolated A core baseline | bash scripts/test-member-a.sh | 14 scenarios/344 assertions; orders=fake |
-| Real victory replay | bash scripts/run.sh < test/replays/stage1-victory.txt | 18 turns, VICTORY, 5 paid, $66.00, average 79.20, 0 unhappy departures |
-| Real defeat replay | bash scripts/run.sh < test/replays/stage1-defeat.txt | 18 turns, DEFEAT, 0 paid, $0.00, average N/A, 2 unhappy departures |
+## Requirement matrix for optional independent review
 
-All builds enable --release 17, -Xlint:all and -Werror. A failed development
-check exits nonzero. Test classes are temporary. Developer logs are kept in:
-
-- build/stage1-checks/core-production-order.log
-- build/stage1-checks/smoke-summary.log
-- build/stage1-checks/cli-victory.log
-- build/stage1-checks/cli-defeat.log
-- build/stage1-checks/cli-invalid-input-victory.log
-
-Build output is Git-ignored. Preserve the logs needed for E's report separately
-and associate them with the recorded commit. A's existing PASS output is
-development evidence; E should rerun checks and also test independently.
-
-## What the automated checks cover
-
-MemberACoreTest defaults to test doubles. The --production-orders mode used by
-test-stage1.sh replaces the order substitute with orders.Order. RecordingStaff
-remains in that suite to verify calls and ordering.
-
-Stage1SmokeTest separately uses real Order, real Waiter/Chef/Cashier,
-StaffTeam and Main/CLI. Its five scenarios check:
-
-1. Single-customer service/eating/payment timing, rejected-action retries and table release.
-2. Actual staff per-turn allowances and failed actions preserving the allowance.
-3. The complete 18-turn victory through Main/CLI.
-4. The complete 18-turn all-WAIT defeat through Main/CLI.
-5. Invalid text and out-of-range menu choices followed by the same victory result.
-
-The input files contain zero-based displayed menu indexes, not customer or order
-identifiers. See [replay notes](../test/replays/README.md) and the
-[human-readable action table](Member_A_Integration.md#victory-replay-using-the-current-menu-rule).
-
-## E acceptance matrix
-
-Mark each item PASS or FAIL from E's own execution and retain observed evidence.
-Development tests support these checks but do not pre-fill E's decisions.
+The release record contains the agent's observed results. An independent tester
+should record their own SHA, environment, input, expected/actual result, defects
+and retest details rather than copy another tester's sign-off.
 
 | ID | Requirement to verify | Expected behaviour |
 | --- | --- | --- |
@@ -106,30 +75,18 @@ Development tests support these checks but do not pre-fill E's decisions.
 | S1-12 | Queries and repeated calls | Displaying snapshots does not advance time; duplicate turn finishing or duplicate payment cannot double-count |
 | S1-13 | Clean run and scope | Fresh checkout compiles and launches with documented commands, mandatory play works offline, no Stage 2/3 features in the Stage 1 snapshot |
 
-For a defect, record the ID, commit SHA, exact menu/input sequence, expected
-behaviour, actual behaviour and log excerpt. Route controller/domain issues
-to A and coordinate module issues with the corresponding owner.
 
-## Acceptance record to complete
+## Optional independent review record
 
 - Tested commit SHA:
 - Tester:
-- Date and time:
+- Date/time/timezone:
 - OS and JDK:
-- Automated command and exit status:
-- Matrix results and independent scenarios:
-- Defects, fixes and retest commit:
-- Decision: pending / accepted / rejected:
-- Evidence location:
+- Commands, inputs and exit status:
+- Matrix results and evidence:
+- Defects/fixes/retest SHA:
+- Review conclusion:
 
-E may add broader edge cases, documentation evidence and recorded demonstrations
-to their testing/report work. The existing UML and design PDF are retained as
-earlier proposals; synchronize reporting with the accepted implementation.
-
-## Release gate
-
-After E records acceptance and any fixes have been retested, create stage-1
-on the accepted runnable commit. Keep that snapshot free of Stage 2/3 additions.
-Neither the scripts nor this handoff create a tag or declare E acceptance.
-Stage 2/3 implementation, final diagrams/report, group video, declarations and
-the submission archive remain separate group deliverables.
+This blank optional-review form does not indicate an unmet E gate for the user-
+authorized agent-verified release. Final report, other members' AI histories,
+video and signed declarations remain separate group-submission work.

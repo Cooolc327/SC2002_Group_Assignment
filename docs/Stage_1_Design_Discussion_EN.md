@@ -1,5 +1,10 @@
 # Stage 1 Design Proposal
 
+Historical pre-implementation proposal. For the released implementation use
+[Stage 1 Implemented Design](Stage_1_Implemented_Design_EN.md) and the
+[current class diagram](UML/Stage1_UML_Diagram.pdf). Original design choices
+below are preserved as development history, not current executable contracts.
+
 This proposal gives our five-member team a shared starting point for discussing class responsibilities, relationships, method contracts, and turn rules before implementation. It covers Stage 1 only. No game implementation has been written or executed as part of this design work.
 
 The gameplay requirements come from the *SC2002 Restaurant Rush Group Assignment*, particularly Sections 2, 3, 4.1, 4.4, and 5. The class structure, method names, state names, storage choices, ownership allocation, and fixed food-selection rule below are proposed team decisions, subject to agreement.
@@ -219,9 +224,7 @@ Both execution order and eligibility checks enforce the timing rules: a dish fin
 
 The sketch shows the main classes, relationships, and selected operations. Turn phases, customer/order states, action requests, and read-only snapshots are defined in Sections 4 and 5. Their separate boxes and routine query methods are omitted for readability.
 
-![Stage 1 UML class diagram](UML/Stage_1_Class_Diagram.png)
-
-[Open the scalable SVG](UML/Stage_1_Class_Diagram.svg) · [Open the editable Mermaid source](UML/Stage_1_Class_Diagram.mmd)
+[Open the Stage 1 class diagram (PDF)](UML/Stage1_UML_Diagram.pdf)
 
 Notation: **+** public query or business entry point; **−** private field; **~** operation internal to the domain package; a filled diamond denotes composition; dashed arrows denote call dependencies. MenuItem fields are immutable.
 

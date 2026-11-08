@@ -19,7 +19,7 @@ import staff.StaffTeam;
 import staff.Waiter;
 import view.GameView;
 
-/** A's development smoke checks; E performs and records the independent acceptance. */
+/** Production smoke checks; execution provenance is recorded separately from human review. */
 public final class Stage1SmokeTest {
     private static int scenarios;
     private static int assertions;
@@ -48,7 +48,40 @@ public final class Stage1SmokeTest {
         cliReplay("invalid-input-victory", "not-a-number\n999\n-1\n" + victory, "VICTORY",
                 "Dishes served 5 | Paid 5 | Unhappy departures 0 | Revenue $66.00"
                 + " | Avg satisfaction 79.20 | Turns used 18/18", 3, logs);
+        String victorySummary = "Dishes served 5 | Paid 5 | Unhappy departures 0 | Revenue $66.00"
+                + " | Avg satisfaction 79.20 | Turns used 18/18";
+        // Inject errors at the turn-2 Chef prompt, after the new order exists.
+        String[] choices = victory.split("\\R");
+        String chefRetry = String.join("\n", choices[0], choices[1], choices[2])
+                + "\nnot-a-number\n\n2147483648\n999\n-1\n"
+                + String.join("\n", java.util.Arrays.copyOfRange(choices, 3, choices.length)) + "\n";
+        cliReplay("chef-invalid-input-victory", chefRetry, "VICTORY", victorySummary, 5, logs);
+        cliReplay("bom-victory", "\uFEFF" + victory, "VICTORY", victorySummary, 0, logs);
+        cancellationReplay(false, logs);
+        cancellationReplay(true, logs);
         System.out.println("STAGE1_SMOKE=PASS scenarios=" + scenarios + " assertions=" + assertions);
+    }
+
+    private static void cancellationReplay(boolean prepare, Path logs) throws Exception {
+        // C1 is seated on turn 1 and orders on turn 2, then receives no service.
+        StringBuilder input = new StringBuilder();
+        for (int turn = 1; turn <= 18; turn++) {
+            input.append(turn <= 2 ? "1\n" : "0\n");
+            input.append(turn == 2 && prepare ? "1\n" : "0\n");
+        }
+        String name = prepare ? "ready-order-abandonment" : "placed-order-abandonment";
+        cliReplay(name, input.toString(), "DEFEAT",
+                "Dishes served 0 | Paid 0 | Unhappy departures 2 | Revenue $0.00"
+                + " | Avg satisfaction N/A | Turns used 18/18", 0, logs);
+        String output = Files.readString(logs.resolve("cli-" + name + ".log"));
+        int start = output.indexOf("================ Turn 14 / 18");
+        int end = output.indexOf("Waiter tasks", start);
+        check(start >= 0 && end > start, "Turn after C1 abandonment is displayed");
+        String afterDeparture = output.substring(start, end);
+        check(afterDeparture.contains("#1 Regular  satisfaction 0  LEFT"), "C1 leaves at zero");
+        check(afterDeparture.contains("Table 1: free"), "Abandonment releases the table");
+        check(afterDeparture.contains((prepare ? "1/1" : "0/1") + " units  CANCELLED"),
+                "Actual Order is cancelled at the correct preparation state");
     }
 
     private static void singleCustomerTiming() {

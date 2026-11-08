@@ -1,0 +1,15 @@
+PASS 18 turns, arrival schedule and defeat
+PASS phase limits and invalid-action retries
+PASS ordering, serving, eating and payment timing
+PASS two-unit Pasta timeline
+PASS reproducible victory with current menu rule
+PASS abandonment cancels PLACED orders
+PASS abandonment cancels PREPARING orders
+PASS abandonment cancels READY orders
+PASS payment FIFO and one payment per turn
+PASS payment ties use customer id
+PASS snapshots are detached and immutable
+PASS order factory failure leaves no partial order
+PASS seating validation is atomic
+PASS victory boundaries
+MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production

@@ -13,23 +13,22 @@ Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
 > TODO (team): confirm the role column before submission.
 
-## Stage 1 review status
+## Stage 1 verified release
 
-Reviewed on 6 November 2026. Lichen's personal branch
-[`lichen/stage_1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1)
-consolidates A's implementation (`c992ee3`), handoff (`e595fa9`) and integrated
-review (`b64651d`, including Rishika's `542a689`). Their original commit histories
-are preserved. It includes build/check scripts, real CLI replays, the PowerShell
-BOM fix and [Lichen's full Stage 1 AI history](ai-history/stage-1/README.md).
-The older A branches remain historical references; this is the current
-personal Stage 1 branch.
+The runnable Stage 1 snapshot is [`stage-1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1).
+It is published from Lichen's personal branch `lichen/stage_1`; merging into main
+is not required. This branch incorporates main commit `f24c186` (the new class
+diagram) while preserving the existing build/run scripts, production tests,
+replays and personal AI history. PR #4 is closed; PR #5 is a separate optional
+main-integration review and does not control this tag.
 
-Remote `main` is still `705fd37`; [PR #4](https://github.com/Cooolc327/SC2002_Group_Assignment/pull/4)
-is open. No `stage-1` tag existed at the time of review. Development checks pass;
-E's independent acceptance record remains pending. These are separate statuses.
-
-Follow the [manual-based Stage 1 checklist](docs/Stage_1_Manual_Checklist_ZH.md)
-for the requirement map, observed evidence, remaining work and guided checks.
+On 8 November 2026 the user requested that Codex complete the remaining tests
+rather than wait for an absent E acceptance record. The release verification is
+therefore **agent-run**, not a claimed E signature or independent human review.
+See the [verification record](docs/verification/Stage_1_Release_2026-11-08.md),
+[reproducible test notes](docs/Stage_1_Test_Notes.md),
+[current design](docs/Stage_1_Implemented_Design_EN.md) and
+[manual checklist](docs/Stage_1_Manual_Checklist_ZH.md).
 
 ## Overview
 
@@ -39,7 +38,7 @@ satisfied customers to win.
 
 | Stage | Adds | Status | Tag |
 | --- | --- | --- | --- |
-| 1 | Regular customers, menu, Waiter/Chef/Cashier, full turn sequence, victory/defeat | Runnable candidate; acceptance/tag pending | Not created |
+| 1 | Regular customers, menu, Waiter/Chef/Cashier, full turn sequence, victory/defeat | Agent-verified runnable snapshot | [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
 | 2 | VIP and Critic customers | Separate remote work branches; not integrated into this baseline | Pending |
 | 3 | Host, ComboMeal, Happy Hour | Outside this Stage 1 review | Pending |
 
@@ -135,13 +134,15 @@ All production and test Java sources compile with `--release 17 -Xlint:all -Werr
 Expected results:
 
     MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
-    STAGE1_SMOKE=PASS scenarios=5 assertions=62
+    STAGE1_SMOKE=PASS scenarios=9 assertions=94
     STAGE1_DEVELOPMENT_CHECKS=PASS
 
 The core suite uses the production Order and a recording staff test double.
 The smoke suite separately uses real Order, StaffTeam, staff and Main/CLI.
-Logs are in `build/stage1-checks/` (Git-ignored). These checks are development
-verification, not a completed E acceptance record.
+Logs are in `build/stage1-checks/` (Git-ignored). The release execution and
+results are recorded separately; no E sign-off is claimed. Extra CLI scenarios
+cover Chef invalid-input retries, UTF-8 BOM input, and PLACED/READY order
+cancellation with real staff and orders.
 
 `bash scripts/test-member-a.sh` still runs the isolated core suite with fake
 orders/staff. `test/CustomerSeatingTest.java` is an empty placeholder and does
@@ -186,21 +187,21 @@ and [the 18-turn action table](docs/Member_A_Integration.md#victory-replay-using
 | `Waiter`, `Chef`, `Cashier`, `StaffTeam` | Each enforces its own one-action-per-turn allowance. A rejected action does not use it up |
 | `RestaurantCLI` | Shows `GameView` snapshots and collects choices. It contains no game rules |
 
-The [existing class diagram](docs/UML/Stage_1_Class_Diagram.svg) and
-[design discussion](docs/Stage_1_Design_Discussion_EN.md) are **earlier proposals**.
-They must be aligned with the actual Stage 1 code before being used as final
-evidence. Differences include StaffGateway/StaffTeam, SeatingArea/WaitingQueue,
-RegularCustomer, OrderPort and CustomerState; the old food-choice proposal also
-differs from the current cyclic rule.
+The [Stage 1 class diagram](docs/UML/Stage1_UML_Diagram.pdf) matches the
+implemented structure, including StaffGateway/StaffTeam, SeatingArea/WaitingQueue,
+RegularCustomer, OrderPort and the actual enums/views. Its field type and
+encapsulation notes were checked against source. See the
+[current design discussion](docs/Stage_1_Implemented_Design_EN.md).
 
-The briefing requires one matching class diagram per stage (three total),
-one complex Stage 2 or Stage 3 sequence diagram, and individual reflections.
-See the [complete Stage 1 checklist](docs/Stage_1_Manual_Checklist_ZH.md).
+The older `Stage_1_Design_Discussion_EN` Markdown/PDF are retained explicitly as
+historical proposals, not current implementation evidence. The briefing requires
+one matching class diagram per stage and one Stage 2 or Stage 3 sequence diagram.
 
 ## Stage links
 
-- Stage 1: no tag yet. Add the verified tag link after a runnable Stage 1 snapshot has been accepted and tagged.
-- [Original A-to-E handoff](docs/Stage_1_E_Handoff.md); record acceptance against the exact final candidate SHA.
+- Stage 1: [runnable stage-1 tag](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1).
+- [Verification and optional independent-review handoff](docs/Stage_1_E_Handoff.md).
+- Resolve the immutable release commit with `git rev-parse stage-1^{commit}`.
 - Stage 1 → 2 comparison: TODO
 - Stage 2 → 3 comparison: TODO
 
@@ -209,7 +210,7 @@ See the [complete Stage 1 checklist](docs/Stage_1_Manual_Checklist_ZH.md).
 The briefing requires each member's **full ordered project conversations**
 (prompts, replies and follow-ups), stored on that member's own repository branch.
 A summary alone is insufficient. Lichen's full available history is linked
-below: three related conversations, 131 messages and eight screenshots, with
+below: three related conversations, 161 messages and eight screenshots, with
 the export scope/cutoff documented. Other members' links remain pending.
 Do not replace full conversations with reconstructed summaries or link to
 nonexistent folders.

@@ -4,7 +4,7 @@ Member: Lichen Yin (Member A, architecture and integration).
 Personal branch: [`lichen/stage_1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1).
 
 - [Stage 1 full conversation index](stage-1/README.md): three related Codex
-  conversations, 131 user/assistant messages and eight recovered screenshots.
+  conversations, 161 user/assistant messages and eight recovered screenshots.
 - [Main project README](../README.md).
 
 The project briefing requires each member's full ordered project-related AI

@@ -1,33 +1,18 @@
 # Stage 1 核对与完成流程
 
-核对日期：2026 年 11 月 6 日。本文结合 assignment manual、project briefing 和实际代码，供 Member A 与 E 逐步复核。程序开发检查已通过；人工复核、E 的独立验收、远端整合与 stage-1 tag 尚未完成。每一步都列出操作、预期结果、证据和后续动作，不把自动测试当作任何成员的签字。
+更新日期：2026 年 11 月 8 日。当前工作分支为 `lichen/stage_1`，整合 main 的 `f24c186` 类图更新并保留 A 的脚本、回放与个人 AI 记录。发布标记为 `stage-1`，其精确提交用 `git rev-parse stage-1^{commit}` 查询；不要求先合并 main。
 
-本次个人分支整理更新：当前分支为 `lichen/stage_1`，承接复核提交 `b64651d`，保留 A 的实现/交接以及 Rishika 更新的历史；`ai-history/stage-1/` 已保存三段真实相关会话，共 131 条消息和 8 张截图，覆盖范围与截止点见该目录 README。其他成员记录、E 验收和 stage-1 tag 仍需分别完成。下方远端状态表保留前一次核对时的事实，并更新当前使用入口。
+用户在 11 月 8 日明确要求：仓库没有 E 验收记录时，由 Codex 把测试做完。因此本次记录的是 **agent 执行的验证**，不冒充 E 签字，也不再把等待 E 作为本轮发布的前置条件。可选的独立人工复核仍保留空白表。
 
-人工走查已经通过截图确认到第 6 回合开始：C1/Order1 PAID、收到 $9、满意度快照 84、T1 释放；C2 Burger READY，未计入收入。用户明确未检查 Chef 错误输入，之后退出游戏；Pasta 和完整胜负的人工走查尚未完成，不能把之前的操作建议当成已执行证据。
+## 0 当前证据与版本
 
-## 0 当前版本与本次同步
+- [本次发布验证记录](verification/Stage_1_Release_2026-11-08.md)：被测 SHA、环境、实际结果、日志和边界。
+- [可复现胜负笔记](Stage_1_Test_Notes.md)：输入文件、命令和三种结局指标。
+- [当前类图](UML/Stage1_UML_Diagram.pdf)与[实现设计](Stage_1_Implemented_Design_EN.md)。
+- [个人 AI 对话索引](../ai-history/stage-1/README.md)：原文、时间顺序、截图和明确截止点；后续对话继续追加。
+- PR #4 已关闭，旧 A 分支已清理；PR #5 属于可选的 main 整合，不是 tag 必要条件。
 
-唯一工作仓库：
-
-```text
-/Users/edward/Desktop/NTU/Y2S1/SC2002/Group Assignment/SC2002_Group_Assignment
-```
-
-| 对象 | 11 月 6 日核对结果 |
-| --- | --- |
-| 远端 main、本地 main | 均为 `705fd37cddbb21e8d11b4f112e0f8d2a3dd5123b`，没有新的 main 提交 |
-| A 原交接版本 | `codex/stage-1-a-handoff`，`e595fa94b4a69a560f7d1b1007bcd3bdb0fc5514` |
-| PR #4 | 仍 open，未合并；GitHub 上未见 review 或评论中的验收记录 |
-| Rishika 新提交 | `542a6891a1544dd211a3b779d41a3fe6ee342bf1`，README、BOM 输入兼容、out/ 忽略和两组回放 |
-| 当前个人分支 | `lichen/stage_1`，承接 `b64651d` 的整合内容和历史，并增加完整个人 AI 对话记录；远端身份以发布后的 SHA 核验为准 |
-| Stage 2 工作 | `origin/Xavier-Stage2` 与 `origin/bernice/stage-2-pricing` 已 fetch 到本地，保留在各自分支，未混入 Stage 1 |
-| stage-1 tag | 本地和远端均没有 |
-| AI history | Lichen 的三段相关原始会话已整理到 ai-history/stage-1；其他成员的记录和 README 链接仍待各自补齐/核实 |
-
-本次没有修改 main，也没有合并远端 PR 或创建/推送 tag。Rishika 的 README 原来写了 Stage 1 Done 并链接一个不存在的 tag；复核版本改为候选版本、验收和 tag 待完成，保留 A 的构建/测试脚本。
-
-两组失败回放都有效，但结果不同：`test/replays` 中是全程 WAIT；`test/runs` 中是只照顾 C1。不要混用两者的预期结果。
+此前你手动确认了 C1 从入座到付款的流程，停在第 6 回合。其余项目本次由 agent 执行测试补齐，不把建议操作冒充人工截图证据。
 
 ## 1 先确认两份要求文件
 
@@ -45,7 +30,7 @@
 | Briefing 第 9、10 页 | 一份组报告，每人独立署名写 reflection：学到什么、怎样应用、难点和解决过程，并举自己的工作实例 |
 | Manual 6；briefing 第 11、12 页 | 约 15 分钟视频，每人讲解；README 时间戳；报告、声明、有效链接和最终 ZIP；2026-11-15 23:59 SGT 截止 |
 
-E 独立验收是你们已经选定的团队分工流程，并非 manual 指定必须由字母 E 的成员签字。Manual 的硬性要求是可运行、符合规则的版本与相应证据。保留原交接文件的验收栏，是为了记录谁在什么版本上检查过什么。
+E-first 曾是团队分工流程，并非 manual 指定必须由字母 E 的成员签字。用户在 11 月 8 日授权由 agent 完成剩余测试；本轮用真实 agent 执行记录放行，独立人工复核作为可选表保留。Manual 的硬性要求是可运行、符合规则的版本与相应证据。
 
 ## 2 锁定本次检查的目录和版本
 
@@ -61,7 +46,7 @@ java -version
 javac -version
 ```
 
-预期：目录正确、当前分支为 `lichen/stage_1`，没有未提交的文件。把完整 SHA、系统和 JDK 版本写到复核记录。只记录分支名不够，因为分支以后会移动。
+预期：目录正确、当前编辑分支为 `lichen/stage_1`；复现发布时可使用 detached stage-1，且没有未提交的文件。把完整 SHA、系统和 JDK 版本写到复核记录。只记录分支名不够，因为分支以后会移动。
 
 本次运行使用 Temurin JDK 21.0.12，通过 `--release 17` 构建。README 要求 JDK 17 或以上；本次没有声称在真实 JDK 17 运行时执行过。如果 E 用另一台机器复测，应记录那台机器实际的版本。
 
@@ -81,7 +66,7 @@ bash scripts/test-stage1.sh
 ```text
 BUILD_STAGE1=PASS
 MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
-STAGE1_SMOKE=PASS scenarios=5 assertions=62
+STAGE1_SMOKE=PASS scenarios=9 assertions=94
 STAGE1_DEVELOPMENT_CHECKS=PASS
 ```
 
@@ -90,8 +75,8 @@ STAGE1_DEVELOPMENT_CHECKS=PASS
 | 检查 | 实际覆盖 | 解释边界 |
 | --- | --- | --- |
 | MemberACoreTest --production-orders | 14 个场景、344 个断言，真实 Order；回合、时序、取消、支付顺序、快照、原子校验、胜负边界 | Staff 用 recording test double，不能单独证明真实 Staff/CLI 正常 |
-| Stage1SmokeTest | 5 个场景、62 个断言，真实 Order、StaffTeam、Waiter/Chef/Cashier、Main/CLI | 包含时序、员工额度、胜利、失败和错误输入；不是 E 已签字的证明 |
-| 本次额外回放 | Rishika 胜利、单顾客失败、UTF-8 BOM 前缀胜利，三项通过 | Linux/macOS 上注入 BOM 验证了输入修复；没有声称在 Windows PowerShell 上实机运行 |
+| Stage1SmokeTest | 9 个场景、94 个断言，真实 Order、StaffTeam、Waiter/Chef/Cashier、Main/CLI | 包含时序、员工额度、胜利、失败和错误输入；不是 E 已签字的证明 |
+| 本次额外回放 | Rishika 胜利、单顾客失败、Chef 非法输入、BOM、未准备/READY 订单离店取消均通过 | Linux/macOS 上注入 BOM 验证了输入修复；没有声称在 Windows PowerShell 上实机运行 |
 | CustomerSeatingTest.java | 空类，无可执行测试内容 | 不计入已执行场景数 |
 
 完整开发日志在 `build/stage1-checks/`，该目录被 Git 忽略。把要交给 E 的日志连同被测 SHA 另行留存；不要只发一张 PASS 截图而丢失版本信息。
@@ -206,8 +191,8 @@ bash scripts/run.sh < test/runs/stage1-defeat.txt
 | M27 | 无隐藏的查询副作用、重复结算/结束不能重复计数 | immutableSnapshots；invalidRetries；paymentPriority | 通过 |
 | M28 | Stage 1 独立可构建，排除后续阶段功能 | src 范围检查；完整 javac；实际 Main；无后续功能类 | 通过；注释里的未来类名不构成功能 |
 | M29 | 可复现胜利和失败测试笔记 | 两组 stdin 文件、README 与本文件 | 通过 |
-| M30 | GitHub 上真实可运行的 stage-1 tag | 远端 tags 与本地 git tag | **待完成** |
-| M31 | Stage 1 类图匹配对应代码 | 现有 UML 与实现对照 | **待修正**，见第 9 步 |
+| M30 | GitHub 上真实可运行的 stage-1 tag | 发布时创建并校验远端解析 SHA，按第 12 步复现 | **随本次发布完成** |
+| M31 | Stage 1 类图匹配对应代码 | 新 PDF 与当前 src 对照，修正字段类型与封装注释 | **本次已校对**，见第 9 步 |
 | M32 | 完整个人 AI history 及 README 有效链接 | ai-history/stage-1 与 root README | **Lichen 已整理三个可恢复会话；其他成员及可能的其他聊天仍待确认** |
 
 “最久等待优先”和一次多位 READY_TO_PAY 等边界不容易只靠正常 CLI 准备；已有 domain fixtures 会直接构建这些状态。不能为了演示而给生产游戏加作弊入口，也不要把 fixture 中的人数/时序当成基础配置。
@@ -240,29 +225,13 @@ CLI.run
 
 A 的自查问题：为什么无效动作不推进 phase？为什么 getView 不推进回合？为什么 prepared/served 不算收入？为什么刚空出的桌子不能倒流给较早的 Waiter？为什么用分和付款时的满意度快照？能对照代码回答后，再准备视频讲解。
 
-## 9 修正 Stage 1 类图和设计说明
+## 9 当前 Stage 1 类图和设计说明
 
-现有 `docs/UML/Stage_1_Class_Diagram.*` 和 `Stage_1_Design_Discussion_EN.*` 明确是早期 proposal，不可直接标为最终实现。
+当前采用团队 main f24c186 的完整类图，补上 StaffGateway/StaffTeam、SeatingArea/WaitingQueue、RegularCustomer、OrderPort/Factory、实际枚举与视图。11 月 8 日进一步将 ARRIVAL_TURNS 类型写为 Set<Integer>，并修正封装注释，使其符合 applyWaitingPenalty、require 和 if 状态/回合判断。
 
-| 旧方案 | 当前代码应表示的内容 |
-| --- | --- |
-| GameController 直接连接三个 staff | GameController 持有 StaffGateway；StaffTeam implements StaffGateway 并创建/持有 Waiter、Chef、Cashier |
-| Restaurant 直接拥有一个 List waitingQueue 和两张 Table | Restaurant 创建并持有 SeatingArea；SeatingArea 管理 WaitingQueue 与 tables |
-| 只画 Customer | Customer 是 abstract，RegularCustomer extends Customer；补必要的继承关系 |
-| CustomerStatus、WAITING_FOR_FOOD、EATING | 实际为 CustomerState，包含 ORDERED 和 SERVED；不要混用旧枚举 |
-| chooseMenuItem/waitingPenalty/quoteBillCents | 实际 chooseItem(Menu)、getSatistfactionLossPerTurn() 等；Stage 1 Restaurant 取完整菜单价 |
-| OrderStatus | 当前为 OrderPort.Status；Order implements OrderPort；Restaurant 使用 OrderPort.Factory 创建订单 |
-| Order 直接持有 Customer | 实际保存 customerId，并持有 MenuItem；可以标识业务关联，但不能画成不存在的 Customer 引用字段 |
-| Table.isAvailable、包可见 seat/release | 实际方法名、可见性以 Table.java 为准逐个校对 |
-| C1/C4 Pasta，C3/C6 Salad | 实际按 Salad/Burger/Pasta 循环；更新相应演示表和设计解释 |
+WaitingQueue.remove(Customer) 在原 PDF 中已经返回 boolean；之前说它是 void 是一次误读，不应据此修改正确的签名。
 
-操作顺序：先确认代码版本；逐个抄对关键字段、方法和可见性；补主体 entity/control/boundary、关键接口/枚举/快照；画正确的关联、继承/实现、多重性与确实存在的 composition；用真实调用链复核；导出一致 SVG/PNG 和编辑源，再更新报告。
-
-图可以省略琐碎 getter，但不能把已经使用的核心类/关系漏掉。标注真实的封装、Customer 的多态行为、SeatingArea/StaffTeam 等组合例子。不要把构造器注入的外部引用一概画成 composition。
-
-Manual 5 要求最终类图包含关键属性/操作与可见性、相关枚举、继承和关联多重性。Briefing 又要求每阶段一张，因此要保留与 Stage 1 快照相符的图；不能后续把 Stage 3 图覆盖后只剩一张。
-
-通过标准：任何图中展示的类名、字段、方法、可见性和关系都能在对应代码中找到依据；不同导出格式语义一致。此项在本次仍待做。
+[当前图](UML/Stage1_UML_Diagram.pdf)与[实现设计](Stage_1_Implemented_Design_EN.md)用于本阶段证据。旧英文 proposal 和旧 PDF 仅作为历史材料。Briefing 要求每阶段一张匹配代码的类图，后续不要用 Stage 3 图覆盖 Stage 1 的历史快照。
 
 ## 10 README、个人 AI history 和 reflection
 
@@ -282,55 +251,25 @@ Member A 的 reflection 可先收集事实素材，再用自己的话写：你�
 
 通过标准：成员个人分支中的全文记录可读；README 链接可访问；每人署名的 reflection 内容具体且真实。报告、视频和 signed declarations 的最终整合属于整个作业后续交付，不是要求现在就给 Stage 1 增加 Stage 2 功能。
 
-## 11 E 独立复核与缺陷关闭
+## 11 本次 agent 验证与可选人工复核
 
-当前候选个人分支是 `lichen/stage_1`，包含之前 `b64651d` 的复核代码与本次 AI history/文档。PR #4 仍指向旧候选 `e595fa9`；E 应通过当前个人分支获取新版本，并记录精确 SHA。
+仓库和 PR 中没有找到已完成的 E 验收记录。用户要求由 Codex 完成测试，因此本次发布采用 [agent 验证记录](verification/Stage_1_Release_2026-11-08.md)，记录实际执行者、被测提交、命令、输出、问题和范围；不生成 E 已签字的声明。
 
-发布个人分支后，可以从 `lichen/stage_1` 准备团队整合 PR，并协调原 PR #4，避免重复合并同一份 A 改动。个人分支发布不代表 main 已整合，也不代表 stage-1 tag 已创建。
-
-E 应拿到最终候选版本的精确 SHA，执行第 2 至 7 步和独立场景，并填 [原交接表](Stage_1_E_Handoff.md) 的实际验收栏。交接文件的当前分支指令已更新为 `lichen/stage_1`，仍需记录 E 实际测试的 SHA。
-
-记录模板：
-
-```text
-被测 commit SHA：
-测试人：
-日期时间和时区：
-OS / java -version / javac -version：
-构建、自动测试的命令和退出码：
-手动场景与输入：
-逐项实际结果、日志位置：
-缺陷 ID / 预期 / 实际 / 负责人：
-修复 commit SHA 与复测结果：
-验收结论：
-```
-
-有缺陷先修复并在新 SHA 上复测相关场景，必要时跑完整回归。没有远端记录只能说“未见验收记录”，不能推断某位同学线下没有测试过。
-
-通过标准：真实记录能回答“谁，在什么版本上，以什么输入，得到什么结果”；不能让自动化脚本填 E 的人名和 accepted。
+需要进一步独立复核时，E 可以按 [handoff 矩阵](Stage_1_E_Handoff.md)记录自己的 SHA、系统/JDK、输入、预期/实际、缺陷与复测。可选人工表留空不代表当前 user 授权的发布还在等待 E。
 
 ## 12 保存并验证 stage-1
 
-本次未执行这一发布步骤。功能验证、团队复核完成后，由团队合并经过检查的纯 Stage 1 候选版本，再在确定的 runnable commit 上创建 tag。Manual 不强制 tag 必须位于 main；用已验证的 main merge commit 是更容易解释的团队做法。
+stage-1 是不可随意移动的阶段快照。发布流程：先在 lichen/stage_1 锁定已验证提交，创建 annotated tag，推送个人分支及 tag，核对远端解析 SHA，然后从 tag 的干净副本重跑。不要切到尚未包含这些材料的 main 上误打旧版本，也不覆盖已存在的 tag。
 
-发布前重新检查：工作区干净；选中的 SHA 是刚验收的代码或仅有无行为变化的合并；src 中没有 Stage 2/3 功能；胜负回放在该版本仍可运行。若 merge 改了代码，复测 merge 后的版本。
-
-下面是后续操作模板，先明确被测版本再执行，不照抄成对旧版本的发布：
+检查本次发布身份：
 
 ```bash
-git switch main
-git pull --ff-only origin main
-git status --short
-git rev-parse HEAD
-bash scripts/test-stage1.sh
-git tag -a stage-1 -m "Runnable Stage 1 baseline"
-git push origin stage-1
+git fetch origin --tags
+git rev-parse stage-1^{commit}
 git ls-remote --tags origin 'refs/tags/stage-1*'
 ```
 
-tag 已存在时先核实目标 SHA，不覆盖、不强推。Annotated tag 的 `refs/tags/stage-1^{}` 应解析到选定的 commit。随后更新 README 的真实 tag 链接。
-
-最后从 tag 的文件做一次独立构建，避免依赖当前目录的未跟踪文件：
+独立导出验证：
 
 ```bash
 stage1_check_dir="$(mktemp -d /tmp/sc2002-stage1-tag.XXXXXX)"
@@ -340,7 +279,7 @@ bash "$stage1_check_dir/scripts/run.sh" < "$stage1_check_dir/test/replays/stage1
 bash "$stage1_check_dir/scripts/run.sh" < "$stage1_check_dir/test/replays/stage1-defeat.txt"
 ```
 
-通过标准：远端 tag 真实存在、解析到正确 SHA，干净副本能离线构建和复现两种结局。之后 Stage 2/3 继续扩展，而 stage-1 保留原样。
+通过标准：远端 tag 指向选定 SHA，干净副本可离线构建并复现胜负。个人 AI 新记录继续追加在个人分支，不因此移动已经发布的 tag。后续代码修复应保留可追溯的新提交和阶段决策。
 
 ## 13 需要保留但不应混入 Stage 1 的最终作业事项
 
@@ -358,8 +297,8 @@ bash "$stage1_check_dir/scripts/run.sh" < "$stage1_check_dir/test/replays/stage1
 
 评分为 class diagram 25、sequence diagram 20、design 15、implementation 20、thinking/development process 20。GUI 可选，单独做 GUI 没有额外分；保持所有必做功能离线可用。
 
-## 14 当前结论与下一次会话入口
+## 14 当前结论与后续工作
 
-**Stage 1 的生产调用链已接通，现有开发检查与新回放通过。** 当前个人分支为 `lichen/stage_1`；Lichen 的三个相关 Codex 会话已按原文整理并链接，人工走查确认了 C1 的完整服务链。尚待：后续人工场景、E 独立记录、Stage 1 图/设计对齐、其他个人 AI 对话与成员链接的完整性确认、团队整合与 runnable stage-1 tag。
+本次 agent 补齐 Chef 错误输入、BOM 输入、真实订单离店取消等测试，保留完整核心与真实 CLI 回归。类图和发布说明已对齐；胜负复现及精确提交的结果见发布记录。stage-1 保存基础游戏，不包含 Stage 2/3 实现。
 
-下一次按第 2 步确认版本，再按第 4、5 步从第一个 Waiter 提示亲自走六回合；遇到某一行不符，就用回合数、输入和实际输出定位，而不跳过。自动检查不需在代码未改变时反复重跑；把时间用于尚未完成的人工证据和图文对齐。
+剩余组员 AI 历史链接、个人 reflection、签署声明、最终报告/视频和 Stage 2/3 交付属于最终作业材料，可并行完成，不是要求此刻把所有材料都塞进 stage-1 tag。

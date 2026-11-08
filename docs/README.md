@@ -1,37 +1,31 @@
-# Stage 1 Design Materials
+# Stage 1 Documentation
 
-## Integrated Stage 1 and E handoff
+The runnable release is `stage-1` on personal branch `lichen/stage_1`.
 
-Current personal branch: `lichen/stage_1`.
-[Lichen's Stage 1 AI conversation history](../ai-history/stage-1/README.md)
-contains the recovered original planning/implementation, design and audit chats.
+- [Implemented design](Stage_1_Implemented_Design_EN.md): actual responsibilities,
+  relationships, timing, design choices and trade-offs.
+- [Current class diagram](UML/Stage1_UML_Diagram.pdf) and [diagram notes](UML/README.md).
+- [Reproducible victory/defeat notes](Stage_1_Test_Notes.md).
+- [8 November agent verification](verification/Stage_1_Release_2026-11-08.md):
+  tested commit, actual results, scope, source/test identity and limitations.
+- [Review handoff](Stage_1_E_Handoff.md): requirement matrix and optional human
+  review form; agent execution is not an E signature.
+- [Manual checklist in Chinese](Stage_1_Manual_Checklist_ZH.md).
+- [A integration details](Member_A_Integration.md).
+- [Lichen's full available Stage 1 AI history](../ai-history/stage-1/README.md).
+- [Root README](../README.md): build/run, stages, tests and team evidence links.
 
-- [Manual-based Stage 1 checklist in Chinese](Stage_1_Manual_Checklist_ZH.md):
-  6 November remote comparison, local review integration, requirement-by-requirement
-  evidence, guided gameplay and remaining UML/AI-history/acceptance/tag work.
-- [6 November development verification](verification/Stage_1_2026-11-06.md):
-  exact production source hashes, commands, results and verification limits.
+Run `bash scripts/run.sh` or `bash scripts/test-stage1.sh`. Core: 14 scenarios/
+344 assertions with real Order and recording staff. Production smoke: 9 scenarios/
+94 assertions with real Order/staff/StaffTeam/Main/CLI. Mandatory gameplay and
+checks require no external Java dependencies or network service.
 
-- [E acceptance handoff](Stage_1_E_Handoff.md): test commands, expected outputs,
-  manual acceptance matrix, evidence format and the stage-1 release gate.
-- [Member A implementation and integration](Member_A_Integration.md): ownership,
-  implemented C/D wiring, CLI call sequence, state boundaries and replay table.
-- [Project README](../README.md): build, play, developer checks and replay commands.
-- [Replay inputs](../test/replays/README.md): real Main/CLI stdin fixtures.
+## Historical materials
 
-Run `bash scripts/run.sh` to play or `bash scripts/test-stage1.sh` for A's development
-checks. The latter runs 14 core scenarios and 344 assertions with the production
-Order plus 5 production smoke scenarios and 62 assertions. Independent E
-acceptance is pending; no stage-1 release tag is created by these scripts.
-
-## Earlier design proposal
-
-English design proposal for team discussion before implementation.
-
-- [PDF design document](Stage_1_Design_Discussion_EN.pdf) - includes class responsibilities, relationships, interface contracts, states, turn rules, acceptance scenarios, and the UML diagram.
-- [Editable English text](Stage_1_Design_Discussion_EN.md).
-- [UML files and editing instructions](UML/README.md).
-
-The architecture and method contracts are proposed team decisions. Acceptance scenarios are manually derived specifications pending implementation and execution.
-
-![Stage 1 class diagram](UML/Stage_1_Class_Diagram.png)
+[Earlier English proposal](Stage_1_Design_Discussion_EN.md) and its
+[PDF](Stage_1_Design_Discussion_EN.pdf) are retained as pre-implementation design
+history, not current UML or verified execution evidence.
+[6 November verification](verification/Stage_1_2026-11-06.md) describes that
+older snapshot and remains historical evidence. The 8 November record controls
+the current release. Other stages, individual reflections, group report/video
+and signed declarations remain separate final-submission work.

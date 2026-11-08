@@ -1,6 +1,6 @@
 # Member A Stage 1 Implementation and Integration
 
-Updated and developer-verified on 3 November 2026. E acceptance is pending.
+Updated 8 November 2026. The user delegated remaining release tests to Codex; results are recorded as agent-run verification, without an E signature.
 
 This document describes member A's completed Stage 1 coordination work, its
 connection to the team's production Order/staff/CLI, and the handoff to E.
@@ -32,7 +32,7 @@ Expected final output:
 
 ```text
 MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
-STAGE1_SMOKE=PASS scenarios=5 assertions=62
+STAGE1_SMOKE=PASS scenarios=9 assertions=94
 STAGE1_DEVELOPMENT_CHECKS=PASS
 ```
 
@@ -52,7 +52,7 @@ is included in this handoff.
 | E | Independently test the handed-off commit, record evidence/issues, synchronize diagrams/report, and approve or reject Stage 1 acceptance |
 
 The integrated Stage 1 is playable and passes A's development checks.
-Independent E acceptance remains required before the stage-1 release tag.
+The earlier E-first release workflow was superseded by the user's 8 November instruction to have Codex execute the tests. See verification/Stage_1_Release_2026-11-08.md.
 
 ## Ownership and files
 
@@ -212,7 +212,7 @@ for victory, defeat and three invalid-input retries.
 
 The original bash scripts/test-member-a.sh still uses the fake order and
 RecordingStaff to isolate A. The two modes are labelled in their output.
-A's development checks pass; E should independently test and record acceptance
+Agent release checks pass; E may separately perform and record an independent review
 using [the E handoff](Stage_1_E_Handoff.md).
 
 ### Victory replay using the current menu rule
@@ -254,12 +254,14 @@ and C2 on turn 16.
 
 The real CLI inputs are [stage1-defeat.txt](../test/replays/stage1-defeat.txt).
 
-## E handoff and release gate
+## Release verification and optional E review
 
-The production Order, staff, CLI and entry point are connected. E now runs
-independent acceptance on the exact handed-off commit, records results and
-issues, and synchronizes diagrams/report with actual packages and contracts.
-The earlier UML remains historical design material until synchronized.
-See Stage_1_E_Handoff.md for commands, expected outputs and the acceptance matrix.
-Create stage-1 only after E records acceptance on a runnable commit that reproduces
-both endings. No Stage 2/3 features are included in this handoff.
+The production Order, staff, CLI and entry point are connected. The current
+Stage 1 class diagram and implemented-design document reflect actual packages,
+contracts and states; earlier proposals remain historical.
+
+At the user's request on 8 November 2026, Codex completed the remaining tests
+and recorded agent execution in [the release record](verification/Stage_1_Release_2026-11-08.md).
+No E signature is claimed. E can use [the handoff matrix](Stage_1_E_Handoff.md)
+for any later independent review. The runnable release is stage-1, created on
+the verified personal-branch commit without requiring a main merge.
