@@ -1,5 +1,5 @@
 {
-  "scope": "Committed-candidate source identity; drawing-time hashes retained separately. No stage-2 tag or human acceptance.",
+  "scope": "Stage 2 release source identity; drawing-time hashes retained separately. Agent verification, not a human acceptance signature.",
   "date": "2026-11-08",
   "base_commit": "ac445a8f956232232188fd765eed98a5e8b49c46",
   "source_files": {

@@ -2,12 +2,14 @@
 
 Baseline: [`stage-1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1), commit
 `ac445a8f956232232188fd765eed98a5e8b49c46`.
-Candidate: personal branch [`lichen/stage_2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2).
+Released snapshot: [`stage-2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2), on personal branch
+[`lichen/stage_2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2).
+[Formal tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2).
 [Branch comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...lichen/stage_2).
 [Immutable tested implementation comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...f8a70258fe3300318a00cb913d45abefa1a552b5).
-The [verification record](../verification/Stage_2_Pre_Tag_2026-11-08.md) explains
-the evidence-only follow-up and unchanged tested implementation payload.
-No stage-2 tag is implied by a personal branch.
+The [release verification](../verification/Stage_2_Release_2026-11-08.md) explains
+the unchanged implementation payload, exact verified baseline and final tag
+archive check. Resolve the exact release commit with `git rev-parse stage-2^{commit}`.
 
 ## New production files
 

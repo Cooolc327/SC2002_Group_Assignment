@@ -3,29 +3,30 @@
 SC2002 Object-Oriented Design & Programming. Java 17+, offline command-line game.
 Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
-## Stage 2 verified candidate, tag held
+## Stage 2 release
 
-Personal branch: [`lichen/stage_2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2), extended from
-published [`stage-1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1). B and C source histories are retained.
-Code, automated checks, Stage 2 class diagram, VIP sequence diagram, acceptance
-checklist and Lichen's complete available AI continuation are prepared. Clean
-committed-archive validation passed on 8 November 2026 under a deny-network
-policy, including external-cwd launch from a path containing spaces. The
-verification record and logs are an evidence-only follow-up commit.
-**The stage-2 tag step is deliberately held; this is not a published stage-2 tag.**
+Runnable snapshot: [`stage-2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2), published from personal branch
+[`lichen/stage_2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2). It extends
+[`stage-1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) and preserves B/C source history. Merging to main
+is not required; main and Stage 1 are preserved by this publication.
 
-| Stage | Features | Status |
-| --- | --- | --- |
-| 1 | Regular customers, full turn sequence, both endings | Published runnable [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
-| 2 | VIP/Critic behaviour and customer-specific billing | Verified candidate branch; stage-2 tag held |
-| 3 | Host, ComboMeal, Happy Hour | Not implemented in this version |
+The release includes VIP/Critic behaviour, customer-specific locked bills,
+matching class/sequence diagrams, reproducible inputs, full bounded personal
+AI history and verification evidence. The final annotated tag archive is
+validated before branch/tag publication; no E signature is claimed.
 
+| Stage | Features | Status | Tag |
+| --- | --- | --- | --- |
+| 1 | Regular customers, full turn sequence, both endings | Published runnable snapshot | [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
+| 2 | VIP/Critic behaviour and customer-specific billing | Published runnable snapshot | [stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2) |
+| 3 | Host, ComboMeal, Happy Hour | Not implemented in this version | Pending |
+
+- [Stage 2 release verification](docs/verification/Stage_2_Release_2026-11-08.md)
 - [Acceptance checklist](docs/Stage2/Stage_2_Acceptance_Checklist_ZH.md)
-- [Pre-tag verification record](docs/verification/Stage_2_Pre_Tag_2026-11-08.md)
 - [Reproducible test notes](docs/Stage2/Stage_2_Test_Notes.md)
 - [New/changed/deleted files and reasons](docs/Stage2/Stage_1_to_2_Changes.md)
-- [Stage 1 to current Stage 2 comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...lichen/stage_2)
-- [Lichen's complete Stage 2 AI history](ai-history/stage-2/README.md)
+- [Formal Stage 1 to Stage 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2)
+- [Lichen's complete available Stage 2 AI history](ai-history/stage-2/README.md)
 
 ## Build and run
 
@@ -120,7 +121,8 @@ fixture; it does not change the default seed or CLI behaviour.
 
 Logs are Git-ignored under `build/stage1-checks/` and `build/stage2-checks/`.
 These are agent-run checks, not an E signature or independent human acceptance.
-Exact committed-archive provenance is in the pre-tag verification record.
+Exact committed-archive provenance is in the release verification record;
+the earlier pre-tag record is retained as historical evidence.
 
 ## Design and change evidence
 
@@ -136,7 +138,7 @@ Exact committed-archive provenance is in the pre-tag verification record.
   [VIP complex sequence diagram](docs/UML/Stage2_VIP_Sequence_Diagram.pdf).
   [Diagram notes](docs/Stage2/Diagram_Notes.md) link editable sources, source
   hashes and a replayed single-choice alternative (average 77.80).
-- [Stage 1 to Stage 2 candidate comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...lichen/stage_2);
+- [Stage 1 to Stage 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2);
   [tested implementation f8a7025](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/f8a70258fe3300318a00cb913d45abefa1a552b5).
 - Stage 2 to 3 comparison: pending Stage 3.
 

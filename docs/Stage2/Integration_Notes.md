@@ -1,6 +1,6 @@
 # Stage 2 local code integration
 
-Status: Stage 2 candidate preparation, 8 November 2026. No stage-2 tag.
+Status: Stage 2 released at annotated tag `stage-2`, 8 November 2026.
 The user requested code and necessary tests first, then diagrams and release
 work in separate steps. No E/human acceptance is claimed.
 
@@ -96,8 +96,9 @@ The diagram/source audit has been performed and linked in Diagram_Notes.md.
 [test notes](Stage_2_Test_Notes.md), [transition analysis](Stage_1_to_2_Changes.md)
 and [full AI continuation](../../ai-history/stage-2/README.md) are now prepared.
 The exact tested commit and clean-archive result are recorded separately in
-[the pre-tag verification record](../verification/Stage_2_Pre_Tag_2026-11-08.md).
-The final tag action is deliberately held for a later user instruction.
+[the release verification record](../verification/Stage_2_Release_2026-11-08.md).
+After the earlier hold, the user authorized publication. The final annotated
+tag archive is verified and branch/tag are published together.
 
 The existing stage-1 tag and main branch are not changed. No Host, ComboMeal or
 Happy Hour implementation has been added.

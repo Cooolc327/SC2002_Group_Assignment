@@ -1,5 +1,8 @@
 # Stage 2 pre-tag verification, 8 November 2026
 
+> Historical pre-tag record. The hold below describes that earlier phase.
+> The user later authorized publication; use the [release record](Stage_2_Release_2026-11-08.md) for current status.
+
 **Implementation verification: PASS. Tag creation: HELD, not executed.**
 The user authorized completing acceptance evidence, commit/push and clean-copy
 validation up to the tag step. This record documents agent execution; it does

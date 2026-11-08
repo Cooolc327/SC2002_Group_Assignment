@@ -1,6 +1,6 @@
 # UML diagrams
 
-## Stage 2 working design
+## Stage 2 released design
 
 - [Class diagram PDF](Stage2_UML_Diagram.pdf), [SVG](Stage2_UML_Diagram.svg),
   [editable drawio](Stage2_UML_Diagram.drawio).
@@ -10,12 +10,13 @@
 - [Optional documentation generator](generate_stage2_diagrams.py); Java gameplay
   does not depend on Python or ReportLab. Layout/event JSON exports accompany it.
 
-These diagrams describe the lichen/stage_2 production code; the pre-tag
+These diagrams describe the stage-2 production code; the release
 verification record confirms unchanged signatures/behaviour and records the
 three whitespace-only file differences from the drawing-time hashes. The class
 diagram retains the Stage 1 notation; blue headers mark Stage 2 changes. The
 sequence is one continuous vector diagram with turn bands and a replayed
-alternative. No stage-2 release/tag is implied.
+alternative. See [the release verification](../verification/Stage_2_Release_2026-11-08.md)
+for source identity and tagged-snapshot validation.
 
 ## Stage 1 reference
 

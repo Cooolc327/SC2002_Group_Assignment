@@ -3,8 +3,8 @@
 Prepared on 8 November 2026 from the `lichen/stage_2` working code.
 Signatures and behaviour are unchanged; pre-tag preparation later removed
 trailing whitespace from three new customer files. Both hash sets are recorded.
-These are reviewable design artifacts, not a release/tag or a human acceptance
-record. The user requested drawing after the local implementation walkthrough.
+These are the design artifacts included in stage-2, not a human acceptance
+signature. The user requested drawing after the implementation walkthrough.
 
 ## Files and editing
 
@@ -125,5 +125,6 @@ code evidence recorded in [integration notes](Integration_Notes.md).
 
 The drawing step itself did not commit or publish. Subsequent full AI-history
 archival and candidate execution are recorded in the
-[pre-tag verification record](../verification/Stage_2_Pre_Tag_2026-11-08.md).
-The stage-2 tag remains held; the drawing-time source identity is retained.
+[release verification record](../verification/Stage_2_Release_2026-11-08.md).
+The drawing-time source identity is retained; release preparation does not
+modify the diagram PDF/SVG/drawio/generator bytes.

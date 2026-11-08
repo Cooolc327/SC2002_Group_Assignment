@@ -4,11 +4,11 @@ Member: Lichen Yin (Member A). AI assistant: OpenAI Codex.
 
 Source conversation ID: `01a1717f-1df0-7331-8a29-e85012b01c41`.
 
-Coverage: 2026-11-08T15:22:27+08:00 through 2026-11-08T17:45:51+08:00
+Coverage: 2026-11-08T15:22:27+08:00 through 2026-11-08T21:09:44+08:00
 (Singapore time, UTC+08:00). Continuation starts strictly after the Stage 1
 archive's cutoff `2026-11-08T07:21:54.070Z`. Early messages close Stage 1; retaining them avoids
 a gap before the Stage 2 audit, implementation, walkthrough, diagrams and
-pre-tag preparation.
+release preparation.
 
 Original user/assistant text is kept in source order, including public progress
 messages, original errors and subsequent corrections. Only line endings and
@@ -880,3 +880,222 @@ Time: 2026-11-08T17:45:51+08:00.
 <!-- original-text-end:chat-01-m042 -->
 
 <!-- transcript-message-end:chat-01-m042 -->
+
+<!-- transcript-message-start:chat-01-m043 -->
+## Message 043 - Assistant
+
+Time: 2026-11-08T17:48:29+08:00.
+
+<!-- original-text-start:chat-01-m043 -->
+**已完成到打 tag 前的全部准备，并提交、推送到 `lichen/stage_2`。**
+
+- 最新提交：[`5402f4a`](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/5402f4a2c53ff24530b81ffbd29d7171bad08f6f)，本地与远端同步，工作区干净。
+- 已补齐验收清单、测试笔记、阶段变化说明，以及注明截止时间的 **42 条完整 AI 对话消息**。
+- 最终提交的干净副本已禁网通过构建、全部回归测试和三份 Main 回放。
+- B、C 提交历史已保留；`main` 和 `stage-1` 未改动。
+
+可查看：[验证记录](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/lichen/stage_2/docs/verification/Stage_2_Pre_Tag_2026-11-08.md) · [AI 对话归档](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2/ai-history/stage-2)
+
+**`stage-2` tag 尚未创建，只剩最后创建并推送 tag 这一步。**
+
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:103-103|note=[confirmed authoritative checkout before publication]
+MEMORY.md:105-105|note=[recovered full AI history requirement and verified against supplied briefing]
+skills/guarded-git-publish/SKILL.md:24-30|note=[audited file allowlists and bytes and verified remote SHA]
+</citation_entries>
+<rollout_ids>
+01a1717f-1df0-7331-8a29-e85012b01c41
+</rollout_ids>
+</oai-mem-citation>
+<!-- original-text-end:chat-01-m043 -->
+
+<!-- transcript-message-end:chat-01-m043 -->
+
+<!-- transcript-message-start:chat-01-m044 -->
+## Message 044 - User
+
+Time: 2026-11-08T20:07:52+08:00.
+
+<!-- original-text-start:chat-01-m044 -->
+和AI交流的那个部分做了吗
+<!-- original-text-end:chat-01-m044 -->
+
+<!-- transcript-message-end:chat-01-m044 -->
+
+<!-- transcript-message-start:chat-01-m045 -->
+## Message 045 - Assistant
+
+Time: 2026-11-08T20:08:12+08:00.
+
+<!-- original-text-start:chat-01-m045 -->
+我核对一下远端的 AI 对话归档，确认文件、内容范围和截止时间。
+<!-- original-text-end:chat-01-m045 -->
+
+<!-- transcript-message-end:chat-01-m045 -->
+
+<!-- transcript-message-start:chat-01-m046 -->
+## Message 046 - Assistant
+
+Time: 2026-11-08T20:08:33+08:00.
+
+<!-- original-text-start:chat-01-m046 -->
+**做了，已推送到你的个人分支 `lichen/stage_2`。**
+
+文件在 [ai-history/stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2/ai-history/stage-2)：
+
+- `chat-01.md`：42 条原始消息，按时间顺序保留提问、回复和过程更新。
+- `README.md`：归档范围、截止时间和说明。
+- `export-audit.json`：逐条内容的校验记录。
+
+**目前归档截止到 11 月 8 日 17:45:51（北京时间）**，此后的新交流尚未追加。Stage 1 的原有归档也完整保留。
+
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:103-103|note=[confirmed authoritative repository before checking published AI archive]
+</citation_entries>
+<rollout_ids>
+01a1717f-1df0-7331-8a29-e85012b01c41
+</rollout_ids>
+</oai-mem-citation>
+<!-- original-text-end:chat-01-m046 -->
+
+<!-- transcript-message-end:chat-01-m046 -->
+
+<!-- transcript-message-start:chat-01-m047 -->
+## Message 047 - User
+
+Time: 2026-11-08T20:11:07+08:00.
+
+<!-- original-text-start:chat-01-m047 -->
+我记得好像说有一个要求是要说明stage 2和stage 1的区别和改动的 你记录在哪里的
+<!-- original-text-end:chat-01-m047 -->
+
+<!-- transcript-message-end:chat-01-m047 -->
+
+<!-- transcript-message-start:chat-01-m048 -->
+## Message 048 - Assistant
+
+Time: 2026-11-08T20:11:20+08:00.
+
+<!-- original-text-start:chat-01-m048 -->
+我核对一下专门的变化说明文件和 README 入口，给你直接链接。
+<!-- original-text-end:chat-01-m048 -->
+
+<!-- transcript-message-end:chat-01-m048 -->
+
+<!-- transcript-message-start:chat-01-m049 -->
+## Message 049 - Assistant
+
+Time: 2026-11-08T20:11:40+08:00.
+
+<!-- original-text-start:chat-01-m049 -->
+**有，已经记录并推送了。**专门放在：
+
+[Stage_1_to_2_Changes.md](</Users/edward/Desktop/NTU/Y2S1/SC2002/Group Assignment/SC2002_Group_Assignment/docs/Stage2/Stage_1_to_2_Changes.md>) · [GitHub 版本](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/lichen/stage_2/docs/Stage2/Stage_1_to_2_Changes.md)
+
+内容包括：
+
+- 新增的 **4 个生产文件**及其职责。
+- 修改的 **6 个生产文件**，每项修改及原因；明确说明没有删除生产文件。
+- 对 OO 设计的影响、设计取舍。
+- 原有功能的回归测试，以及 Stage 2 对游戏结果的影响。
+- 对应 commit 和 Stage 1→2 的比较链接。
+
+[README 第 26 行](</Users/edward/Desktop/NTU/Y2S1/SC2002/Group Assignment/SC2002_Group_Assignment/README.md:26>)也有入口，名称是 **“New/changed/deleted files and reasons”**。这份就是对应你说的阶段变化说明要求。
+
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:103-103|note=[confirmed authoritative repository before locating published change analysis]
+</citation_entries>
+<rollout_ids>
+01a1717f-1df0-7331-8a29-e85012b01c41
+</rollout_ids>
+</oai-mem-citation>
+<!-- original-text-end:chat-01-m049 -->
+
+<!-- transcript-message-end:chat-01-m049 -->
+
+<!-- transcript-message-start:chat-01-m050 -->
+## Message 050 - User
+
+Time: 2026-11-08T20:17:22+08:00.
+
+<!-- original-text-start:chat-01-m050 -->
+现在是不是可以打上tag2了 需要merge到main再打上tag吗
+<!-- original-text-end:chat-01-m050 -->
+
+<!-- transcript-message-end:chat-01-m050 -->
+
+<!-- transcript-message-start:chat-01-m051 -->
+## Message 051 - Assistant
+
+Time: 2026-11-08T20:17:48+08:00.
+
+<!-- original-text-start:chat-01-m051 -->
+我先核对远端候选提交和现有 tag，确认现在应标记哪个版本，以及是否需要先合并到 main。
+<!-- original-text-end:chat-01-m051 -->
+
+<!-- transcript-message-end:chat-01-m051 -->
+
+<!-- transcript-message-start:chat-01-m052 -->
+## Message 052 - Assistant
+
+Time: 2026-11-08T20:18:38+08:00.
+
+<!-- original-text-start:chat-01-m052 -->
+**可以，Stage 2 已具备打 tag 的条件，不需要先 merge 到 `main`。**
+
+刚核对了远端：
+
+- `lichen/stage_2` 是已验证的提交 **`5402f4a`**，本地与远端同步，工作区干净。
+- **目前尚未创建 `stage-2` tag。**
+
+作业要求给独立可运行的版本打标签，没有要求该提交必须先进入 `main`。Git tag 指向的是一个 **commit**，与是否合并到 `main` 是两件事。
+
+建议先完成 Stage 2 发布：同步 README 的发布状态和正式阶段比较链接，再创建、推送 annotated tag **`stage-2`**。之后如果小组要统一从 `main` 开发 Stage 3，再通过 PR 合并即可。
+
+<oai-mem-citation>
+<citation_entries>
+MEMORY.md:103-103|note=[confirmed authoritative checkout before checking remote candidate and tags]
+</citation_entries>
+<rollout_ids>
+01a1717f-1df0-7331-8a29-e85012b01c41
+</rollout_ids>
+</oai-mem-citation>
+<!-- original-text-end:chat-01-m052 -->
+
+<!-- transcript-message-end:chat-01-m052 -->
+
+<!-- transcript-message-start:chat-01-m053 -->
+## Message 053 - User
+
+Time: 2026-11-08T21:04:45+08:00.
+
+<!-- original-text-start:chat-01-m053 -->
+可以 继续做吧
+<!-- original-text-end:chat-01-m053 -->
+
+<!-- transcript-message-end:chat-01-m053 -->
+
+<!-- transcript-message-start:chat-01-m054 -->
+## Message 054 - Assistant
+
+Time: 2026-11-08T21:04:55+08:00.
+
+<!-- original-text-start:chat-01-m054 -->
+我现在完成 Stage 2 发布：更新 README 的发布状态和阶段比较链接，补上最近的 AI 对话，再验证最终提交、创建并推送 `stage-2`。这一步只更新个人分支和标签，不合并到 `main`。
+<!-- original-text-end:chat-01-m054 -->
+
+<!-- transcript-message-end:chat-01-m054 -->
+
+<!-- transcript-message-start:chat-01-m055 -->
+## Message 055 - Assistant
+
+Time: 2026-11-08T21:09:44+08:00.
+
+<!-- original-text-start:chat-01-m055 -->
+远端仍是已验证的 `5402f4a`，没有标签冲突。发布文档已准备好，本次没有改动游戏源码或图文件；最近关于 AI 记录、阶段变化说明和打 tag 的交流也已补入归档。接下来验证最终的标签副本，再发布。
+<!-- original-text-end:chat-01-m055 -->
+
+<!-- transcript-message-end:chat-01-m055 -->

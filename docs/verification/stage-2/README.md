@@ -1,5 +1,8 @@
 # Successful Stage 2 clean-candidate execution logs
 
+Historical preparation logs. [Final baseline evidence](release-baseline/README.md)
+and the [release record](../Stage_2_Release_2026-11-08.md) describe subsequent publication.
+
 Tested implementation commit: `f8a70258fe3300318a00cb913d45abefa1a552b5`.
 The archive path contained spaces, commands ran from an external cwd and all
 processes ran under the macOS `deny network*` policy. No tool stdout containing

@@ -1,11 +1,17 @@
 # Project documentation
 
-Current work: [Stage 2 local code integration](Stage2/Integration_Notes.md).
-The [Stage 2 diagram notes](Stage2/Diagram_Notes.md) link the new class and VIP
-sequence diagrams, editable sources and replay evidence. [Stage 2 acceptance](Stage2/Stage_2_Acceptance_Checklist_ZH.md),
-[full AI continuation](../ai-history/stage-2/README.md), [change analysis](Stage2/Stage_1_to_2_Changes.md)
-and the [pre-tag record](verification/Stage_2_Pre_Tag_2026-11-08.md) complete the
-candidate evidence. The stage-2 tag is held for a later instruction.
+## Published Stage 2
+
+- [Release verification](verification/Stage_2_Release_2026-11-08.md)
+- [Acceptance checklist](Stage2/Stage_2_Acceptance_Checklist_ZH.md)
+- [Test notes](Stage2/Stage_2_Test_Notes.md) and [stage changes](Stage2/Stage_1_to_2_Changes.md)
+- [Class/sequence diagrams and evidence](Stage2/Diagram_Notes.md)
+- [Integration explanation](Stage2/Integration_Notes.md)
+- [Full personal AI history](../ai-history/stage-2/README.md)
+- [Earlier pre-tag record](verification/Stage_2_Pre_Tag_2026-11-08.md), retained as history
+
+The runnable snapshot is stage-2 on personal branch lichen/stage_2. The final
+release validates its annotated tag archive; main is unchanged.
 
 ## Published Stage 1 documentation
 
