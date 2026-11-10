@@ -6,7 +6,7 @@ Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 | Member | Role |
 | --- | --- |
 | Lichen Yin | A: game control and restaurant coordination (`control`, `domain`, `view`), design document and UML |
-| Xavier | B: customers, tables, waiting queue, seating, menu and game configuration |
+| Xavier Kee | B: customers, tables, waiting queue, seating, menu and game configuration |
 | Bernice Koh | C: orders and pricing |
 | Advika Bhambri | D: staff (Waiter, Chef, Cashier) and command-line interface |
 | Rishika Garg | E: integration (`Main`, `Order`, `StaffTeam`), testing and report |
