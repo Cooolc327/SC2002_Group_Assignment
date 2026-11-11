@@ -2,12 +2,15 @@ package unit;
 
 import contracts.ActionResult;
 import domain.Restaurant;
+import entities.CriticCustomer;
 import entities.Customer;
 import entities.RegularCustomer;
 import entities.VipCustomer;
+import fooditems.ComboMeal;
 import fooditems.Discount;
 import fooditems.Menu;
 import fooditems.MenuItem;
+import java.util.ArrayList;
 import java.util.List;
 import orders.BillCalculator;
 import orders.Order;
@@ -27,6 +30,9 @@ public final class BillCalculatorTest {
         run("discounts round to the nearest cent", BillCalculatorTest::rounding);
         run("invalid amounts and discounts are rejected", BillCalculatorTest::invalidInput);
         run("taking an order locks the discounted bill", BillCalculatorTest::orderLocksBill);
+        run("Happy Hour takes 20 percent off for every customer type", BillCalculatorTest::happyHour);
+        run("VIP discount then Happy Hour on combos", BillCalculatorTest::comboBills);
+        run("rounding each step matches rounding once at the end", BillCalculatorTest::roundingOrder);
         System.out.println("BILL_CALCULATOR=PASS scenarios=" + scenarios + " assertions=" + assertions);
     }
 
@@ -83,6 +89,50 @@ public final class BillCalculatorTest {
                 "order message shows the bill: " + ordered.message());
         OrderView order = restaurant.getOrderViews().get(0);
         eq(810, order.billCents(), "bill stored on the order");
+    }
+
+    private static void happyHour() {
+        List<MenuItem> items = new Menu().getItems();
+        MenuItem burger = items.get(1);
+        Customer regular = new RegularCustomer(1);
+        Customer vip = new VipCustomer(2);
+        Customer critic = new CriticCustomer(3);
+        eq(1080, BillCalculator.billFor(vip, burger, true), "brief example: VIP Burger");
+        eq(1200, BillCalculator.billFor(regular, burger, true), "Regular Burger");
+        eq(1200, BillCalculator.billFor(critic, burger, true), "Critic Burger");
+        eq(648, BillCalculator.billFor(vip, items.get(0), true), "VIP Salad");
+        eq(1296, BillCalculator.billFor(vip, items.get(2), true), "VIP Pasta");
+        eq(1350, BillCalculator.billFor(vip, burger, false), "VIP Burger outside Happy Hour");
+        eq(BillCalculator.billFor(vip, burger, false), BillCalculator.billFor(vip, burger),
+                "two-argument bill means no Happy Hour");
+    }
+
+    private static void comboBills() {
+        List<ComboMeal> combos = new Menu().getCombos();
+        Customer regular = new RegularCustomer(1);
+        Customer vip = new VipCustomer(2);
+        int[] vipBills = {1944, 2187, 2673};
+        int[] regularHappyHour = {1728, 1944, 2376};
+        int[] vipHappyHour = {1555, 1750, 2138};
+        for (int i = 0; i < combos.size(); i++) {
+            ComboMeal combo = combos.get(i);
+            eq(vipBills[i], BillCalculator.billFor(vip, combo), "VIP " + combo.getName());
+            eq(regularHappyHour[i], BillCalculator.billFor(regular, combo, true),
+                    "Regular " + combo.getName() + " in Happy Hour");
+            eq(vipHappyHour[i], BillCalculator.billFor(vip, combo, true),
+                    "VIP " + combo.getName() + " in Happy Hour");
+        }
+    }
+
+    private static void roundingOrder() {
+        Menu menu = new Menu();
+        List<MenuItem> everything = new ArrayList<>(menu.getItems());
+        everything.addAll(menu.getCombos());
+        Customer vip = new VipCustomer(1);
+        for (MenuItem item : everything) {
+            int roundedOnce = (item.getPriceCents() * 90 * 80 + 5000) / 10000;
+            eq(roundedOnce, BillCalculator.billFor(vip, item, true), item.getName());
+        }
     }
 
     //-------------------------------Helpers-----------------------------------
