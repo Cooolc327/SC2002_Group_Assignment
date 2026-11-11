@@ -5,6 +5,7 @@ import domain.Restaurant;
 import entities.Customer;
 import entities.RegularCustomer;
 import entities.VipCustomer;
+import fooditems.Discount;
 import fooditems.Menu;
 import fooditems.MenuItem;
 import java.util.List;
@@ -53,21 +54,21 @@ public final class BillCalculatorTest {
     }
 
     private static void rounding() {
-        eq(900, BillCalculator.applyDiscount(900, 0), "no discount");
-        eq(0, BillCalculator.applyDiscount(900, 100), "full discount");
-        eq(0, BillCalculator.applyDiscount(0, 10), "zero amount");
-        eq(5, BillCalculator.applyDiscount(6, 10), "5.4 cents rounds down");
-        eq(5, BillCalculator.applyDiscount(5, 10), "4.5 cents rounds up");
-        eq(14, BillCalculator.applyDiscount(15, 10), "13.5 cents rounds up");
-        eq(10, BillCalculator.applyDiscount(11, 10), "9.9 cents rounds up");
-        eq(Integer.MAX_VALUE, BillCalculator.applyDiscount(Integer.MAX_VALUE, 0),
+        eq(900, Discount.apply(900, 0), "no discount");
+        eq(0, Discount.apply(900, 100), "full discount");
+        eq(0, Discount.apply(0, 10), "zero amount");
+        eq(5, Discount.apply(6, 10), "5.4 cents rounds down");
+        eq(5, Discount.apply(5, 10), "4.5 cents rounds up");
+        eq(14, Discount.apply(15, 10), "13.5 cents rounds up");
+        eq(10, Discount.apply(11, 10), "9.9 cents rounds up");
+        eq(Integer.MAX_VALUE, Discount.apply(Integer.MAX_VALUE, 0),
                 "large valid amounts do not overflow");
     }
 
     private static void invalidInput() {
-        throwsType(IllegalArgumentException.class, () -> BillCalculator.applyDiscount(-1, 10));
-        throwsType(IllegalArgumentException.class, () -> BillCalculator.applyDiscount(900, -1));
-        throwsType(IllegalArgumentException.class, () -> BillCalculator.applyDiscount(900, 101));
+        throwsType(IllegalArgumentException.class, () -> Discount.apply(-1, 10));
+        throwsType(IllegalArgumentException.class, () -> Discount.apply(900, -1));
+        throwsType(IllegalArgumentException.class, () -> Discount.apply(900, 101));
     }
 
     //Customer 1 chooses Salad, so a 10% discount gives an $8.10 bill on the real Order
