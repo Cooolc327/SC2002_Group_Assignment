@@ -153,6 +153,6 @@ Design discussion: [docs/Stage_1_Design_Discussion_EN.md](docs/Stage_1_Design_Di
 | --- | --- |
 | Lichen Yin | [codex/member-a-stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/codex/member-a-stage-1/ai-history) (TODO) |
 | Xavier | [Xavier](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Xavier/ai-history) (TODO) |
-| Bernice Koh | [bernice/stage-2-pricing](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/bernice/stage-2-pricing/ai-history) (TODO) |
+| Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md) |
 | Advika Bhambri | [Advika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history) (TODO) |
 | Rishika Garg | [Rishika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history) (TODO) |
