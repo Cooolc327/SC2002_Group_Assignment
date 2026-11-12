@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
+import orders.BillCalculator;
 import view.GameSummary;
 import view.GameView.CustomerView;
 import view.GameView.MenuItemView;
@@ -94,14 +95,14 @@ public final class Restaurant {
         if (!menu.getItems().contains(item)) {
             throw new IllegalStateException("Customer chose an item outside the menu");
         }
-        // Stage 1 charges the full price. The amount is fixed when ordering.
-        int billCents = item.getPriceCents();
+        // The bill includes the customer's discount and is fixed when ordering.
+        int billCents = BillCalculator.billFor(customer, item);
         OrderPort order = orderFactory.create(nextOrderId, customer, item, billCents);
         validateNewOrder(order, customerId, item, billCents);
         customer.placeOrder();
         orders.put(nextOrderId++, order);
         return ActionResult.success("Customer " + customerId + " ordered " + item.getName()
-                + " (order " + order.getId() + ", " + item.getFormattedPrice() + ")");
+                + " (order " + order.getId() + ", " + money(billCents) + ")");
     }
 
     public ActionResult advancePreparation(int orderId, int turn) {
@@ -293,6 +294,10 @@ public final class Restaurant {
     private OrderPort orderFor(int customerId) {
         return orders.values().stream().filter(o -> o.getCustomerId() == customerId)
                 .findFirst().orElse(null);
+    }
+
+    private static String money(int cents) {
+        return String.format("$%d.%02d", cents / 100, cents % 100);
     }
 
     private boolean isOpenTurn(int turn) {

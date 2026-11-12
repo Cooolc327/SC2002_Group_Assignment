@@ -1,9 +1,9 @@
 # Member A Stage 1 Implementation and Integration
 
-Updated and verified on 31 October 2026.
+Updated 8 November 2026. The user delegated remaining release tests to Codex; results are recorded as agent-run verification, without an E signature.
 
-This document describes the implemented member-A code, the interfaces required
-by members C and D, and the executable checks for member E.
+This document describes member A's completed Stage 1 coordination work, its
+connection to the team's production Order/staff/CLI, and the handoff to E.
 
 ## Project location and verification
 
@@ -18,37 +18,41 @@ Other group members should use their own checkout of the same repository.
 Run from the project root:
 
 ```bash
-bash scripts/test-member-a.sh
+bash scripts/run.sh
+bash scripts/test-stage1.sh
 ```
 
-Requirements: JDK 17 or later and Bash. The script needs no network access or
-external Java libraries. It compiles source and tests with Java 17 compatibility,
-all compiler warnings enabled, and warnings treated as errors. Build files are
-created temporarily outside the repository.
+Requirements: JDK 17 or later and Bash. No network access or external Java
+libraries are needed. The scripts compile with Java 17 compatibility, all
+compiler warnings enabled, and warnings treated as errors. The launcher builds
+production classes in build/classes. Test classes are temporary; test logs are
+kept in build/stage1-checks.
 
 Expected final output:
 
 ```text
-MEMBER_A_CORE=PASS scenarios=14 assertions=344
+MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
+STAGE1_SMOKE=PASS scenarios=9 assertions=94
+STAGE1_DEVELOPMENT_CHECKS=PASS
 ```
 
 ## Implementation status
 
 Member A implements the game controller and restaurant coordination layer.
-The existing B/C customer, seating and menu classes are reused. C's production
-Order and D's production staff/CLI are pending integration. Only Stage 1
-behaviour is implemented here.
+Main now connects the existing customer, seating and menu modules to
+orders.Order, staff.StaffTeam and cli.RestaurantCLI. Only Stage 1 behaviour
+is included in this handoff.
 
 | Member | Delivered or required next |
 | --- | --- |
-| A | Implemented controller phases, arrival scheduling, restaurant coordination, immutable views, statistics, final result and executable core tests |
+| A | Controller phases, arrivals, coordination, views, statistics, final result, build/run scripts, production integration checks and E handoff |
 | B | Existing customer/seating classes are reused; the integration includes the Table filename fix and seating validation/release fixes below |
-| C | Connect the production Order through OrderPort.Factory and OrderPort |
-| D | Connect production staff through StaffGateway; implement CLI and the game entry point |
-| E | Run the tests again with production C/D adapters; synchronize the final diagrams and report |
+| C module | orders.Order implements OrderPort; Main supplies Order::new |
+| D module | StaffTeam implements StaffGateway and delegates to real staff; CLI and Main are connected |
+| E | Independently test the handed-off commit, record evidence/issues, synchronize diagrams/report, and approve or reject Stage 1 acceptance |
 
-The verified A core is ready for C/D integration. A complete interactive Stage 1
-release still requires those production implementations and the CLI.
+The integrated Stage 1 is playable and passes A's development checks.
+The earlier E-first release workflow was superseded by the user's 8 November instruction to have Codex execute the tests. See verification/Stage_1_Release_2026-11-08.md.
 
 ## Ownership and files
 
@@ -60,11 +64,11 @@ release still requires those production implementations and the CLI.
 | C integration | src/contracts/OrderPort.java | Order access and state-transition contract, plus order factory |
 | D integration | src/contracts/StaffGateway.java | Adapter to D's Waiter, Chef and Cashier |
 | Shared read-only views | src/view/GameView.java, GameSummary.java | Detached immutable state for D's CLI and E's tests |
-| Verification | test/integration/MemberACoreTest.java, scripts/test-member-a.sh | Executable member-A scenarios using test-only C/D substitutes |
+| Verification | MemberACoreTest.java, Stage1SmokeTest.java, scripts/test-stage1.sh | Core scenarios in production-order mode and real staff/Main/CLI smoke scenarios |
 
-The shared contracts make the currently missing implementations replaceable.
-C/D may implement them directly or write small adapters around their own classes.
-The test substitutes are private to the test class and are never production defaults.
+The shared contracts separate coordination from module implementations.
+Order implements the order contract, and StaffTeam adapts the three staff objects.
+The test substitutes are private to the core test and are never production defaults.
 
 ## Two changes to B's integration surface
 
@@ -83,20 +87,19 @@ by the tested replay below.
 
 ## Member D CLI contract
 
-Create one Restaurant using C's OrderPort.Factory and one GameController using
-that restaurant and D's StaffGateway adapter. The integration setup supplies
-those dependencies; there is no default or fake production implementation.
+Main creates one Restaurant using Order::new and one GameController using that
+restaurant and a StaffTeam. It then starts RestaurantCLI with the controller.
 
 Assembly uses these implemented constructors:
 
 ```java
-Restaurant restaurant = new Restaurant(orderFactory);
-GameController controller = new GameController(restaurant, staffGateway);
+Restaurant restaurant = new Restaurant(Order::new);
+GameController controller = new GameController(restaurant, new StaffTeam());
+new RestaurantCLI(controller, new Scanner(System.in)).run();
 ```
 
-Here orderFactory is the OrderPort.Factory supplied by C, and staffGateway is
-the StaffGateway supplied by D. Import domain.Restaurant, control.GameController
-and the relevant contracts. This assembly is performed once per game.
+The concrete imports and assembly are in src/Main.java. This wiring occurs once
+per game and supplies real module implementations.
 
 | Controller method | Behaviour |
 | --- | --- |
@@ -135,7 +138,7 @@ StaffGateway has three methods:
 - executeChef(ChefAction action, Restaurant restaurant, int turn)
 - processPayment(Restaurant restaurant, int turn)
 
-Each returns ActionResult. The adapter delegates to D's actual staff objects.
+Each returns ActionResult. StaffTeam delegates to the actual staff objects.
 Record each staff member's last action turn only after success or WAIT.
 Business rejections must leave staff capacity and domain state unchanged.
 The controller also prevents a second accepted Waiter/Chef submission.
@@ -155,10 +158,10 @@ already runs these once in their required sequence.
 
 ## Member C order contract
 
-Implement OrderPort or adapt the production Order to it. Supply a factory with
-create(orderId, customer, item, billCents). It must return a fresh PLACED order
-with zero prepared units and null unset timestamps/payment satisfaction.
-It must not mutate customers, tables or restaurant collections.
+orders.Order implements OrderPort. Its constructor matches the factory method
+create(orderId, customer, item, billCents), so Main uses Order::new. It returns
+a fresh PLACED order with zero prepared units and null unset timestamps/payment
+satisfaction. Creation does not mutate customers, tables or restaurant collections.
 
 The order provides id, customer id, menu item, fixed bill cents, preparation
 progress, status, readyTurn, servedTurn, paidTurn and satisfactionAtPayment.
@@ -193,21 +196,29 @@ records remain available for statistics. Satisfaction has a lower bound of zero.
 
 ## Verification and reproducible runs
 
-Run bash scripts/test-member-a.sh from the repository root. Java 17 compatibility,
-all compiler warnings and warnings-as-errors are enabled. Build output is temporary.
+Run bash scripts/test-stage1.sh from the repository root. Java 17 compatibility,
+all compiler warnings and warnings-as-errors are enabled.
 
-The suite contains 14 scenarios and 344 assertions: arrival schedule, full-length
+The core suite contains 14 scenarios and 344 assertions: arrival schedule, full-length
 defeat, retries and phase limits, same-turn preparation, delayed serving/eating/
 payment, two-unit Pasta, full-length victory, cancellation in all three unserved
 order states, FIFO/tied payments, snapshot immutability, failed factory atomicity,
 seating atomicity and victory thresholds.
 
-These are executed A-core results with test doubles, not a final production-game
-demonstration. E should rerun equivalent scenarios using C/D production adapters.
+The handoff command runs these cases with the production Order; RecordingStaff
+is retained for call-order assertions. A separate smoke suite runs 5 scenarios
+and 62 assertions with actual staff and StaffTeam, and launches the real Main/CLI
+for victory, defeat and three invalid-input retries.
+
+The original bash scripts/test-member-a.sh still uses the fake order and
+RecordingStaff to isolate A. The two modes are labelled in their output.
+Agent release checks pass; E may separately perform and record an independent review
+using [the E handoff](Stage_1_E_Handoff.md).
 
 ### Victory replay using the current menu rule
 
 All unlisted Chef choices are WAIT. Customer order ids are 1 through 6.
+The real CLI inputs are [stage1-victory.txt](../test/replays/stage1-victory.txt).
 
 | Turn | Waiter action | Chef preparation | Automatic payment |
 | --- | --- | --- | --- |
@@ -241,11 +252,16 @@ Choose WAIT for Waiter and Chef on all 18 turns. Verified result: DEFEAT; 0 paid
 $0.00 revenue, average N/A, and 2 unhappy departures. C1 leaves on turn 13
 and C2 on turn 16.
 
-## Remaining group integration
+The real CLI inputs are [stage1-defeat.txt](../test/replays/stage1-defeat.txt).
 
-C supplies the production Order factory/adapter. D supplies production staff,
-their adapter, the CLI and the game entry point. E runs production integration
-tests and updates diagrams/report to match actual packages and contracts.
-The earlier UML remains a proposal until synchronized with the integrated code.
-Create stage-1 only after the real playable version independently compiles and
-reproduces both endings. No Stage 2/3 features are included in this implementation.
+## Release verification and optional E review
+
+The production Order, staff, CLI and entry point are connected. The current
+Stage 1 class diagram and implemented-design document reflect actual packages,
+contracts and states; earlier proposals remain historical.
+
+At the user's request on 8 November 2026, Codex completed the remaining tests
+and recorded agent execution in [the release record](verification/Stage_1_Release_2026-11-08.md).
+No E signature is claimed. E can use [the handoff matrix](Stage_1_E_Handoff.md)
+for any later independent review. The runnable release is stage-1, created on
+the verified personal-branch commit without requiring a main merge.

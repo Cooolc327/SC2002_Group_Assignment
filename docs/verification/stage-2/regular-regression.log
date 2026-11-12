@@ -1,0 +1,26 @@
+PASS 18 turns, arrival schedule and defeat
+PASS phase limits and invalid-action retries
+PASS ordering, serving, eating and payment timing
+PASS two-unit Pasta timeline
+PASS reproducible victory with current menu rule
+PASS abandonment cancels PLACED orders
+PASS abandonment cancels PREPARING orders
+PASS abandonment cancels READY orders
+PASS payment FIFO and one payment per turn
+PASS payment ties use customer id
+PASS snapshots are detached and immutable
+PASS order factory failure leaves no partial order
+PASS seating validation is atomic
+PASS victory boundaries
+MEMBER_A_CORE=PASS scenarios=14 assertions=344 orders=production
+PASS real Order and StaffTeam timing, retries and table release
+PASS production staff enforce per-turn allowances
+PASS real Main/CLI victory (log cli-victory.log)
+PASS real Main/CLI defeat (log cli-defeat.log)
+PASS real Main/CLI invalid-input-victory (log cli-invalid-input-victory.log)
+PASS real Main/CLI chef-invalid-input-victory (log cli-chef-invalid-input-victory.log)
+PASS real Main/CLI bom-victory (log cli-bom-victory.log)
+PASS real Main/CLI placed-order-abandonment (log cli-placed-order-abandonment.log)
+PASS real Main/CLI ready-order-abandonment (log cli-ready-order-abandonment.log)
+STAGE1_SMOKE=PASS scenarios=9 assertions=94
+STAGE1_DEVELOPMENT_CHECKS=PASS logs=/private/tmp/sc2002-stage2-pretag-h_w81tm2/clean candidate with spaces/build/stage1-checks

@@ -1,0 +1,6 @@
+Commit: df7cf0a113e729c8c134bb661cf474e1b59efbfb
+REAL_CLI_TIMELINE=PASS
+Pasta: prep units on 8/9, serve 10, READY_TO_PAY 11, paid 12.
+Targets met at turn 15; game still runs through turn 18.
+C6 orders Pasta and receives one prep unit on turn 18; collected payment ids are 1,2,3,4,5 only.
+The CLI does not print a post-turn-18 full order snapshot; core tests separately inspect the final C6 state.

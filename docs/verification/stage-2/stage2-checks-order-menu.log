@@ -1,0 +1,8 @@
+PASS menu holds the three base items
+PASS new order starts PLACED with its bill
+PASS one-unit Salad goes straight to READY
+PASS two-unit Pasta goes PREPARING then READY
+PASS dish is served on a later turn than READY
+PASS payment needs SERVED and records satisfaction
+PASS only unserved orders can be cancelled
+ORDER_MENU=PASS scenarios=7 assertions=65

@@ -1,0 +1,15 @@
+PASS seeded six-customer schedule, positive IDs and invalid ID rejection
+PASS polymorphic waiting losses, service immunity and Critic preference
+PASS actual mixed arrivals and exact all-WAIT state after 18 turns
+PASS invalid arrival factories leave the turn unchanged and permit retry
+PASS real mixed-customer victory, VIP payment and final unfinished Critic order
+PASS Critic chooses Pasta and follows READY, SERVED, eating and payment timing
+PASS real Critic abandonment cancels an order with 0 preparation units
+PASS real Critic abandonment cancels an order with 1 preparation units
+PASS real Critic abandonment cancels an order with 2 preparation units
+PASS real mixed Main/CLI victory
+PASS real mixed Main/CLI defeat
+PASS real mixed Main/CLI waiter-retry-victory
+PASS real mixed Main/CLI chef-retry-victory
+PASS real mixed Main/CLI bom-victory
+STAGE2_INTEGRATION=PASS scenarios=14 assertions=506

@@ -1,0 +1,513 @@
+=== Restaurant Rush (Stage 1) ===
+You are the manager. Each turn: customers arrive -> you choose the Waiter task -> you choose
+the Chef task -> served customers eat -> the Cashier collects one payment automatically ->
+everyone not yet served loses satisfaction.
+Goal after turn 18: at least 4 paid customers, revenue at least $45.00, average satisfaction at least 60.
+
+Menu (customers choose their own food):
+  Salad  $9.00  1 prep unit(s)
+  Burger  $15.00  1 prep unit(s)
+  Pasta  $18.00  2 prep unit(s)
+
+================ Turn 1 / 18 ================
+Dishes served 0 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 0/18
+Waiting queue: [#1]
+Table 1: free
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 100  WAITING (in queue for a table)
+Orders:
+  (none yet)
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #1 at Table 1
+  2) Seat customer #1 at Table 2
+Choice:   Invalid: please enter a whole number.
+Choice:   Invalid: choose a number from 0 to 2.
+Choice:   Invalid: choose a number from 0 to 2.
+Choice:   OK: Seated customer 1 at table 1
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 1: Dishes served 0 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 1/18
+
+================ Turn 2 / 18 ================
+Dishes served 0 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 1/18
+Waiting queue: (empty)
+Table 1: customer #1
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 92  SEATED (waiting to order)
+Orders:
+  (none yet)
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Take order from customer #1
+Choice:   OK: Customer 1 ordered Salad (order 1, $9.00)
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 1 (Salad for customer #1, 0/1 units done)
+Choice:   OK: Advanced order 1 by one preparation unit
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 2: Dishes served 0 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 2/18
+
+================ Turn 3 / 18 ================
+Dishes served 0 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 2/18
+Waiting queue: (empty)
+Table 1: customer #1
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  ORDERED (waiting for food)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  READY
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Serve order 1 (Salad) to customer #1
+Choice:   OK: Served order 1
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 3: Dishes served 1 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 3/18
+
+================ Turn 4 / 18 ================
+Dishes served 1 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 3/18
+Waiting queue: [#2]
+Table 1: customer #1
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  SERVED (eating, ready to pay next turn)
+  #2 Regular  satisfaction 100  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #2 at Table 2
+Choice:   OK: Seated customer 2 at table 2
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 4: Dishes served 1 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 4/18
+
+================ Turn 5 / 18 ================
+Dishes served 1 | Paid 0 | Unhappy departures 0 | Revenue $0.00 | Avg satisfaction N/A | Turns used 4/18
+Waiting queue: (empty)
+Table 1: customer #1
+Table 2: customer #2
+Customers:
+  #1 Regular  satisfaction 84  READY_TO_PAY (Cashier collects automatically)
+  #2 Regular  satisfaction 92  SEATED (waiting to order)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Take order from customer #2
+Choice:   OK: Customer 2 ordered Burger (order 2, $15.00)
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 2 (Burger for customer #2, 0/1 units done)
+Choice:   OK: Advanced order 2 by one preparation unit
+
+Cashier (automatic): Collected $9.00 from customer #1 (satisfaction 84 recorded), table freed
+End of turn 5: Dishes served 1 | Paid 1 | Unhappy departures 0 | Revenue $9.00 | Avg satisfaction 84.00 | Turns used 5/18
+
+================ Turn 6 / 18 ================
+Dishes served 1 | Paid 1 | Unhappy departures 0 | Revenue $9.00 | Avg satisfaction 84.00 | Turns used 5/18
+Waiting queue: (empty)
+Table 1: free
+Table 2: customer #2
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  ORDERED (waiting for food)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  READY
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Serve order 2 (Burger) to customer #2
+Choice:   OK: Served order 2
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 6: Dishes served 2 | Paid 1 | Unhappy departures 0 | Revenue $9.00 | Avg satisfaction 84.00 | Turns used 6/18
+
+================ Turn 7 / 18 ================
+Dishes served 2 | Paid 1 | Unhappy departures 0 | Revenue $9.00 | Avg satisfaction 84.00 | Turns used 6/18
+Waiting queue: [#3]
+Table 1: free
+Table 2: customer #2
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  SERVED (eating, ready to pay next turn)
+  #3 Regular  satisfaction 100  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #3 at Table 1
+Choice:   OK: Seated customer 3 at table 1
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 7: Dishes served 2 | Paid 1 | Unhappy departures 0 | Revenue $9.00 | Avg satisfaction 84.00 | Turns used 7/18
+
+================ Turn 8 / 18 ================
+Dishes served 2 | Paid 1 | Unhappy departures 0 | Revenue $9.00 | Avg satisfaction 84.00 | Turns used 7/18
+Waiting queue: (empty)
+Table 1: customer #3
+Table 2: customer #2
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  READY_TO_PAY (Cashier collects automatically)
+  #3 Regular  satisfaction 92  SEATED (waiting to order)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Take order from customer #3
+Choice:   OK: Customer 3 ordered Pasta (order 3, $18.00)
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 3 (Pasta for customer #3, 0/2 units done)
+Choice:   OK: Advanced order 3 by one preparation unit
+
+Cashier (automatic): Collected $15.00 from customer #2 (satisfaction 84 recorded), table freed
+End of turn 8: Dishes served 2 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 8/18
+
+================ Turn 9 / 18 ================
+Dishes served 2 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 8/18
+Waiting queue: (empty)
+Table 1: customer #3
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 84  ORDERED (waiting for food)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  1/2 units  PREPARING
+
+Waiter tasks (one per turn):
+  0) Wait
+Choice:   OK: Waiter waits this turn.
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 3 (Pasta for customer #3, 1/2 units done)
+Choice:   OK: Advanced order 3 by one preparation unit
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 9: Dishes served 2 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 9/18
+
+================ Turn 10 / 18 ================
+Dishes served 2 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 9/18
+Waiting queue: [#4]
+Table 1: customer #3
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  ORDERED (waiting for food)
+  #4 Regular  satisfaction 100  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  READY
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #4 at Table 2
+  2) Serve order 3 (Pasta) to customer #3
+Choice:   OK: Served order 3
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 10: Dishes served 3 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 10/18
+
+================ Turn 11 / 18 ================
+Dishes served 3 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 10/18
+Waiting queue: [#4]
+Table 1: customer #3
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  SERVED (eating, ready to pay next turn)
+  #4 Regular  satisfaction 92  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #4 at Table 2
+Choice:   OK: Seated customer 4 at table 2
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 11: Dishes served 3 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 11/18
+
+================ Turn 12 / 18 ================
+Dishes served 3 | Paid 2 | Unhappy departures 0 | Revenue $24.00 | Avg satisfaction 84.00 | Turns used 11/18
+Waiting queue: (empty)
+Table 1: customer #3
+Table 2: customer #4
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  READY_TO_PAY (Cashier collects automatically)
+  #4 Regular  satisfaction 84  SEATED (waiting to order)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Take order from customer #4
+Choice:   OK: Customer 4 ordered Salad (order 4, $9.00)
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 4 (Salad for customer #4, 0/1 units done)
+Choice:   OK: Advanced order 4 by one preparation unit
+
+Cashier (automatic): Collected $18.00 from customer #3 (satisfaction 76 recorded), table freed
+End of turn 12: Dishes served 3 | Paid 3 | Unhappy departures 0 | Revenue $42.00 | Avg satisfaction 81.33 | Turns used 12/18
+
+================ Turn 13 / 18 ================
+Dishes served 3 | Paid 3 | Unhappy departures 0 | Revenue $42.00 | Avg satisfaction 81.33 | Turns used 12/18
+Waiting queue: [#5]
+Table 1: free
+Table 2: customer #4
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  PAID
+  #4 Regular  satisfaction 76  ORDERED (waiting for food)
+  #5 Regular  satisfaction 100  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  PAID
+  Order 4 (customer #4) Salad $9.00  1/1 units  READY
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #5 at Table 1
+  2) Serve order 4 (Salad) to customer #4
+Choice:   OK: Served order 4
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 13: Dishes served 4 | Paid 3 | Unhappy departures 0 | Revenue $42.00 | Avg satisfaction 81.33 | Turns used 13/18
+
+================ Turn 14 / 18 ================
+Dishes served 4 | Paid 3 | Unhappy departures 0 | Revenue $42.00 | Avg satisfaction 81.33 | Turns used 13/18
+Waiting queue: [#5]
+Table 1: free
+Table 2: customer #4
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  PAID
+  #4 Regular  satisfaction 76  SERVED (eating, ready to pay next turn)
+  #5 Regular  satisfaction 92  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  PAID
+  Order 4 (customer #4) Salad $9.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #5 at Table 1
+Choice:   OK: Seated customer 5 at table 1
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 14: Dishes served 4 | Paid 3 | Unhappy departures 0 | Revenue $42.00 | Avg satisfaction 81.33 | Turns used 14/18
+
+================ Turn 15 / 18 ================
+Dishes served 4 | Paid 3 | Unhappy departures 0 | Revenue $42.00 | Avg satisfaction 81.33 | Turns used 14/18
+Waiting queue: (empty)
+Table 1: customer #5
+Table 2: customer #4
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  PAID
+  #4 Regular  satisfaction 76  READY_TO_PAY (Cashier collects automatically)
+  #5 Regular  satisfaction 84  SEATED (waiting to order)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  PAID
+  Order 4 (customer #4) Salad $9.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Take order from customer #5
+Choice:   OK: Customer 5 ordered Burger (order 5, $15.00)
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 5 (Burger for customer #5, 0/1 units done)
+Choice:   OK: Advanced order 5 by one preparation unit
+
+Cashier (automatic): Collected $9.00 from customer #4 (satisfaction 76 recorded), table freed
+End of turn 15: Dishes served 4 | Paid 4 | Unhappy departures 0 | Revenue $51.00 | Avg satisfaction 80.00 | Turns used 15/18
+
+================ Turn 16 / 18 ================
+Dishes served 4 | Paid 4 | Unhappy departures 0 | Revenue $51.00 | Avg satisfaction 80.00 | Turns used 15/18
+Waiting queue: [#6]
+Table 1: customer #5
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  PAID
+  #4 Regular  satisfaction 76  PAID
+  #5 Regular  satisfaction 76  ORDERED (waiting for food)
+  #6 Regular  satisfaction 100  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  PAID
+  Order 4 (customer #4) Salad $9.00  1/1 units  PAID
+  Order 5 (customer #5) Burger $15.00  1/1 units  READY
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #6 at Table 2
+  2) Serve order 5 (Burger) to customer #5
+Choice:   OK: Served order 5
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 16: Dishes served 5 | Paid 4 | Unhappy departures 0 | Revenue $51.00 | Avg satisfaction 80.00 | Turns used 16/18
+
+================ Turn 17 / 18 ================
+Dishes served 5 | Paid 4 | Unhappy departures 0 | Revenue $51.00 | Avg satisfaction 80.00 | Turns used 16/18
+Waiting queue: [#6]
+Table 1: customer #5
+Table 2: free
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  PAID
+  #4 Regular  satisfaction 76  PAID
+  #5 Regular  satisfaction 76  SERVED (eating, ready to pay next turn)
+  #6 Regular  satisfaction 92  WAITING (in queue for a table)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  PAID
+  Order 4 (customer #4) Salad $9.00  1/1 units  PAID
+  Order 5 (customer #5) Burger $15.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Seat customer #6 at Table 2
+Choice:   OK: Seated customer 6 at table 2
+
+Chef tasks (one preparation unit per turn):
+  (Chef has no orders to prepare)
+  0) Wait
+Choice:   OK: Chef waits this turn.
+
+Cashier (automatic): No customer was ready to pay this turn
+End of turn 17: Dishes served 5 | Paid 4 | Unhappy departures 0 | Revenue $51.00 | Avg satisfaction 80.00 | Turns used 17/18
+
+================ Turn 18 / 18 ================
+Dishes served 5 | Paid 4 | Unhappy departures 0 | Revenue $51.00 | Avg satisfaction 80.00 | Turns used 17/18
+Waiting queue: (empty)
+Table 1: customer #5
+Table 2: customer #6
+Customers:
+  #1 Regular  satisfaction 84  PAID
+  #2 Regular  satisfaction 84  PAID
+  #3 Regular  satisfaction 76  PAID
+  #4 Regular  satisfaction 76  PAID
+  #5 Regular  satisfaction 76  READY_TO_PAY (Cashier collects automatically)
+  #6 Regular  satisfaction 84  SEATED (waiting to order)
+Orders:
+  Order 1 (customer #1) Salad $9.00  1/1 units  PAID
+  Order 2 (customer #2) Burger $15.00  1/1 units  PAID
+  Order 3 (customer #3) Pasta $18.00  2/2 units  PAID
+  Order 4 (customer #4) Salad $9.00  1/1 units  PAID
+  Order 5 (customer #5) Burger $15.00  1/1 units  SERVED
+
+Waiter tasks (one per turn):
+  0) Wait
+  1) Take order from customer #6
+Choice:   OK: Customer 6 ordered Pasta (order 6, $18.00)
+
+Chef tasks (one preparation unit per turn):
+  0) Wait
+  1) Prepare order 6 (Pasta for customer #6, 0/2 units done)
+Choice:   OK: Advanced order 6 by one preparation unit
+
+Cashier (automatic): Collected $15.00 from customer #5 (satisfaction 76 recorded), table freed
+End of turn 18: Dishes served 5 | Paid 5 | Unhappy departures 0 | Revenue $66.00 | Avg satisfaction 79.20 | Turns used 18/18
+
+================ VICTORY ================
+Dishes served 5 | Paid 5 | Unhappy departures 0 | Revenue $66.00 | Avg satisfaction 79.20 | Turns used 18/18
+  Paid customers 5 (need 4)
+  Revenue $66.00 (need $45.00)
+  Avg satisfaction 79.20 (need 60)

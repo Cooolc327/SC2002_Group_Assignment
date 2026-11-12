@@ -1,0 +1,6 @@
+PASS customer without a discount pays the menu price
+PASS 10 percent customer discount on every menu item
+PASS discounts round to the nearest cent
+PASS invalid amounts and discounts are rejected
+PASS taking an order locks the discounted bill
+BILL_CALCULATOR=PASS scenarios=5 assertions=26
