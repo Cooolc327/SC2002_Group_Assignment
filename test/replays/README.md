@@ -1,4 +1,6 @@
-# Stage 1 CLI replay inputs
+# CLI replay inputs
+
+## Stage 1 regression inputs
 
 Each file contains 36 zero-based menu choices: one Waiter choice and one Chef
 choice for each of the 18 turns. They are stdin for the real Main/CLI and use
@@ -7,8 +9,8 @@ the base-setting deterministic menu rule. They contain no test doubles.
 Run from the repository root:
 
 ```bash
-bash scripts/run.sh < test/replays/stage1-victory.txt
-bash scripts/run.sh < test/replays/stage1-defeat.txt
+bash scripts/run.sh --regular < test/replays/stage1-victory.txt
+bash scripts/run.sh --regular < test/replays/stage1-defeat.txt
 ```
 
 | Input | Result | Paid | Revenue | Average paid satisfaction | Departures |
@@ -25,12 +27,12 @@ the interactive menu independently of these development checks.
 
 ## Stage 2 local implementation fixtures
 
-The default Stage 2 Main uses seed 24369 (Regular, VIP, Regular, Regular,
+The Stage 2 regression mode uses seed 24369 (Regular, VIP, Regular, Regular,
 Regular, Critic). Run from the repository root:
 
 ```bash
-bash scripts/run.sh < test/replays/stage2-victory.txt
-bash scripts/run.sh < test/replays/stage2-defeat.txt
+bash scripts/run.sh --stage2 < test/replays/stage2-victory.txt
+bash scripts/run.sh --stage2 < test/replays/stage2-defeat.txt
 ```
 
 Victory: 5 paid, $64.50, average 80.40, zero departures. All-WAIT defeat:
@@ -54,5 +56,22 @@ Both inputs are fixed 36-choice files. This is the alternative in the
 [Stage 2 sequence diagram](../../docs/Stage2/Diagram_Notes.md).
 
 ```bash
-bash scripts/run.sh < test/replays/stage2-vip-wait-turn5.txt
+bash scripts/run.sh --stage2 < test/replays/stage2-vip-wait-turn5.txt
 ```
+
+
+## Stage 3 current default
+
+```bash
+bash scripts/run.sh < test/replays/stage3-victory.txt
+bash scripts/run.sh < test/replays/stage3-defeat.txt
+```
+
+Victory: 5 paid, $83.70, average 87.20, no departures. Defeat: 0 paid,
+$0.00, N/A, one departure. Both complete 18 turns. Victory activates Happy Hour
+on turn 4, seats through Host, then prioritises Waiter serving/ordering/seating
+and Chef preparation. The defeat chooses Wait everywhere and never activates.
+Inputs include a Happy Hour choice while unused, followed by Host, Waiter and
+Chef choices each turn. The opening prompt disappears after activation.
+See [Stage 3 test notes](../../docs/Stage3/Stage_3_Test_Notes.md) for the exact
+timeline and fixed expected values.

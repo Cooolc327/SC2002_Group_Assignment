@@ -21,7 +21,7 @@ public abstract class Customer {
         this.id=id;
     }
 
-    //-------------------Abstraction functions for subclasses (Regular,VIP,Host)---------------------------
+    //-------------------Abstraction functions for customer subclasses----------------------------------
     protected abstract int getSatistfactionLossPerTurn();
     public abstract String getTypeName();
 
@@ -29,7 +29,7 @@ public abstract class Customer {
    
     //Choose a menu item for the customer based on their id and the menu provided
     public MenuItem chooseItem(Menu menu){
-        List<MenuItem> items = menu.getItems();
+        List<MenuItem> items = menu.getOrderableItems();
         return items.get((id-1) % items.size());
     }
 
@@ -42,6 +42,16 @@ public abstract class Customer {
 
 
     //-------------------------------------Satisfaction management------------------------------------
+
+    /** Recovery never revives departed customers or changes eating/payment satisfaction. */
+    public void recoverWaitingSatisfaction(int points) {
+        if (points < 0) {
+            throw new IllegalArgumentException("Recovery cannot be negative");
+        }
+        if (state.isWaitingForFood()) {
+            satisfaction = (int) Math.min(MAX_SATISFACTION, (long) satisfaction + points);
+        }
+    }
     
     //End of turn update for the customer, applying penalties if necessary
     public void applyWaitingPenalty(){

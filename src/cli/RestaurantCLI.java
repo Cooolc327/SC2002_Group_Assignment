@@ -3,6 +3,7 @@ package cli;
 import config.GameConfig;
 import contracts.ActionResult;
 import contracts.ChefAction;
+import contracts.HostAction;
 import contracts.WaiterAction;
 import control.GameController;
 import control.TurnPhase;
@@ -39,9 +40,16 @@ public class RestaurantCLI {
             view = controller.startTurn();
             System.out.println();
             System.out.println("================ Turn " + view.turn() + " / " + GameConfig.MAX_TURNS + " ================");
+            if (view.stage3Enabled()) {
+                chooseTurnStart(view);
+                view = controller.getView();
+            }
             printState(view);
 
-            chooseWaiterAction(view);
+            if (view.stage3Enabled()) {
+                chooseHostAction(view);
+            }
+            chooseWaiterAction(controller.getView());
             chooseChefAction(controller.getView());   // fresh view: the Chef may prepare an order taken this turn
 
             view = controller.finishTurn();
@@ -53,6 +61,35 @@ public class RestaurantCLI {
     }
 
     //-------------------------------Manager choices-----------------------------------
+
+    private void chooseTurnStart(GameView view) {
+        if (!view.happyHour().canActivate()) {
+            report(controller.submitTurnStartDecision(false));
+            return;
+        }
+        System.out.println(describeSummary(view.summary()));
+        System.out.println("Happy Hour: 0) Keep unused  1) Activate for this turn and next turn");
+        while (true) {
+            int choice = readInt("Happy Hour choice: ");
+            if (choice != 0 && choice != 1) {
+                System.out.println("  Invalid: choose 0 or 1.");
+            } else if (report(controller.submitTurnStartDecision(choice == 1))) {
+                return;
+            }
+        }
+    }
+
+    private void chooseHostAction(GameView view) {
+        List<HostAction> options = view.staff().hostOptions();
+        System.out.println();
+        System.out.println("Host tasks (one seating task per turn, independent of Waiter):");
+        HostAction action = pick(options, a -> a.type() == HostAction.Type.WAIT ? "Wait"
+                : "Seat customer #" + a.customerId() + " at Table " + a.tableId());
+        while (!report(controller.submitHostAction(action))) {
+            action = pick(options, a -> a.type() == HostAction.Type.WAIT ? "Wait"
+                    : "Seat customer #" + a.customerId() + " at Table " + a.tableId());
+        }
+    }
 
     private void chooseWaiterAction(GameView view) {
         List<WaiterAction> options = view.staff().waiterOptions();
@@ -99,14 +136,22 @@ public class RestaurantCLI {
     //-------------------------------Display-----------------------------------
 
     private void printIntro(GameView view) {
-        System.out.println("=== Restaurant Rush (Stage 2) ===");
+        System.out.println("=== Restaurant Rush (Stage " + (view.stage3Enabled() ? "3" : "2") + ") ===");
         if (!setupDescription.isEmpty()) {
             System.out.println(setupDescription);
         }
-        System.out.println("You are the manager. Each turn: customers arrive -> you choose the Waiter task -> you choose");
+        System.out.println("You are the manager. Each turn: customers arrive"
+                + (view.stage3Enabled() ? " -> Happy Hour decision -> Host task" : "")
+                + " -> you choose the Waiter task -> you choose");
         System.out.println("the Chef task -> served customers eat -> the Cashier collects one payment automatically ->");
         System.out.println("everyone not yet served loses satisfaction.");
         System.out.println("Waiting loss: Regular 8, VIP 5, Critic 12. VIP bills are 10% off.");
+        if (view.stage3Enabled()) {
+            System.out.println("Stage 3: turn-start Happy Hour decision -> Host -> Waiter -> Chef -> automatic steps.");
+            System.out.println("Regular/VIP choices cycle through the three dishes, then the three combos by customer ID.");
+            System.out.println("Happy Hour: once per game, two turns, 20% off new orders after VIP discount;");
+            System.out.println("waiting customers recover 15 satisfaction at each active turn start, capped at 100.");
+        }
         System.out.println("Critics choose the dish with the most preparation units (first menu item breaks ties).");
         System.out.println("Goal after turn " + GameConfig.MAX_TURNS + ": at least " + GameConfig.MIN_PAID_CUSTOMERS
                 + " paid customers, revenue at least " + money(GameConfig.MIN_REVENUE_CENTS)
@@ -121,6 +166,10 @@ public class RestaurantCLI {
 
     private void printState(GameView view) {
         System.out.println(describeSummary(view.summary()));
+        if (view.stage3Enabled()) {
+            System.out.println("Happy Hour remaining: " + view.happyHour().remainingTurns() + " turn(s)"
+                    + (view.happyHour().used() ? " (activation used)" : " (activation unused)"));
+        }
         System.out.println("Waiting queue: " + (view.waitingCustomerIds().isEmpty() ? "(empty)"
                 : view.waitingCustomerIds().stream().map(id -> "#" + id).toList()));
         for (TableView t : view.tables()) {

@@ -1,5 +1,18 @@
 # Project documentation
 
+## Stage 3 runnable integration candidate
+
+- [Interfaces and design](Stage3/Stage_3_Design_and_Interfaces_EN.md)
+- [Stage 2 to 3 changes](Stage3/Stage_2_to_3_Changes.md)
+- [Tests and replay timeline](Stage3/Stage_3_Test_Notes.md)
+- [Editable class model](UML/Stage3_UML_Diagram.mmd)
+- [Editable Happy Hour sequence](UML/Stage3_Happy_Hour_Sequence.mmd)
+
+Default Main runs Stage 3. Use `--stage2` for Stage 2 replay inputs and
+`--regular` for Regular-only inputs. Stage 3 release/tag and final group
+submission remain separate steps.
+
+
 ## Published Stage 2
 
 - [Release verification](verification/Stage_2_Release_2026-11-08.md)
@@ -11,7 +24,8 @@
 - [Earlier pre-tag record](verification/Stage_2_Pre_Tag_2026-11-08.md), retained as history
 
 The runnable snapshot is stage-2 on personal branch lichen/stage_2. The final
-release validates its annotated tag archive; main is unchanged.
+release validates its annotated tag archive. Stage 2 was later merged into
+main as b02de7b; this branch extends that baseline for Stage 3.
 
 ## Published Stage 1 documentation
 
@@ -30,7 +44,7 @@ The runnable release is `stage-1` on personal branch `lichen/stage_1`.
 - [Lichen's full available Stage 1 AI history](../ai-history/stage-1/README.md).
 - [Root README](../README.md): build/run, stages, tests and team evidence links.
 
-On the current Stage 2 code, run `bash scripts/run.sh --regular` for Regular-only
+On the shared current code, run `bash scripts/run.sh --regular` for Regular-only
 regression, or `bash scripts/test-stage1.sh` for the baseline checks. Use the
 `stage-1` tag for the actual historical Stage 1 version. Core: 14 scenarios/
 344 assertions with real Order and recording staff. Production smoke: 9 scenarios/

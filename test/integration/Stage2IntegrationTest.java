@@ -282,7 +282,7 @@ public final class Stage2IntegrationTest {
                                   int invalidMessages, Path logs) throws Exception {
         Path log = logs.resolve("cli-" + name + ".log");
         Process process = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
-                "-cp", System.getProperty("java.class.path"), "Main")
+                "-cp", System.getProperty("java.class.path"), "Main", "--stage2")
                 .redirectErrorStream(true).redirectOutput(log.toFile()).start();
         try (var stdin = process.getOutputStream()) {
             stdin.write(input.getBytes(StandardCharsets.UTF_8));

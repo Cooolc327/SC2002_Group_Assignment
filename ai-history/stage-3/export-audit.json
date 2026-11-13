@@ -1,0 +1,205 @@
+{
+  "source_session_filename": "rollout-2026-10-25T14-07-59-01a171ac-4ad0-7053-a39a-a46a3a3234c7.jsonl",
+  "source_session_sha256_at_export": "df475857e85cc3fa5d483a3940fd354d7687f014c69cfe733c0443c423d892fd",
+  "start_utc": "2026-11-10T08:38:57.276Z",
+  "cutoff_utc": "2026-11-13T13:23:42.907Z",
+  "visible_messages": 32,
+  "chat_sha256": "44d84528aa12a122e0d5b33057a4faaace09e492a7d471b6025094305f68cda6",
+  "record_hashes": [
+    {
+      "number": 1,
+      "role": "user",
+      "timestamp": "2026-11-10T08:38:57.276Z",
+      "sha256": "2e31a06454a3c6e55a05f4f98ceac8f253dd7afe544b6f22fbe68c8f82e219d1"
+    },
+    {
+      "number": 2,
+      "role": "assistant",
+      "timestamp": "2026-11-10T08:39:05.169Z",
+      "sha256": "a73fa50043d49e52f98e6ed450c237c621e74ea3e87209680899b1d67cf58b26"
+    },
+    {
+      "number": 3,
+      "role": "assistant",
+      "timestamp": "2026-11-10T08:40:25.117Z",
+      "sha256": "1be5964fcabcdc4b05844272b51baa43ab55299d411b77474e644a5667e5b6fc"
+    },
+    {
+      "number": 4,
+      "role": "assistant",
+      "timestamp": "2026-11-10T08:43:15.731Z",
+      "sha256": "21fb8e140a61a4f56706549d86e5f1f9eb2db0f0d6389a339331396a30907f3c"
+    },
+    {
+      "number": 5,
+      "role": "user",
+      "timestamp": "2026-11-12T14:41:50.803Z",
+      "sha256": "bc017cf26e0ad56c06a354dfa1ef1e150de4023297c564c69c19a0058fe8413f"
+    },
+    {
+      "number": 6,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:41:59.887Z",
+      "sha256": "01d89662922918b64cbf4ea1dc79ab1a45aee26981643c19b78011cd879f7d52"
+    },
+    {
+      "number": 7,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:43:09.722Z",
+      "sha256": "56b6f2e5e141ac971fd443321f6425ee46ae68233dff448bb667d61db516173c"
+    },
+    {
+      "number": 8,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:43:45.693Z",
+      "sha256": "33cc1e9042c85bf62d9842584004cfc5b427c63ae0db6554564e1aa1d1460fb9"
+    },
+    {
+      "number": 9,
+      "role": "user",
+      "timestamp": "2026-11-12T14:52:01.118Z",
+      "sha256": "0728478ff19de6e4b419a1f0dc72985b5b39a2783395c90703ec0a61436f1ba3"
+    },
+    {
+      "number": 10,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:52:04.381Z",
+      "sha256": "2ac7d15101d4b5560f3f657fa7842bb6577c1a854c9b85c1686762f7f556380e"
+    },
+    {
+      "number": 11,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:52:41.870Z",
+      "sha256": "64068d46f7ad310f2f10c71f7412572d6858fde4dcdb569cdef431f5f2d41441"
+    },
+    {
+      "number": 12,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:53:37.872Z",
+      "sha256": "9697469c9ba7d3a0e5aa7dbb986acf9dd96cedad75dd69d5c7fc0a3f4c76994a"
+    },
+    {
+      "number": 13,
+      "role": "user",
+      "timestamp": "2026-11-12T14:56:50.758Z",
+      "sha256": "f07636271cf8f84c738639ad8d7c11da9761462010798abbc0ac9c0b0bfd66e8"
+    },
+    {
+      "number": 14,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:56:56.047Z",
+      "sha256": "0b6b4c84bb1804538407e73184315d2cf67e2595a0a8656e56e0620f79a9ac6c"
+    },
+    {
+      "number": 15,
+      "role": "assistant",
+      "timestamp": "2026-11-12T14:57:09.966Z",
+      "sha256": "daa6274bdc8015edb9a1569e7bcc3ec7bb55f08118ac87d08e93ff11d2262fe2"
+    },
+    {
+      "number": 16,
+      "role": "user",
+      "timestamp": "2026-11-12T15:01:59.654Z",
+      "sha256": "e871f2ba592699edad29f908b1903d7d987ee9d05d6e60ddafe6662dfdaaad00"
+    },
+    {
+      "number": 17,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:02:02.056Z",
+      "sha256": "e20dcf7003743a1656a29e3a9f7e1dab8c509c6f96535c09b4bef26d4626649c"
+    },
+    {
+      "number": 18,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:02:28.842Z",
+      "sha256": "6f981ffa3d5c8e4f4732e695df2a2abaa7df37370de3858e6f1bde7cbd8ce511"
+    },
+    {
+      "number": 19,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:03:31.456Z",
+      "sha256": "91dfb65542dbd30df357b658c7ab8a32aa97daccb71131bb7296ed65ebbe9181"
+    },
+    {
+      "number": 20,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:04:22.772Z",
+      "sha256": "cc887a490f381a033eaab33f5e2a3f7a407869ad5d0d49eb1f169218275b1742"
+    },
+    {
+      "number": 21,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:05:37.499Z",
+      "sha256": "3c7bffa440df35d4aa85173ec12265c83faf321607c03f43a8ced3fe05f1f4d7"
+    },
+    {
+      "number": 22,
+      "role": "user",
+      "timestamp": "2026-11-12T15:06:23.777Z",
+      "sha256": "64fe4d71e861ef2f6229f1098a7b171518061382a401400beeed29b2b4704586"
+    },
+    {
+      "number": 23,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:06:26.045Z",
+      "sha256": "0802bf91d67fbbdba776ffd31032f02df6b541d1f272b7ea9765f4fc0d4f91d3"
+    },
+    {
+      "number": 24,
+      "role": "assistant",
+      "timestamp": "2026-11-12T15:07:09.914Z",
+      "sha256": "c1558ab54839fb6004fa01ea53ac9de2cc1452b725c6bf66d2cc239a3600c456"
+    },
+    {
+      "number": 25,
+      "role": "user",
+      "timestamp": "2026-11-13T13:10:47.920Z",
+      "sha256": "c57cdd2945da162aa67d44b9be444e42535114ad26d20a6e30e57d3d6939455d"
+    },
+    {
+      "number": 26,
+      "role": "assistant",
+      "timestamp": "2026-11-13T13:10:53.931Z",
+      "sha256": "35253be8f9c6d275802e907363f4369001b26e6872c39dd35ac81add3ef3e5eb"
+    },
+    {
+      "number": 27,
+      "role": "assistant",
+      "timestamp": "2026-11-13T13:12:21.823Z",
+      "sha256": "52a9f51e646e168c5f5efd7b863429b580e41ff3a7f981fdcff71eaef944be69"
+    },
+    {
+      "number": 28,
+      "role": "assistant",
+      "timestamp": "2026-11-13T13:13:30.422Z",
+      "sha256": "a8a593bf66e6e7fbdba5cc6b94d0c51ce65e638297795605248cb46db7425bb4"
+    },
+    {
+      "number": 29,
+      "role": "user",
+      "timestamp": "2026-11-13T13:14:10.113Z",
+      "sha256": "16780d861045f4c31d928fbf20ca30991602b8bd1f9b25622c3d6a7582c165fb"
+    },
+    {
+      "number": 30,
+      "role": "assistant",
+      "timestamp": "2026-11-13T13:14:13.567Z",
+      "sha256": "106c8ff260cccfa4452cda77622186562ca0b5ec1be2448bfbee72e71c30dec8"
+    },
+    {
+      "number": 31,
+      "role": "assistant",
+      "timestamp": "2026-11-13T13:17:46.771Z",
+      "sha256": "863a967a3f1c19fb9b95468633fb6faa25fc796687ef28a7983be0a18f17ff58"
+    },
+    {
+      "number": 32,
+      "role": "assistant",
+      "timestamp": "2026-11-13T13:23:42.907Z",
+      "sha256": "70b7895ccc433e882addc802f619970baeafbdd02052328e7a1d3d84f03650a1"
+    }
+  ],
+  "scope": "Verbatim user prompts and visible assistant text from the Stage 3 planning request through the explicit cutoff; no system/developer/private reasoning/tool payloads.",
+  "messages_json_sha256": "58ee279140b1141371924e134ef755ca7c45881f1af207778c2016aac0ebf0c5",
+  "display_normalization": "chat-01.md trims trailing line whitespace; messages.json is the verbatim canonical message export."
+}

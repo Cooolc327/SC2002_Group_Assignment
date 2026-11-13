@@ -3,6 +3,7 @@ package control;
 import config.GameConfig;
 import contracts.ActionResult;
 import contracts.ChefAction;
+import contracts.HostAction;
 import contracts.StaffGateway;
 import contracts.WaiterAction;
 import domain.Restaurant;
@@ -14,6 +15,7 @@ import java.util.Objects;
 import java.util.function.IntFunction;
 import view.GameView;
 import view.GameView.StaffView;
+import view.GameView.HappyHourView;
 
 /** Shared turn coordinator; customer behaviour is supplied by the customer objects. */
 public final class GameController {
@@ -56,8 +58,34 @@ public final class GameController {
             restaurant.registerArrival(arrival);
             nextCustomerId++;
         }
-        phase = TurnPhase.AWAIT_WAITER;
+        phase = restaurant.isStage3Enabled() ? TurnPhase.AWAIT_TURN_START : TurnPhase.AWAIT_WAITER;
         return getView();
+    }
+
+    public ActionResult submitTurnStartDecision(boolean activateHappyHour) {
+        if (phase != TurnPhase.AWAIT_TURN_START) {
+            return ActionResult.rejected("Happy Hour decisions require the start of a Stage 3 turn");
+        }
+        ActionResult outcome = restaurant.resolveTurnStart(activateHappyHour);
+        if (outcome.accepted()) {
+            phase = TurnPhase.AWAIT_HOST;
+        }
+        return outcome;
+    }
+
+    public ActionResult submitHostAction(HostAction action) {
+        if (phase != TurnPhase.AWAIT_HOST) {
+            return ActionResult.rejected("The game is not awaiting a Host action");
+        }
+        if (action == null || action.type() == null) {
+            return ActionResult.rejected("Choose a valid Host action");
+        }
+        ActionResult outcome = Objects.requireNonNull(
+                staff.executeHost(action, restaurant, currentTurn), "Host result");
+        if (outcome.accepted()) {
+            phase = TurnPhase.AWAIT_WAITER;
+        }
+        return outcome;
     }
 
     public ActionResult submitWaiterAction(WaiterAction action) {
@@ -92,7 +120,7 @@ public final class GameController {
 
     public GameView finishTurn() {
         if (phase != TurnPhase.AUTO) {
-            throw new IllegalStateException("Both staff choices must complete before ending the turn");
+            throw new IllegalStateException("All staff choices must complete before ending the turn");
         }
         restaurant.advanceEating(currentTurn);
         lastPaymentResult = Objects.requireNonNull(
@@ -105,16 +133,20 @@ public final class GameController {
     }
 
     public GameView getView() {
+        boolean hostAvailable = phase == TurnPhase.AWAIT_HOST;
         boolean waiterAvailable = phase == TurnPhase.AWAIT_WAITER;
         boolean chefAvailable = phase == TurnPhase.AWAIT_CHEF;
-        StaffView staffView = new StaffView(waiterAvailable, chefAvailable,
+        StaffView staffView = new StaffView(hostAvailable,
+                hostAvailable ? restaurant.getHostOptions() : List.of(), waiterAvailable, chefAvailable,
                 phase == TurnPhase.AUTO,
                 waiterAvailable ? restaurant.getWaiterOptions(currentTurn) : List.of(),
                 chefAvailable ? restaurant.getChefOptions() : List.of());
         return new GameView(currentTurn, phase, restaurant.getCustomerViews(),
                 restaurant.getWaitingCustomerIds(), restaurant.getTableViews(),
                 restaurant.getOrderViews(), restaurant.getMenuViews(), staffView,
-                restaurant.getSummary(), result);
+                restaurant.getSummary(), result, restaurant.isStage3Enabled(),
+                new HappyHourView(phase == TurnPhase.AWAIT_TURN_START && !restaurant.hasUsedHappyHour(),
+                        restaurant.hasUsedHappyHour(), restaurant.getHappyHourRemainingTurns()));
     }
 
     public ActionResult getLastPaymentResult() {

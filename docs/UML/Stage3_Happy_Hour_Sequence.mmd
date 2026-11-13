@@ -1,0 +1,109 @@
+sequenceDiagram
+    autonumber
+    participant UI as cli: RestaurantCLI
+    participant GC as game: GameController
+    participant F as factory: IntFunction
+    participant R as restaurant: Restaurant
+    participant HH as happyHour: HappyHourPolicy
+    participant S as staff: StaffTeam
+    participant H as host: Host
+    participant W as waiter: Waiter
+    participant C as chef: Chef
+    participant V as vip2: VipCustomer
+    participant O as order2: Order
+    participant K as cashier: Cashier
+    Note over UI,K: Default seed 24369. Turns 1-3 follow the stored victory replay; customer 1 is ready to pay.
+    UI->>GC: startTurn() [turn 4]
+    GC->>F: apply(2)
+    F->>V: create VipCustomer(2)
+    F-->>GC: customer 2
+    GC->>R: beginTurn(4), registerArrival(vip2)
+    GC-->>UI: GameView [AWAIT_TURN_START]
+    alt manager activates Happy Hour
+        UI->>GC: submitTurnStartDecision(true)
+        GC->>R: resolveTurnStart(true)
+        R->>HH: activate(4)
+        R->>V: recoverWaitingSatisfaction(15) [100 -> 100]
+        Note over R,V: Eligible existing waiting customers recover too; ready-to-pay customer 1 is excluded.
+    else manager keeps Happy Hour unused
+        UI->>GC: submitTurnStartDecision(false)
+        GC->>R: resolveTurnStart(false)
+    end
+    GC-->>UI: accepted [AWAIT_HOST]
+    UI->>GC: submitHostAction(seat(2, freeTable))
+    GC->>S: executeHost(..., 4)
+    S->>H: execute(..., 4)
+    H->>R: seatCustomer(2, freeTable)
+    R->>V: seat()
+    GC-->>UI: accepted [AWAIT_WAITER]
+    UI->>GC: submitWaiterAction(takeOrder(2))
+    GC->>S: executeWaiter(..., 4)
+    S->>W: execute(..., 4)
+    W->>R: placeOrder(2)
+    R->>V: chooseItem(menu)
+    V-->>R: Burger
+    Note over R,O: BillCalculator calls VIP discount first, then active Happy Hour. 1500 -> 1350 -> 1080 cents; without activation: 1350 cents.
+    R->>O: create with final locked bill
+    R->>V: placeOrder()
+    GC-->>UI: accepted [AWAIT_CHEF]
+    UI->>GC: submitChefAction(prepare(order2))
+    GC->>S: executeChef(..., 4)
+    S->>C: execute(..., 4)
+    C->>R: advancePreparation(order2, 4)
+    R->>O: advanceOneUnit(4)
+    Note over O: READY, readyTurn=4; cannot serve in turn 4.
+    UI->>GC: finishTurn()
+    GC->>R: advanceEating(4)
+    GC->>S: processPayment(..., 4)
+    S->>K: processPayment(..., 4)
+    K->>R: settlePayment(customer1, 4)
+    GC->>R: applyWaitingPenalty(4), completeTurn(4)
+    R->>V: applyWaitingPenalty() [100 -> 95]
+    GC-->>UI: IN_PROGRESS, 4/18 turns
+    UI->>GC: startTurn() [turn 5]
+    UI->>GC: submitTurnStartDecision(false)
+    GC->>R: resolveTurnStart(false)
+    opt Happy Hour was activated on turn 4
+        R->>V: recoverWaitingSatisfaction(15) [95 -> 100]
+        Note over UI,HH: Remaining duration is 1 turn; a second activation is unavailable.
+    end
+    UI->>GC: submitHostAction(wait)
+    UI->>GC: submitWaiterAction(serve(order2))
+    GC->>S: executeWaiter(..., 5)
+    S->>W: execute(..., 5)
+    W->>R: serveOrder(order2, 5)
+    R->>O: markServed(5) [readyTurn < 5]
+    R->>V: serve(5)
+    Note over V,O: SERVED; eating finishes on a later turn.
+    UI->>GC: submitChefAction(wait), finishTurn()
+    UI->>GC: startTurn(), opening false, Host/Waiter/Chef wait [turn 6]
+    UI->>GC: finishTurn()
+    GC->>R: advanceEating(6)
+    R->>V: finishedEating(6)
+    Note over V: READY_TO_PAY, readyToPayTurn=6
+    GC->>S: processPayment(..., 6)
+    S->>K: processPayment(..., 6)
+    K->>R: findOldestPayableCustomer(6)
+    R-->>K: VIP excluded [readyToPayTurn is not earlier than 6]
+    Note over UI,HH: Happy Hour is expired on turn 6; the locked bill remains unchanged.
+    UI->>GC: startTurn(), opening/Host/Waiter/Chef actions [turn 7]
+    Note over UI,R: Customer 3 arrives, is seated, orders Pasta and gets its first preparation unit.
+    UI->>GC: finishTurn()
+    GC->>R: advanceEating(7)
+    GC->>S: processPayment(..., 7)
+    S->>K: processPayment(..., 7)
+    K->>R: findOldestPayableCustomer(7)
+    R-->>K: VIP customer 2
+    K->>R: settlePayment(2, 7)
+    R->>O: markPaid(7, satisfaction)
+    R->>V: pay()
+    Note over R,O: Locked bill enters revenue; satisfaction is recorded; table is freed.
+    loop turns 8 through 18
+        UI->>GC: opening and staff decisions from the stored victory replay
+        UI->>GC: finishTurn()
+        GC->>R: automatic steps, waiting penalties, completeTurn(turn)
+        GC->>R: getSummary()
+        Note over GC: GameResult.evaluate(summary); no early finish.
+    end
+    GC-->>UI: FINISHED / VICTORY after turn 18
+    Note over UI,K: Activate on turn 4: 5 paid / $83.70 / 87.20. Same service priorities without activation: 5 paid / $86.40 / 86.20.

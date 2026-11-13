@@ -1,5 +1,17 @@
 # UML diagrams
 
+## Stage 3 editable review models
+
+- [Current class model](Stage3_UML_Diagram.mmd)
+- [Happy Hour sequence](Stage3_Happy_Hour_Sequence.mmd)
+- [Current interfaces and design decisions](../Stage3/Stage_3_Design_and_Interfaces_EN.md)
+
+These Mermaid sources describe the runnable integration candidate and remain
+editable for group review and report export. The sequence follows VIP customer
+2 through turn-4 arrival/order, turn-5 serving, turn-6 eating and turn-7 payment,
+then the full turn-18 result. It includes the manager activation alternative.
+
+
 ## Stage 2 released design
 
 - [Class diagram PDF](Stage2_UML_Diagram.pdf), [SVG](Stage2_UML_Diagram.svg),
@@ -38,5 +50,5 @@ change was necessary. The earlier audit statement calling it void was an error.
 The older Stage_1_Design_Discussion_EN Markdown/PDF are historical design
 proposals; use [the implemented design](../Stage_1_Implemented_Design_EN.md) for
 current responsibilities and trade-offs. The new Stage 2 files above provide the matching next-stage class diagram and
-the selected complex Stage 2 sequence diagram. Stage 3 will require its own
-class diagram as specified in the briefing.
+the selected complex Stage 2 sequence diagram. The Stage 3 review sources above describe the new code and must be visually
+reviewed when exported for the final report.
