@@ -119,7 +119,9 @@ Happy Hour is 1500 -> 1350 -> 1080 cents. A VIP Salad + Pasta Combo is
 ## Verification and remaining submission work
 
 See [test notes](Stage_3_Test_Notes.md), [Stage 2 to 3 changes](Stage_2_to_3_Changes.md),
-and the [editable class model](../UML/Stage3_UML_Diagram.mmd).
+the [class diagram](../UML/Stage3_UML_Diagram.pdf), and the
+[complete Happy Hour sequence](../UML/Stage3_Happy_Hour_Sequence.pdf).
+[Editable drawio files and PNG/SVG exports](../UML/README.md) are provided separately.
 Automated checks are agent-run evidence, not an independent teammate signature.
 Before a final release, module owners should review the implementation and
 diagrams. The group still supplies its report/reflections, recorded video with

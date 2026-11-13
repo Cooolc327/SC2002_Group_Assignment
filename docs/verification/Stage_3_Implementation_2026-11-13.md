@@ -32,7 +32,9 @@ See [test notes](../Stage3/Stage_3_Test_Notes.md) and
 Generated logs remain under ignored build/stage1-checks, build/stage2-checks
 and build/stage3-checks. These are agent-run checks, not a teammate signature.
 
-The current class/sequence diagrams are editable Mermaid review sources, not
-reviewed final PDF exports. Final report, video, member declarations, group
+The initial implementation had compact Mermaid models. A later documentation
+update adds visually reviewed PDF/SVG/PNG and editable drawio exports; see
+[diagram notes](../Stage3/Diagram_Notes.md) for exact source identity. Final
+report, video, member declarations, group
 acceptance and an explicitly authorized stage-3 release/tag remain separate
 submission work. Existing historical tags are not moved.

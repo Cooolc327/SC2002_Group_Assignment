@@ -13,3 +13,10 @@ in Git. Messages after the cutoff, including the final handoff, are not claimed.
 Bernice's original implementation and AI history retain their own branches and
 authorship. This archive records the integration assistant's conversation; it
 does not substitute for other members' evidence or signed GAI declarations.
+
+## Diagram and change-document continuation
+
+[Readable conversation](chat-02.md), [verbatim messages](messages-02.json),
+and [export audit](export-audit-02.json) preserve the diagram/export follow-up.
+This continuation has its own explicit cutoff: 2026-11-13T14:09:26.015Z.
+Later publication and final handoff are outside this export.

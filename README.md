@@ -118,11 +118,14 @@ checks, not an independent teammate acceptance signature.
 ## Design and stage evidence
 
 - [Stage 3 interfaces, ownership review and design choices](docs/Stage3/Stage_3_Design_and_Interfaces_EN.md).
-- [Stage 2 to 3 file changes and OO impact](docs/Stage3/Stage_2_to_3_Changes.md).
+- [Stage 2 to 3 file changes and OO impact](docs/Stage3/Stage_2_to_3_Changes.md), [PDF](docs/Stage3/Stage_2_to_3_Changes.pdf).
 - [Stage 3 test notes and exact timeline](docs/Stage3/Stage_3_Test_Notes.md).
 - [Available ordered Stage 3 AI conversation and explicit cutoff](ai-history/stage-3/README.md).
-- [Stage 3 editable class model](docs/UML/Stage3_UML_Diagram.mmd) and
-  [Happy Hour sequence model](docs/UML/Stage3_Happy_Hour_Sequence.mmd).
+- [Stage 3 class diagram PDF](docs/UML/Stage3_UML_Diagram.pdf) and
+  [Happy Hour sequence PDF](docs/UML/Stage3_Happy_Hour_Sequence.pdf).
+- [Standalone class image](docs/UML/Stage3_UML_Diagram.png),
+  [sequence image](docs/UML/Stage3_Happy_Hour_Sequence.png), and
+  [editable sources, SVGs and diagram provenance](docs/UML/README.md).
 - [Stage 2 verification](docs/verification/Stage_2_Release_2026-11-08.md),
   [changes from Stage 1](docs/Stage2/Stage_1_to_2_Changes.md),
   [class diagram](docs/UML/Stage2_UML_Diagram.pdf), and
@@ -131,12 +134,15 @@ checks, not an independent teammate acceptance signature.
   [class diagram](docs/UML/Stage1_UML_Diagram.pdf), and
   [verification](docs/verification/Stage_1_Release_2026-11-08.md).
 - [Stage 1 to 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2).
-- Stage 2 to 3 code comparison before tagging: `git diff --stat stage-2..HEAD`.
-  The formal tag comparison will be added after authorized Stage 3 publication.
+- [Exact Stage 2 to Stage 3 implementation comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...3f5e682f775734a6a305fc159abd89aaf76257c3),
+  [implementation commit](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/3f5e682f775734a6a305fc159abd89aaf76257c3).
+  The formal stage-3 tag comparison follows authorized release.
 
-The current Stage 3 Mermaid models are editable review sources. Export and
-review their layout for the final PDF report. The historical Stage 2 sequence
-remains evidence for that tag and is not relabelled as the new Stage 3 flow.
+Stage 3 PDF/SVG/PNG exports have been visually checked against implementation
+3f5e682. Native drawio files retain editable nodes, text and arrows; compact
+Mermaid discussion models are also retained. Diagram notes record source
+hashes, notation and replay values. The historical Stage 2 sequence remains
+evidence for its tag and is not relabelled as the Stage 3 flow.
 
 ## Team and final submission
 
@@ -161,7 +167,7 @@ need verification by their owners.
 | Rishika Garg | [Rishika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history) (TODO) |
 
 The final group ZIP is due **15 November 2026, 23:59 Singapore time**. Remaining
-group deliverables are the final PDF report and reviewed diagram exports,
+group deliverables are the final PDF report incorporating the reviewed diagram exports,
 individual reflections, approximately 15-minute video with README timestamps,
 accessible links, signed original-work/GAI declarations and final packaging.
 Stage 3 publication/tagging follows team review and explicit authorization.

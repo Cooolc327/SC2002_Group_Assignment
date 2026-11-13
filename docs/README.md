@@ -5,8 +5,10 @@
 - [Interfaces and design](Stage3/Stage_3_Design_and_Interfaces_EN.md)
 - [Stage 2 to 3 changes](Stage3/Stage_2_to_3_Changes.md)
 - [Tests and replay timeline](Stage3/Stage_3_Test_Notes.md)
-- [Editable class model](UML/Stage3_UML_Diagram.mmd)
-- [Editable Happy Hour sequence](UML/Stage3_Happy_Hour_Sequence.mmd)
+- [Class diagram PDF](UML/Stage3_UML_Diagram.pdf)
+- [Happy Hour sequence PDF](UML/Stage3_Happy_Hour_Sequence.pdf)
+- [Standalone images and editable drawio sources](UML/README.md)
+- [Stage 2 to 3 change report PDF](Stage3/Stage_2_to_3_Changes.pdf)
 
 Default Main runs Stage 3. Use `--stage2` for Stage 2 replay inputs and
 `--regular` for Regular-only inputs. Stage 3 release/tag and final group
