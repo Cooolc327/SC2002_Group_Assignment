@@ -1,6 +1,7 @@
 # Stage 3 implementation and interface handoff
 
-This document describes the runnable implementation on `lichen/stage_3`, built
+This document describes the runnable implementation on `lichen/stage_3`,
+published as [stage-3](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3), built
 from Stage 2 main `b02de7bef0fa237a693f5c84a9b0757d43dfb023`. Bernice's
 `bernice/stage-3-combo` tip `c013d2b29c78905f7431f564dc5048aafaab9ce0` is merged
 with its original ancestry, including commits `877dfd6`, `0464559`, and `c013d2b`.
@@ -123,6 +124,8 @@ the [class diagram](../UML/Stage3_UML_Diagram.pdf), and the
 [complete Happy Hour sequence](../UML/Stage3_Happy_Hour_Sequence.pdf).
 [Editable drawio files and PNG/SVG exports](../UML/README.md) are provided separately.
 Automated checks are agent-run evidence, not an independent teammate signature.
-Before a final release, module owners should review the implementation and
-diagrams. The group still supplies its report/reflections, recorded video with
-timestamps, signed declarations, and explicit approval for publishing `stage-3`.
+The user authorized the stage-3 publication on 14 November 2026. See the
+[release record](../verification/Stage_3_Release_2026-11-14.md) for clean-archive
+checks. Module owners should still verify their contributions and diagrams;
+these checks do not record a teammate signature. The group still supplies its
+report/reflections, recorded video with timestamps and signed declarations.

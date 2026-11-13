@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-14",
+  "candidate": "c322b0ff1451e413e35c0a2cd97c71c1966988e8",
+  "source_manifest_files": 61,
+  "checks": [
+    {
+      "name": "build",
+      "exit_code": 0,
+      "seconds": 0.49,
+      "log": "build.log"
+    },
+    {
+      "name": "stage1",
+      "exit_code": 0,
+      "seconds": 1.35,
+      "log": "stage1.log"
+    },
+    {
+      "name": "stage2",
+      "exit_code": 0,
+      "seconds": 1.14,
+      "log": "stage2.log"
+    },
+    {
+      "name": "stage3",
+      "exit_code": 0,
+      "seconds": 1.17,
+      "log": "stage3.log"
+    }
+  ],
+  "unique_suites": {
+    "MEMBER_A_CORE": {
+      "scenarios": 14,
+      "assertions": 344
+    },
+    "STAGE1_SMOKE": {
+      "scenarios": 9,
+      "assertions": 94
+    },
+    "BILL_CALCULATOR": {
+      "scenarios": 8,
+      "assertions": 48
+    },
+    "ORDER_MENU": {
+      "scenarios": 7,
+      "assertions": 65
+    },
+    "STAGE2_INTEGRATION": {
+      "scenarios": 14,
+      "assertions": 506
+    },
+    "COMBO_MEAL": {
+      "scenarios": 6,
+      "assertions": 42
+    },
+    "STAGE3_INTEGRATION": {
+      "scenarios": 18,
+      "assertions": 550
+    }
+  },
+  "unique_scenarios": 76,
+  "unique_assertions": 1649,
+  "replays": [
+    {
+      "name": "victory",
+      "exit_code": 0,
+      "summary": "Dishes served 5 | Paid 5 | Unhappy departures 0 | Revenue $83.70 | Avg satisfaction 87.20 | Turns used 18/18",
+      "result": "VICTORY",
+      "log": "external-victory.log"
+    },
+    {
+      "name": "defeat",
+      "exit_code": 0,
+      "summary": "Dishes served 0 | Paid 0 | Unhappy departures 1 | Revenue $0.00 | Avg satisfaction N/A | Turns used 18/18",
+      "result": "DEFEAT",
+      "log": "external-defeat.log"
+    }
+  ],
+  "environment": {
+    "runtime": "openjdk version \"21.0.12\" 2026-07-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.12+8 (build 21.0.12+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12+8 (build 21.0.12+8-LTS, mixed mode, sharing)",
+    "compiler": "javac 21.0.12",
+    "compile_flags": "--release 17 -Xlint:all -Werror"
+  },
+  "log_sha256": {
+    "clean-build.log": "da5ee918fee9dca6498315f78ffeeba3ea0fff637513543281ca172c6cb02541",
+    "stage1-regression.log": "0c3186b396168b3ee00469b6799af95819790f4e2a234fe902f6e9b7e6bfb9ec",
+    "stage2-regression.log": "9c765bb754f7ce1c8d324d3b3b1c4a3b31d06eb3dbb285345d972553cb9cd079",
+    "stage3-regression.log": "1119d04d719b8b333e0687867aaa64761e80fb3d5fe1c6887d6c62c60f5e17f2",
+    "external-victory.log": "fb99524db863da5e4c9f7b8718b7882258454d2199c3507bc2f793771d0e30ec",
+    "external-defeat.log": "27b428ca1811606f66d95455541b2d082401e93882f32128c2b15a077011c803"
+  },
+  "scope": "Baseline candidate clean git archive; the actual local stage-3 tag archive is required to pass again before publication. Final receipt records that identity."
+}

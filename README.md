@@ -3,20 +3,22 @@
 SC2002 Object-Oriented Design & Programming. Java 17+, offline command-line game.
 Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
-## Current implementation: Stage 3
+## Published runnable version: Stage 3
 
-This integration branch contains Host, ComboMeal and Happy Hour on top of the
+The [stage-3 tag](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3)
+contains Host, ComboMeal and Happy Hour on top of the
 verified Stage 2 implementation merged to main as `b02de7b`. Bernice's three
 Stage 3 commits are merged with their original history. Further implementation
 and integration tests were added with AI assistance on `lichen/stage_3`.
-The runnable candidate is ready for team review; publishing a `stage-3` tag is
-still a separate release step.
+The user authorized publication on 14 November 2026. See the
+[release verification](docs/verification/Stage_3_Release_2026-11-14.md) for
+clean-archive checks, exact source identity and the limits of this release.
 
 | Stage | Features | Snapshot |
 | --- | --- | --- |
 | 1 | Regular customers, full turn sequence, both endings | [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
 | 2 | VIP/Critic behaviour and customer-specific billing | [stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2), also merged to main |
-| 3 | Independent Host, combos and two-turn Happy Hour | Current integration branch; stage-3 tag pending |
+| 3 | Independent Host, combos and two-turn Happy Hour | [stage-3](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3), on lichen/stage_3 |
 
 ## Build, play and replay
 
@@ -121,6 +123,7 @@ checks, not an independent teammate acceptance signature.
 - [Stage 2 to 3 file changes and OO impact](docs/Stage3/Stage_2_to_3_Changes.md), [PDF](docs/Stage3/Stage_2_to_3_Changes.pdf).
 - [Stage 3 test notes and exact timeline](docs/Stage3/Stage_3_Test_Notes.md).
 - [Available ordered Stage 3 AI conversation and explicit cutoff](ai-history/stage-3/README.md).
+- [Stage 3 release verification and repeatable results](docs/verification/Stage_3_Release_2026-11-14.md).
 - [Stage 3 class diagram PDF](docs/UML/Stage3_UML_Diagram.pdf) and
   [Happy Hour sequence PDF](docs/UML/Stage3_Happy_Hour_Sequence.pdf).
 - [Standalone class image](docs/UML/Stage3_UML_Diagram.png),
@@ -136,7 +139,9 @@ checks, not an independent teammate acceptance signature.
 - [Stage 1 to 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2).
 - [Exact Stage 2 to Stage 3 implementation comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...3f5e682f775734a6a305fc159abd89aaf76257c3),
   [implementation commit](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/3f5e682f775734a6a305fc159abd89aaf76257c3).
-  The formal stage-3 tag comparison follows authorized release.
+- [Formal Stage 2 to Stage 3 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...stage-3).
+  It also includes documentation, diagram exports and release evidence added
+  after the implementation commit; the linked file analysis explains code changes.
 
 Stage 3 PDF/SVG/PNG exports have been visually checked against implementation
 3f5e682. Native drawio files retain editable nodes, text and arrows; compact
@@ -160,7 +165,7 @@ need verification by their owners.
 
 | Member | AI history folder |
 | --- | --- |
-| Lichen Yin | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1), [Stage 2 archive](ai-history/stage-2/README.md) |
+| Lichen Yin | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1), [Stage 2 archive](ai-history/stage-2/README.md), [Stage 3 archive](ai-history/stage-3/README.md) |
 | Xavier Kee | [Xavier](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Xavier/ai-history) (TODO) |
 | Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md) |
 | Advika Bhambri | [Advika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history) (TODO) |
@@ -170,4 +175,5 @@ The final group ZIP is due **15 November 2026, 23:59 Singapore time**. Remaining
 group deliverables are the final PDF report incorporating the reviewed diagram exports,
 individual reflections, approximately 15-minute video with README timestamps,
 accessible links, signed original-work/GAI declarations and final packaging.
-Stage 3 publication/tagging follows team review and explicit authorization.
+The stage-3 tag publishes the runnable snapshot; it does not certify completion
+of those final group deliverables or an unrecorded teammate acceptance.

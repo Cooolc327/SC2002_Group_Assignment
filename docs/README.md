@@ -1,7 +1,10 @@
 # Project documentation
 
-## Stage 3 runnable integration candidate
+## Published Stage 3
 
+- [Runnable stage-3 tag](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3)
+- [Release verification](verification/Stage_3_Release_2026-11-14.md)
+- [Formal Stage 2 to 3 comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...stage-3)
 - [Interfaces and design](Stage3/Stage_3_Design_and_Interfaces_EN.md)
 - [Stage 2 to 3 changes](Stage3/Stage_2_to_3_Changes.md)
 - [Tests and replay timeline](Stage3/Stage_3_Test_Notes.md)
@@ -11,8 +14,10 @@
 - [Stage 2 to 3 change report PDF](Stage3/Stage_2_to_3_Changes.pdf)
 
 Default Main runs Stage 3. Use `--stage2` for Stage 2 replay inputs and
-`--regular` for Regular-only inputs. Stage 3 release/tag and final group
-submission remain separate steps.
+`--regular` for Regular-only inputs. The user authorized the runnable stage-3
+release on 14 November 2026; final group submission remains a separate step.
+The 13 November implementation/change/diagram records retain their original
+pre-release status wording; the linked release record controls tag status.
 
 
 ## Published Stage 2

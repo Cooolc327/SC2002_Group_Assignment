@@ -1,0 +1,36 @@
+PASS menu offers a combo of each pair of base items
+PASS brief example: Salad + Pasta is $24.30 and 3 units
+PASS combo price rounds to the nearest cent
+PASS menu contains its own items and combos only
+PASS combo works wherever a MenuItem does
+PASS three-unit combo is READY after its third unit
+COMBO_MEAL=PASS scenarios=6 assertions=42
+PASS customer without a discount pays the menu price
+PASS 10 percent customer discount on every menu item
+PASS discounts round to the nearest cent
+PASS invalid amounts and discounts are rejected
+PASS taking an order locks the discounted bill
+PASS Happy Hour takes 20 percent off for every customer type
+PASS VIP discount then Happy Hour on combos
+PASS rounding each step matches rounding once at the end
+BILL_CALCULATOR=PASS scenarios=8 assertions=48
+PASS menu modes and polymorphic combo choices
+PASS start-of-turn and staff phase guards are atomic
+PASS Host and Waiter have independent allowances
+PASS Host permits same-turn ordering; serving and payment keep their delays
+PASS Happy Hour lasts exactly two turns and cannot restart
+PASS recovery eligibility, cap and invalid input
+PASS recovery occurs once at each active turn start
+PASS activation discounts new orders and preserves existing bills
+PASS real combo preparation, serving and locked payment
+PASS VIP combo discounts remain locked through real payment
+PASS unserved combos cancel and release tables at every preparation state
+PASS Happy Hour trades revenue for recorded satisfaction
+PASS Stage 3 snapshots are detached and immutable
+PASS real default Main/CLI victory
+PASS real default Main/CLI defeat
+PASS real default Main/CLI bom-victory
+PASS real default Main/CLI invalid-input-victory
+PASS CLI handles input ending during the start-of-turn choice
+STAGE3_INTEGRATION=PASS scenarios=18 assertions=550
+STAGE3_DEVELOPMENT_CHECKS=PASS logs=/private/tmp/sc2002-stage3-release.2mamxln4/clean candidate with spaces/build/stage3-checks
