@@ -1,31 +1,29 @@
 package orders;
 
 import entities.Customer;
+import fooditems.Discount;
 import fooditems.MenuItem;
 
 // Works out a customer's bill in integer cents
 public final class BillCalculator {
-    private static final int PERCENT_BASE = 100;
+    public static final int HAPPY_HOUR_DISCOUNT_PERCENT = 20;
 
     private BillCalculator() {
     }
 
     //-------------------------------Billing-----------------------------------
 
-    //Menu price less the customer's own discount
+    //Menu price less the customer's own discount, outside Happy Hour
     public static int billFor(Customer customer, MenuItem item) {
-        return applyDiscount(item.getPriceCents(), customer.getBillDiscountPercent());
+        return billFor(customer, item, false);
     }
 
-    //Take a percentage off an amount, rounded to the nearest cent (half a cent rounds up)
-    public static int applyDiscount(int cents, int discountPercent) {
-        if (cents < 0) {
-            throw new IllegalArgumentException("Amount cannot be negative: " + cents);
+    //Customer discount first, then Happy Hour. Each step rounds to the nearest cent
+    public static int billFor(Customer customer, MenuItem item, boolean happyHourActive) {
+        int billCents = Discount.apply(item.getPriceCents(), customer.getBillDiscountPercent());
+        if (happyHourActive) {
+            billCents = Discount.apply(billCents, HAPPY_HOUR_DISCOUNT_PERCENT);
         }
-        if (discountPercent < 0 || discountPercent > PERCENT_BASE) {
-            throw new IllegalArgumentException("Discount must be 0 to 100 percent: " + discountPercent);
-        }
-        return (int) (((long) cents * (PERCENT_BASE - discountPercent)
-                + PERCENT_BASE / 2) / PERCENT_BASE);
+        return billCents;
     }
 }

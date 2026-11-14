@@ -1,0 +1,566 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3620pt" height="4764pt" viewBox="0 0 3620 4764">
+<rect width="100%" height="100%" fill="white"/>
+<text x="35" y="32" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" font-style="normal" fill="#20252b">Restaurant Rush - Stage 3: a manager choice changes the locked bill and paid satisfaction</text>
+<text x="35" y="54" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#59616b">Concrete seed-24369 replay, turns 4-18 | Solid arrow: synchronous call; dashed arrow: return | ref: abbreviated actual subinteraction</text>
+<text x="35" y="73" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#59616b">Implementation 3f5e682. Normal and no-activation alternatives use the same Stage 3 service priorities. Both win; amounts and satisfaction differ.</text>
+<rect x="25" y="636" width="3570" height="473" fill="#ffffff" stroke="#66717c" stroke-width="0.8"/>
+<rect x="25" y="636" width="58" height="23" fill="#f0f0f0" stroke="#66717c" stroke-width="0.8"/>
+<text x="33" y="652" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">alt</text>
+<polyline points="25.00,969.00 3595.00,969.00" fill="none" stroke="#66717c" stroke-width="0.8" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="25" y="835" width="3570" height="86" fill="#ffffff" stroke="#66717c" stroke-width="0.8"/>
+<rect x="25" y="835" width="58" height="23" fill="#f0f0f0" stroke="#66717c" stroke-width="0.8"/>
+<text x="33" y="851" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">loop</text>
+<rect x="25" y="1757" width="3570" height="203" fill="#ffffff" stroke="#66717c" stroke-width="0.8"/>
+<rect x="25" y="1757" width="58" height="23" fill="#f0f0f0" stroke="#66717c" stroke-width="0.8"/>
+<text x="33" y="1773" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">alt</text>
+<polyline points="25.00,1861.00 3595.00,1861.00" fill="none" stroke="#66717c" stroke-width="0.8" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="25" y="2865" width="3570" height="227" fill="#ffffff" stroke="#66717c" stroke-width="0.8"/>
+<rect x="25" y="2865" width="58" height="23" fill="#f0f0f0" stroke="#66717c" stroke-width="0.8"/>
+<text x="33" y="2881" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">alt</text>
+<polyline points="25.00,2993.00 3595.00,2993.00" fill="none" stroke="#66717c" stroke-width="0.8" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="40" y="4198" width="3540" height="443" fill="#ffffff" stroke="#66717c" stroke-width="0.8"/>
+<rect x="40" y="4198" width="58" height="23" fill="#f0f0f0" stroke="#66717c" stroke-width="0.8"/>
+<text x="48" y="4214" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">loop</text>
+<rect x="53" y="4446" width="3514" height="195" fill="#ffffff" stroke="#66717c" stroke-width="0.8"/>
+<rect x="53" y="4446" width="58" height="23" fill="#f0f0f0" stroke="#66717c" stroke-width="0.8"/>
+<text x="61" y="4462" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">alt</text>
+<polyline points="53.00,4531.00 3567.00,4531.00" fill="none" stroke="#66717c" stroke-width="0.8" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<circle cx="80" cy="124" r="8" fill="white" stroke="#20252b"/>
+<polyline points="80.00,132.00 80.00,154.00" fill="none" stroke="#20252b" stroke-width="0.9" stroke-linejoin="round"/>
+<polyline points="65.00,140.00 95.00,140.00" fill="none" stroke="#20252b" stroke-width="0.9" stroke-linejoin="round"/>
+<polyline points="80.00,154.00 67.00,169.00" fill="none" stroke="#20252b" stroke-width="0.9" stroke-linejoin="round"/>
+<polyline points="80.00,154.00 93.00,169.00" fill="none" stroke="#20252b" stroke-width="0.9" stroke-linejoin="round"/>
+<text x="57.38232421875" y="188" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">Manager</text>
+<polyline points="80.00,200.00 80.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="192" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="250.7236328125" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;boundary&gt;&gt;</text>
+<text x="238.603515625" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">cli:RestaurantCLI</text>
+<polyline points="280.00,178.00 280.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="392" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="455.981689453125" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;control&gt;&gt;</text>
+<text x="427.48779296875" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">game:GameController</text>
+<polyline points="480.00,178.00 480.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="592" y="132" width="176" height="46" fill="#dcebf8" stroke="#20252b" stroke-width="0.9"/>
+<text x="634.2177734375" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;method reference&gt;&gt;</text>
+<text x="628.33984375" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">factoryFn:IntFunction</text>
+<polyline points="680.00,178.00 680.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="792" y="132" width="176" height="46" fill="#dcebf8" stroke="#20252b" stroke-width="0.9"/>
+<text x="855.98388671875" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;factory&gt;&gt;</text>
+<text x="811.64794921875" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">customers:CustomerFactory</text>
+<polyline points="880.00,178.00 880.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="992" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="1042.47509765625" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;StaffGateway&gt;&gt;</text>
+<text x="1043.60595703125" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">staff:StaffTeam</text>
+<polyline points="1080.00,178.00 1080.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="1192" y="132" width="176" height="46" fill="#dcebf8" stroke="#20252b" stroke-width="0.9"/>
+<text x="1260.98486328125" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;staff&gt;&gt;</text>
+<text x="1256.669921875" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">host:Host</text>
+<polyline points="1280.00,178.00 1280.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="1392" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="1460.98486328125" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;staff&gt;&gt;</text>
+<text x="1448.603515625" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">waiter:Waiter</text>
+<polyline points="1480.00,178.00 1480.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="1592" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="1660.98486328125" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;staff&gt;&gt;</text>
+<text x="1656.943359375" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">chef:Chef</text>
+<polyline points="1680.00,178.00 1680.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="1792" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="1860.98486328125" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;staff&gt;&gt;</text>
+<text x="1842.48046875" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">cashier:Cashier</text>
+<polyline points="1880.00,178.00 1880.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="1992" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="2054.729248046875" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;domain&gt;&gt;</text>
+<text x="2027.763671875" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">restaurant:Restaurant</text>
+<polyline points="2080.00,178.00 2080.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="2192" y="132" width="176" height="46" fill="#dcebf8" stroke="#20252b" stroke-width="0.9"/>
+<text x="2257.9833984375" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;policy&gt;&gt;</text>
+<text x="2210.27099609375" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">happyHour:HappyHourPolicy</text>
+<polyline points="2280.00,178.00 2280.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="2392" y="434" width="176" height="46" fill="#dcebf8" stroke="#20252b" stroke-width="0.9"/>
+<text x="2435.4658203125" y="449" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;created on turn 4&gt;&gt;</text>
+<text x="2439.9951171875" y="466" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">vip:VipCustomer</text>
+<polyline points="2480.00,480.00 2480.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="2592" y="132" width="176" height="46" fill="#dcebf8" stroke="#20252b" stroke-width="0.9"/>
+<text x="2659.23583984375" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;utility&gt;&gt;</text>
+<text x="2647.77099609375" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">BillCalculator</text>
+<polyline points="2680.00,178.00 2680.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="2792" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="2847.22998046875" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;Order::new&gt;&gt;</text>
+<text x="2816.37939453125" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">orderFn:OrderPort.Factory</text>
+<polyline points="2880.00,178.00 2880.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="2992" y="2053" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="3035.4658203125" y="2068" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;created on turn 4&gt;&gt;</text>
+<text x="3049.15771484375" y="2085" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">order2:Order</text>
+<polyline points="3080.00,2099.00 3080.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="3192" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="3258.732666015625" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;entity&gt;&gt;</text>
+<text x="3231.65283203125" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">seating:SeatingArea</text>
+<polyline points="3280.00,178.00 3280.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="3392" y="132" width="176" height="46" fill="#ffffff" stroke="#20252b" stroke-width="0.9"/>
+<text x="3444.472412109375" y="147" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="normal" font-style="normal" fill="#20252b">&lt;&lt;enumeration&gt;&gt;</text>
+<text x="3450.82275390625" y="164" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">GameResult</text>
+<polyline points="3480.00,178.00 3480.00,4719.00" fill="none" stroke="#9299a1" stroke-width="0.65" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<rect x="55" y="220" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="238" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Default seed 24369, entering turn 4 of stage3-victory.txt. Regular #1 is READY_TO_PAY from turn 3, at Table 1; Table 2 is free. VIP #2 arrives now. Normal branch activates Happy Hour on turn 4. Alternative keeps it unused with the same service priorities. All 18 turns still run.</text>
+<rect x="35" y="266" width="3550" height="36" fill="#edf0f3" stroke="#c4cbd2" stroke-width="0.6"/>
+<text x="47" y="290" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" font-style="normal" fill="#20252b">TURN 4 - arrival, manager pricing choice and independent Host seating</text>
+<polyline points="280.00,332.00 480.00,332.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,332 469.0,337.0 469.0,327.0" fill="#20252b" stroke="#20252b"/>
+<rect x="346.6612548828125" y="307.5" width="66.677490234375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="349.6612548828125" y="320" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">1. startTurn()</text>
+<polyline points="480.00,362.00 680.00,362.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="680,362 669.0,367.0 669.0,357.0" fill="#20252b" stroke="#20252b"/>
+<rect x="523.0208740234375" y="337.5" width="113.958251953125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="526.0208740234375" y="350" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">2. apply(2) [arrival turn]</text>
+<polyline points="680.00,392.00 880.00,392.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="880,392 869.0,397.0 869.0,387.0" fill="#20252b" stroke="#20252b"/>
+<rect x="727.3992919921875" y="367.5" width="105.201416015625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="730.3992919921875" y="380" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">3. createCustomer(2)</text>
+<polyline points="880.00,457.00 2392.00,457.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2392,457 2381.0,462.0 2381.0,452.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1590.4027099609375" y="397.5" width="91.194580078125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1593.4027099609375" y="410" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">4. VipCustomer(2)</text>
+<polyline points="680.00,487.00 480.00,487.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="491.00,482.00 480.00,487.00 491.00,492.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="496.02490234375" y="462.5" width="167.9501953125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="499.02490234375" y="475" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">5. vip {WAITING, satisfaction=100}</text>
+<polyline points="480.00,517.00 2080.00,517.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,517 2069.0,522.0 2069.0,512.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1241.106201171875" y="492.5" width="77.78759765625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1244.106201171875" y="505" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">6. beginTurn(4)</text>
+<polyline points="480.00,547.00 2080.00,547.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,547 2069.0,552.0 2069.0,542.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1228.5733642578125" y="522.5" width="102.853271484375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1231.5733642578125" y="535" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">7. registerArrival(vip)</text>
+<polyline points="2080.00,577.00 3280.00,577.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3280,577 3269.0,582.0 3269.0,572.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2630.3062744140625" y="552.5" width="99.387451171875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2633.3062744140625" y="565" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">8. addToQueue(vip)</text>
+<polyline points="480.00,634.00 280.00,634.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="291.00,629.00 280.00,634.00 291.00,639.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="345.4871826171875" y="582.5" width="69.025634765625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="348.4871826171875" y="595" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">9. GameView</text>
+<rect x="319.5345458984375" y="596.5" width="120.93090820312501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="322.5345458984375" y="609" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">{AWAIT_TURN_START,</text>
+<rect x="335.99462890625" y="610.5" width="88.0107421875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="338.99462890625" y="623" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">canActivate=true}</text>
+<text x="100" y="662" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[manager chooses Activate]</text>
+<polyline points="80.00,713.00 280.00,713.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="280,713 269.0,718.0 269.0,708.0" fill="#20252b" stroke="#20252b"/>
+<rect x="114.692138671875" y="688.5" width="130.61572265625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="117.692138671875" y="701" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">10. Happy Hour choice = 1</text>
+<polyline points="280.00,743.00 480.00,743.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,743 469.0,748.0 469.0,738.0" fill="#20252b" stroke="#20252b"/>
+<rect x="298.2218017578125" y="718.5" width="163.556396484375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="301.2218017578125" y="731" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">11. submitTurnStartDecision(true)</text>
+<polyline points="480.00,773.00 2080.00,773.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,773 2069.0,778.0 2069.0,768.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1216.8941650390625" y="748.5" width="126.21166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1219.8941650390625" y="761" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">12. resolveTurnStart(true)</text>
+<polyline points="2080.00,803.00 2280.00,803.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2280,803 2269.0,808.0 2269.0,798.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2087.2655029296875" y="778.5" width="185.468994140625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2090.2655029296875" y="791" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">13. hasBeenUsed() = false; activate(4)</text>
+<polyline points="2080.00,833.00 2280.00,833.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2280,833 2269.0,838.0 2269.0,828.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2128.709228515625" y="808.5" width="102.58154296875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2131.709228515625" y="821" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">14. isActive(4) = true</text>
+<text x="100" y="861" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[each registered customer; Customer guards recovery eligibility]</text>
+<polyline points="2080.00,912.00 2480.00,912.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,912 2469.0,917.0 2469.0,907.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2157.208740234375" y="887.5" width="245.58251953125003" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2160.208740234375" y="900" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">15. recoverWaitingSatisfaction(15) [VIP 100 -&gt; 100]</text>
+<rect x="55" y="925" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="943" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Customer #1 is READY_TO_PAY, so receives no recovery. Each turn-start policy is applied only once; invalid or repeated choices leave state and staff capacity unchanged.</text>
+<text x="60" y="989" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[manager keeps Happy Hour unused]</text>
+<polyline points="80.00,1040.00 280.00,1040.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="280,1040 269.0,1045.0 269.0,1035.0" fill="#20252b" stroke="#20252b"/>
+<rect x="114.692138671875" y="1015.5" width="130.61572265625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="117.692138671875" y="1028" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">16. Happy Hour choice = 0</text>
+<polyline points="280.00,1070.00 480.00,1070.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,1070 469.0,1075.0 469.0,1065.0" fill="#20252b" stroke="#20252b"/>
+<rect x="296.1787109375" y="1045.5" width="167.642578125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="299.1787109375" y="1058" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">17. submitTurnStartDecision(false)</text>
+<polyline points="480.00,1100.00 2080.00,1100.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,1100 2069.0,1105.0 2069.0,1095.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1214.85107421875" y="1075.5" width="130.2978515625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1217.85107421875" y="1088" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">18. resolveTurnStart(false)</text>
+<polyline points="480.00,1143.00 280.00,1143.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="291.00,1138.00 280.00,1143.00 291.00,1148.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="314.5460205078125" y="1105.5" width="130.907958984375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="317.5460205078125" y="1118" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">19. ActionResult accepted;</text>
+<rect x="325.5023193359375" y="1119.5" width="108.995361328125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="328.5023193359375" y="1132" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">phase=AWAIT_HOST</text>
+<polyline points="80.00,1186.00 280.00,1186.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="280,1186 269.0,1191.0 269.0,1181.0" fill="#20252b" stroke="#20252b"/>
+<rect x="87.406494140625" y="1148.5" width="185.18701171875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="90.406494140625" y="1161" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">20. Choose Host: seat VIP #2 at Table</text>
+<rect x="174.0802001953125" y="1162.5" width="11.839599609375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="177.0802001953125" y="1175" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">2</text>
+<polyline points="280.00,1216.00 480.00,1216.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,1216 469.0,1221.0 469.0,1211.0" fill="#20252b" stroke="#20252b"/>
+<rect x="276.3348388671875" y="1191.5" width="207.330322265625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="279.3348388671875" y="1204" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">21. submitHostAction(HostAction.seat(2,2))</text>
+<polyline points="480.00,1246.00 1080.00,1246.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,1246 1069.0,1251.0 1069.0,1241.0" fill="#20252b" stroke="#20252b"/>
+<rect x="711.052001953125" y="1221.5" width="137.89599609375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="714.052001953125" y="1234" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">22. executeHost(action, r, 4)</text>
+<polyline points="1080.00,1276.00 1280.00,1276.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1280,1276 1269.0,1281.0 1269.0,1271.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1121.8468017578125" y="1251.5" width="116.306396484375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1124.8468017578125" y="1264" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">23. execute(action, r, 4)</text>
+<polyline points="1280.00,1306.00 2080.00,1306.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,1306 2069.0,1311.0 2069.0,1301.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1624.7691650390625" y="1281.5" width="110.461669921875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1627.7691650390625" y="1294" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">24. seatCustomer(2,2)</text>
+<polyline points="2080.00,1336.00 3280.00,1336.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3280,1336 3269.0,1341.0 3269.0,1331.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2643.7337646484375" y="1311.5" width="72.532470703125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2646.7337646484375" y="1324" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">25. seat(vip,2)</text>
+<polyline points="3280.00,1366.00 2480.00,1366.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,1366 2491.0,1361.0 2491.0,1371.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2799.2548828125" y="1341.5" width="161.490234375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2802.2548828125" y="1354" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">26. seat() [WAITING -&gt; SEATED]</text>
+<polyline points="480.00,1409.00 280.00,1409.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="291.00,1404.00 280.00,1409.00 291.00,1414.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="285.2301025390625" y="1371.5" width="189.539794921875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="288.2301025390625" y="1384" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">27. accepted; phase=AWAIT_WAITER;</text>
+<rect x="330.31396484375" y="1385.5" width="99.3720703125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="333.31396484375" y="1398" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">fresh Waiter options</text>
+<rect x="35" y="1419" width="3550" height="36" fill="#edf0f3" stroke="#c4cbd2" stroke-width="0.6"/>
+<text x="47" y="1443" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" font-style="normal" fill="#20252b">TURN 4 - order choice, locked VIP/Happy Hour bill, READY and first waiting loss</text>
+<polyline points="80.00,1485.00 280.00,1485.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="280,1485 269.0,1490.0 269.0,1480.0" fill="#20252b" stroke="#20252b"/>
+<rect x="97.045166015625" y="1460.5" width="165.90966796875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="100.045166015625" y="1473" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">28. Choose Waiter: take VIP order</text>
+<polyline points="280.00,1515.00 480.00,1515.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,1515 469.0,1520.0 469.0,1510.0" fill="#20252b" stroke="#20252b"/>
+<rect x="258.546875" y="1490.5" width="242.90625000000003" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="261.546875" y="1503" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">29. submitWaiterAction(WaiterAction.takeOrder(2))</text>
+<polyline points="480.00,1545.00 1080.00,1545.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,1545 1069.0,1550.0 1069.0,1540.0" fill="#20252b" stroke="#20252b"/>
+<rect x="709.595947265625" y="1520.5" width="140.80810546875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="712.595947265625" y="1533" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">30. executeWaiter(action,r,4)</text>
+<polyline points="1080.00,1575.00 1480.00,1575.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1480,1575 1469.0,1580.0 1469.0,1570.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1224.7640380859375" y="1550.5" width="110.471923828125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1227.7640380859375" y="1563" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">31. execute(action,r,4)</text>
+<polyline points="1480.00,1605.00 2080.00,1605.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,1605 2069.0,1610.0 2069.0,1600.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1735.856201171875" y="1580.5" width="88.28759765625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1738.856201171875" y="1593" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">32. placeOrder(2)</text>
+<polyline points="2080.00,1635.00 2480.00,1635.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,1635 2469.0,1640.0 2469.0,1630.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2224.474365234375" y="1610.5" width="111.05126953125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2227.474365234375" y="1623" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">33. chooseItem(menu)</text>
+<polyline points="2480.00,1665.00 2080.00,1665.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="2091.00,1660.00 2080.00,1665.00 2091.00,1670.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="2160.8565673828125" y="1640.5" width="238.28686523437503" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2163.8565673828125" y="1653" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">34. Burger [customer choice, not manager choice]</text>
+<polyline points="2080.00,1695.00 2280.00,1695.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2280,1695 2269.0,1700.0 2269.0,1690.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2143.7388916015625" y="1670.5" width="72.522216796875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2146.7388916015625" y="1683" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">35. isActive(4)</text>
+<polyline points="2080.00,1725.00 2680.00,1725.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2680,1725 2669.0,1730.0 2669.0,1720.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2285.0865478515625" y="1700.5" width="189.826904296875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2288.0865478515625" y="1713" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">36. billFor(vip,Burger,happyHourActive)</text>
+<polyline points="2680.00,1755.00 2480.00,1755.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,1755 2491.0,1750.0 2491.0,1760.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2500.10595703125" y="1730.5" width="159.7880859375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2503.10595703125" y="1743" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">37. getBillDiscountPercent() = 10</text>
+<text x="100" y="1783" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[Happy Hour active]</text>
+<rect x="55" y="1817" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="1835" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Discount.apply: 1500 -&gt; VIP 1350 -&gt; Happy Hour 1080 cents, rounding each step. New orders only.</text>
+<text x="60" y="1881" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[Happy Hour unused]</text>
+<rect x="55" y="1915" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="1933" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Customer discount only: 1500 -&gt; 1350 cents. Existing orders remain unchanged in either branch.</text>
+<polyline points="2680.00,1981.00 2080.00,1981.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="2091.00,1976.00 2080.00,1981.00 2091.00,1986.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="2265.370849609375" y="1956.5" width="229.25830078125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2268.370849609375" y="1969" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">38. billCents = 1080 [normal] / 1350 [alternative]</text>
+<polyline points="2080.00,2011.00 2880.00,2011.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2880,2011 2869.0,2016.0 2869.0,2006.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2400.2572021484375" y="1986.5" width="159.485595703125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2403.2572021484375" y="1999" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">39. create(2,vip,Burger,billCents)</text>
+<polyline points="2880.00,2076.00 2992.00,2076.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2992,2076 2981.0,2081.0 2981.0,2071.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2857.4287109375" y="2016.5" width="157.142578125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2860.4287109375" y="2029" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">40. Order(2,vip,Burger,billCents)</text>
+<polyline points="2080.00,2106.00 2480.00,2106.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,2106 2469.0,2111.0 2469.0,2101.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2179.4110107421875" y="2081.5" width="201.177978515625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2182.4110107421875" y="2094" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">41. placeOrder() [SEATED -&gt; ORDERED]</text>
+<polyline points="480.00,2136.00 280.00,2136.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="291.00,2131.00 280.00,2136.00 291.00,2141.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="292.8128662109375" y="2111.5" width="174.374267578125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="295.8128662109375" y="2124" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">42. accepted; phase=AWAIT_CHEF</text>
+<polyline points="80.00,2166.00 280.00,2166.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="280,2166 269.0,2171.0 269.0,2161.0" fill="#20252b" stroke="#20252b"/>
+<rect x="98.4935302734375" y="2141.5" width="163.012939453125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="101.4935302734375" y="2154" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">43. Choose Chef: prepare order 2</text>
+<polyline points="280.00,2196.00 480.00,2196.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,2196 469.0,2201.0 469.0,2191.0" fill="#20252b" stroke="#20252b"/>
+<rect x="271.9512939453125" y="2171.5" width="216.097412109375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="274.9512939453125" y="2184" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">44. submitChefAction(ChefAction.prepare(2))</text>
+<polyline points="480.00,2226.00 1080.00,2226.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,2226 1069.0,2231.0 1069.0,2221.0" fill="#20252b" stroke="#20252b"/>
+<rect x="713.6744384765625" y="2201.5" width="132.651123046875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="716.6744384765625" y="2214" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">45. executeChef(action,r,4)</text>
+<polyline points="1080.00,2256.00 1680.00,2256.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1680,2256 1669.0,2261.0 1669.0,2251.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1324.7640380859375" y="2231.5" width="110.471923828125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1327.7640380859375" y="2244" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">46. execute(action,r,4)</text>
+<polyline points="1680.00,2286.00 2080.00,2286.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,2286 2069.0,2291.0 2069.0,2281.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1810.457275390625" y="2261.5" width="139.08544921875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1813.457275390625" y="2274" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">47. advancePreparation(2,4)</text>
+<polyline points="2080.00,2316.00 3080.00,2316.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3080,2316 3069.0,2321.0 3069.0,2311.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2452.39453125" y="2291.5" width="255.21093750000003" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2455.39453125" y="2304" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">48. advanceOneUnit(4) [1/1 -&gt; READY; readyTurn=4]</text>
+<rect x="55" y="2329" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="2347" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Chef may prepare the order taken this turn. The Waiter has already acted; a dish becoming READY on turn 4 cannot be served until a later turn.</text>
+<polyline points="280.00,2395.00 480.00,2395.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,2395 469.0,2400.0 469.0,2390.0" fill="#20252b" stroke="#20252b"/>
+<rect x="341.69580078125" y="2370.5" width="76.6083984375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="344.69580078125" y="2383" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">49. finishTurn()</text>
+<polyline points="480.00,2425.00 2080.00,2425.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,2425 2069.0,2430.0 2069.0,2420.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1227.0916748046875" y="2400.5" width="105.816650390625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1230.0916748046875" y="2413" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">50. advanceEating(4)</text>
+<polyline points="480.00,2455.00 1080.00,2455.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,2455 1069.0,2460.0 1069.0,2450.0" fill="#20252b" stroke="#20252b"/>
+<rect x="719.5191650390625" y="2430.5" width="120.96166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="722.5191650390625" y="2443" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">51. processPayment(r,4)</text>
+<polyline points="1080.00,2485.00 1880.00,2485.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1880,2485 1869.0,2490.0 1869.0,2480.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1419.5191650390625" y="2460.5" width="120.96166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1422.5191650390625" y="2473" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">52. processPayment(r,4)</text>
+<rect x="55" y="2498" width="3510" height="37" fill="#ffffff" stroke="#8b96a1" stroke-width="0.6"/>
+<rect x="55" y="2498" width="40" height="22" fill="#f0f0f0" stroke="#66717c" stroke-width="0.6"/>
+<text x="62" y="2513" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">ref</text>
+<text x="105" y="2516" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Automatic cashier follows Restaurant.findOldestPayableCustomer / settlePayment: customer #1 pays $9.00 on turn 4; VIP #2 is not ready. The pre-existing Salad bill is unchanged by Happy Hour.</text>
+<polyline points="480.00,2564.00 2080.00,2564.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,2564 2069.0,2569.0 2069.0,2559.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1214.2589111328125" y="2539.5" width="131.482177734375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1217.2589111328125" y="2552" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">53. applyWaitingPenalty(4)</text>
+<polyline points="2080.00,2594.00 2480.00,2594.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,2594 2469.0,2599.0 2469.0,2589.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2190.472412109375" y="2569.5" width="179.05517578125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2193.472412109375" y="2582" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">54. applyWaitingPenalty() [100 -&gt; 95]</text>
+<polyline points="480.00,2624.00 2080.00,2624.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,2624 2069.0,2629.0 2069.0,2619.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1229.7294921875" y="2599.5" width="100.541015625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1232.7294921875" y="2612" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">55. completeTurn(4)</text>
+<polyline points="480.00,2654.00 3480.00,2654.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3480,2654 3469.0,2659.0 3469.0,2649.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1908.4346923828125" y="2629.5" width="143.130615234375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1911.4346923828125" y="2642" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">56. evaluate(r.getSummary())</text>
+<polyline points="3480.00,2684.00 480.00,2684.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="491.00,2679.00 480.00,2684.00 491.00,2689.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="1911.1981201171875" y="2659.5" width="137.603759765625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1914.1981201171875" y="2672" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">57. IN_PROGRESS [4 &lt; 18]</text>
+<rect x="35" y="2694" width="3550" height="36" fill="#edf0f3" stroke="#c4cbd2" stroke-width="0.6"/>
+<text x="47" y="2718" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" font-style="normal" fill="#20252b">TURN 5 - one turn remaining, recovery and later-turn serving</text>
+<polyline points="280.00,2760.00 480.00,2760.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,2760 469.0,2765.0 469.0,2755.0" fill="#20252b" stroke="#20252b"/>
+<rect x="343.741455078125" y="2735.5" width="72.51708984375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="346.741455078125" y="2748" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">58. startTurn()</text>
+<polyline points="480.00,2790.00 2080.00,2790.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,2790 2069.0,2795.0 2069.0,2785.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1238.1864013671875" y="2765.5" width="83.627197265625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1241.1864013671875" y="2778" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">59. beginTurn(5)</text>
+<polyline points="280.00,2833.00 480.00,2833.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,2833 469.0,2838.0 469.0,2828.0" fill="#20252b" stroke="#20252b"/>
+<rect x="287.421875" y="2795.5" width="185.15625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="290.421875" y="2808" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">60. submitTurnStartDecision(false) [no</text>
+<rect x="348.694091796875" y="2809.5" width="62.61181640625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="351.694091796875" y="2822" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">reactivation]</text>
+<polyline points="480.00,2863.00 2080.00,2863.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,2863 2069.0,2868.0 2069.0,2858.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1214.85107421875" y="2838.5" width="130.2978515625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1217.85107421875" y="2851" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">61. resolveTurnStart(false)</text>
+<text x="100" y="2891" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[Happy Hour activated on turn 4]</text>
+<polyline points="2080.00,2955.00 2280.00,2955.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2280,2955 2269.0,2960.0 2269.0,2950.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2130.1678466796875" y="2917.5" width="99.664306640625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2133.1678466796875" y="2930" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">62. isActive(5)=true;</text>
+<rect x="2128.124755859375" y="2931.5" width="103.75048828125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2131.124755859375" y="2944" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">remainingTurns(5)=1</text>
+<polyline points="2080.00,2985.00 2480.00,2985.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,2985 2469.0,2990.0 2469.0,2980.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2148.4493408203125" y="2960.5" width="263.101318359375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2151.4493408203125" y="2973" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">63. recoverWaitingSatisfaction(15) [95 -&gt; 100, cap 100]</text>
+<text x="60" y="3013" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[Happy Hour remains unused]</text>
+<rect x="55" y="3047" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="3065" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">No recovery; VIP satisfaction remains 95.</text>
+<rect x="55" y="3096" width="3510" height="37" fill="#ffffff" stroke="#8b96a1" stroke-width="0.6"/>
+<rect x="55" y="3096" width="40" height="22" fill="#f0f0f0" stroke="#66717c" stroke-width="0.6"/>
+<text x="62" y="3111" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">ref</text>
+<text x="105" y="3114" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">CLI displays updated GameView. Host chooses Wait through Controller -&gt; StaffTeam -&gt; Host; its capacity remains independent of Waiter.</text>
+<polyline points="80.00,3162.00 280.00,3162.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="280,3162 269.0,3167.0 269.0,3157.0" fill="#20252b" stroke="#20252b"/>
+<rect x="99.6727294921875" y="3137.5" width="160.654541015625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="102.6727294921875" y="3150" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">64. Choose Waiter: serve order 2</text>
+<polyline points="280.00,3192.00 480.00,3192.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,3192 469.0,3197.0 469.0,3187.0" fill="#20252b" stroke="#20252b"/>
+<rect x="269.052001953125" y="3167.5" width="221.89599609375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="272.052001953125" y="3180" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">65. submitWaiterAction(WaiterAction.serve(2))</text>
+<polyline points="480.00,3222.00 1080.00,3222.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,3222 1069.0,3227.0 1069.0,3217.0" fill="#20252b" stroke="#20252b"/>
+<rect x="709.595947265625" y="3197.5" width="140.80810546875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="712.595947265625" y="3210" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">66. executeWaiter(action,r,5)</text>
+<polyline points="1080.00,3252.00 1480.00,3252.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1480,3252 1469.0,3257.0 1469.0,3247.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1224.7640380859375" y="3227.5" width="110.471923828125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1227.7640380859375" y="3240" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">67. execute(action,r,5)</text>
+<polyline points="1480.00,3282.00 2080.00,3282.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,3282 2069.0,3287.0 2069.0,3277.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1731.190673828125" y="3257.5" width="97.61865234375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1734.190673828125" y="3270" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">68. serveOrder(2,5)</text>
+<polyline points="2080.00,3312.00 3080.00,3312.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3080,3312 3069.0,3317.0 3069.0,3307.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2490.333984375" y="3287.5" width="179.33203125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2493.333984375" y="3300" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">69. markServed(5) [readyTurn=4 &lt; 5]</text>
+<polyline points="2080.00,3342.00 2480.00,3342.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,3342 2469.0,3347.0 2469.0,3337.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2189.0394287109375" y="3317.5" width="181.921142578125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2192.0394287109375" y="3330" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">70. serve(5) [ORDERED -&gt; SERVED]</text>
+<rect x="55" y="3355" width="3510" height="37" fill="#ffffff" stroke="#8b96a1" stroke-width="0.6"/>
+<rect x="55" y="3355" width="40" height="22" fill="#f0f0f0" stroke="#66717c" stroke-width="0.6"/>
+<text x="62" y="3370" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">ref</text>
+<text x="105" y="3373" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Chef chooses Wait. finishTurn(5) cannot finish VIP eating in the same turn; no VIP payment or waiting loss occurs after service. completeTurn(5); GameResult remains IN_PROGRESS.</text>
+<rect x="35" y="3401" width="3550" height="36" fill="#edf0f3" stroke="#c4cbd2" stroke-width="0.6"/>
+<text x="47" y="3425" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" font-style="normal" fill="#20252b">TURNS 6-7 - eating, deferred payment, locked bill and table release</text>
+<rect x="55" y="3450" width="3510" height="37" fill="#ffffff" stroke="#8b96a1" stroke-width="0.6"/>
+<rect x="55" y="3450" width="40" height="22" fill="#f0f0f0" stroke="#66717c" stroke-width="0.6"/>
+<text x="62" y="3465" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">ref</text>
+<text x="105" y="3468" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Turn 6: startTurn; resolveTurnStart(false); Happy Hour remaining is 0. Host/Waiter/Chef choose Wait. These follow the same guarded interfaces.</text>
+<polyline points="280.00,3516.00 480.00,3516.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,3516 469.0,3521.0 469.0,3511.0" fill="#20252b" stroke="#20252b"/>
+<rect x="323.89501953125" y="3491.5" width="112.2099609375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="326.89501953125" y="3504" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">71. finishTurn() [turn 6]</text>
+<polyline points="480.00,3546.00 2080.00,3546.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,3546 2069.0,3551.0 2069.0,3541.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1227.0916748046875" y="3521.5" width="105.816650390625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1230.0916748046875" y="3534" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">72. advanceEating(6)</text>
+<polyline points="2080.00,3576.00 2480.00,3576.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,3576 2469.0,3581.0 2469.0,3571.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2183.028076171875" y="3551.5" width="193.94384765625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2186.028076171875" y="3564" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">73. finishedEating(6) [servedTurn=5 &lt; 6]</text>
+<polyline points="2480.00,3606.00 2080.00,3606.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="2091.00,3601.00 2080.00,3606.00 2091.00,3611.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="2178.516357421875" y="3581.5" width="202.96728515625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2181.516357421875" y="3594" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">74. READY_TO_PAY; readyToPayTurn=6</text>
+<polyline points="480.00,3636.00 1080.00,3636.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,3636 1069.0,3641.0 1069.0,3631.0" fill="#20252b" stroke="#20252b"/>
+<rect x="719.5191650390625" y="3611.5" width="120.96166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="722.5191650390625" y="3624" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">75. processPayment(r,6)</text>
+<polyline points="1080.00,3666.00 1880.00,3666.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1880,3666 1869.0,3671.0 1869.0,3661.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1419.5191650390625" y="3641.5" width="120.96166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1422.5191650390625" y="3654" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">76. processPayment(r,6)</text>
+<polyline points="1880.00,3696.00 2080.00,3696.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,3696 2069.0,3701.0 2069.0,3691.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1896.460693359375" y="3671.5" width="167.07861328125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1899.460693359375" y="3684" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">77. findOldestPayableCustomer(6)</text>
+<polyline points="2080.00,3739.00 1880.00,3739.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="1891.00,3734.00 1880.00,3739.00 1891.00,3744.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="1890.0391845703125" y="3701.5" width="179.921630859375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1893.0391845703125" y="3714" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">78. VIP excluded [readyToPayTurn is</text>
+<rect x="1959.3402099609375" y="3715.5" width="41.319580078125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1962.3402099609375" y="3728" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">not &lt; 6]</text>
+<rect x="55" y="3752" width="3510" height="37" fill="#ffffff" stroke="#8b96a1" stroke-width="0.6"/>
+<rect x="55" y="3752" width="40" height="22" fill="#f0f0f0" stroke="#66717c" stroke-width="0.6"/>
+<text x="62" y="3767" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">ref</text>
+<text x="105" y="3770" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Turn 6 penalties/completion/result check run normally. Turn 7 registers Regular #3, resolves the opening, seats #3 with Host, takes its Pasta order and prepares the first unit. VIP #2 remains ready to pay.</text>
+<polyline points="280.00,3818.00 480.00,3818.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,3818 469.0,3823.0 469.0,3813.0" fill="#20252b" stroke="#20252b"/>
+<rect x="323.89501953125" y="3793.5" width="112.2099609375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="326.89501953125" y="3806" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">79. finishTurn() [turn 7]</text>
+<polyline points="480.00,3848.00 2080.00,3848.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,3848 2069.0,3853.0 2069.0,3843.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1227.0916748046875" y="3823.5" width="105.816650390625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1230.0916748046875" y="3836" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">80. advanceEating(7)</text>
+<polyline points="480.00,3878.00 1080.00,3878.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,3878 1069.0,3883.0 1069.0,3873.0" fill="#20252b" stroke="#20252b"/>
+<rect x="719.5191650390625" y="3853.5" width="120.96166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="722.5191650390625" y="3866" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">81. processPayment(r,7)</text>
+<polyline points="1080.00,3908.00 1880.00,3908.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1880,3908 1869.0,3913.0 1869.0,3903.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1419.5191650390625" y="3883.5" width="120.96166992187501" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1422.5191650390625" y="3896" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">82. processPayment(r,7)</text>
+<polyline points="1880.00,3938.00 2080.00,3938.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,3938 2069.0,3943.0 2069.0,3933.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1896.460693359375" y="3913.5" width="167.07861328125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1899.460693359375" y="3926" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">83. findOldestPayableCustomer(7)</text>
+<polyline points="2080.00,3981.00 1880.00,3981.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="1891.00,3976.00 1880.00,3981.00 1891.00,3986.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="1888.2857666015625" y="3943.5" width="183.428466796875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1891.2857666015625" y="3956" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">84. customerId=2 [readyToPayTurn=6</text>
+<rect x="1968.0970458984375" y="3957.5" width="23.805908203125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1971.0970458984375" y="3970" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">&lt; 7]</text>
+<polyline points="1880.00,4011.00 2080.00,4011.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,4011 2069.0,4016.0 2069.0,4006.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1924.18212890625" y="3986.5" width="111.6357421875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1927.18212890625" y="3999" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">85. settlePayment(2,7)</text>
+<polyline points="2080.00,4041.00 3080.00,4041.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3080,4041 3069.0,4046.0 3069.0,4036.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2462.304931640625" y="4016.5" width="235.39013671875003" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2465.304931640625" y="4029" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">86. markPaid(7,satisfaction) [1080,100 / 1350,95]</text>
+<polyline points="2080.00,4071.00 2480.00,4071.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2480,4071 2469.0,4076.0 2469.0,4066.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2190.1981201171875" y="4046.5" width="179.603759765625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2193.1981201171875" y="4059" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">87. pay() [READY_TO_PAY -&gt; PAID]</text>
+<polyline points="2080.00,4101.00 3280.00,4101.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3280,4101 3269.0,4106.0 3269.0,4096.0" fill="#20252b" stroke="#20252b"/>
+<rect x="2574.2891845703125" y="4076.5" width="211.421630859375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="2577.2891845703125" y="4089" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">88. removeCustomer(vip) [Table 2 released]</text>
+<rect x="55" y="4114" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="4132" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Revenue and average use the locked paid bill and recorded satisfaction. Happy Hour expiration does not recalculate the order. Normal branch: $10.80, satisfaction 100. Alternative: $13.50, satisfaction 95.</text>
+<rect x="35" y="4160" width="3550" height="36" fill="#edf0f3" stroke="#c4cbd2" stroke-width="0.6"/>
+<text x="47" y="4184" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" font-style="normal" fill="#20252b">TURNS 8-18 - remaining mixed customers, combos and final result</text>
+<text x="100" y="4224" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[each remaining turn, up to turn 18]</text>
+<rect x="55" y="4258" width="3510" height="37" fill="#ffffff" stroke="#8b96a1" stroke-width="0.6"/>
+<rect x="55" y="4258" width="40" height="22" fill="#f0f0f0" stroke="#66717c" stroke-width="0.6"/>
+<text x="62" y="4273" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" font-style="normal" fill="#20252b">ref</text>
+<text x="105" y="4276" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Actual stage3-victory priorities: Host seats first queued customer; Waiter serves, otherwise takes order, otherwise seats; Chef prepares the first eligible order. New combos follow the same Order/Chef/Waiter/Cashier lifecycle.</text>
+<polyline points="280.00,4324.00 480.00,4324.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="480,4324 469.0,4329.0 469.0,4319.0" fill="#20252b" stroke="#20252b"/>
+<rect x="341.69580078125" y="4299.5" width="76.6083984375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="344.69580078125" y="4312" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">89. finishTurn()</text>
+<polyline points="480.00,4354.00 2080.00,4354.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,4354 2069.0,4359.0 2069.0,4349.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1202.8770751953125" y="4329.5" width="154.245849609375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1205.8770751953125" y="4342" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">90. advanceEating(currentTurn)</text>
+<polyline points="480.00,4384.00 1080.00,4384.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="1080,4384 1069.0,4389.0 1069.0,4379.0" fill="#20252b" stroke="#20252b"/>
+<rect x="695.3045654296875" y="4359.5" width="169.390869140625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="698.3045654296875" y="4372" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">91. processPayment(r,currentTurn)</text>
+<polyline points="480.00,4414.00 2080.00,4414.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="2080,4414 2069.0,4419.0 2069.0,4409.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1124.3988037109375" y="4389.5" width="311.202392578125" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1127.3988037109375" y="4402" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">92. applyWaitingPenalty(currentTurn); completeTurn(currentTurn)</text>
+<polyline points="480.00,4444.00 3480.00,4444.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="3480,4444 3469.0,4449.0 3469.0,4439.0" fill="#20252b" stroke="#20252b"/>
+<rect x="1908.4346923828125" y="4419.5" width="143.130615234375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1911.4346923828125" y="4432" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">93. evaluate(r.getSummary())</text>
+<text x="100" y="4472" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[turnsUsed &lt; 18]</text>
+<polyline points="3480.00,4523.00 480.00,4523.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="491.00,4518.00 480.00,4523.00 491.00,4528.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="1930.3165283203125" y="4498.5" width="99.366943359375" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1933.3165283203125" y="4511" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">94. IN_PROGRESS</text>
+<text x="60" y="4551" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" font-style="normal" fill="#20252b">[turnsUsed == 18]</text>
+<polyline points="3480.00,4602.00 480.00,4602.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="491.00,4597.00 480.00,4602.00 491.00,4607.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="1847.9930419921875" y="4577.5" width="264.013916015625" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="1850.9930419921875" y="4590" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">95. VICTORY [paid&gt;=4, revenue&gt;=4500, average&gt;=60]</text>
+<polyline points="480.00,4632.00 280.00,4632.00" fill="none" stroke="#66717c" stroke-width="1" stroke-linejoin="round" stroke-dasharray="5 3"/>
+<polyline points="291.00,4627.00 280.00,4632.00 291.00,4637.00" fill="none" stroke="#20252b" stroke-width="1" stroke-linejoin="round"/>
+<rect x="286.84765625" y="4607.5" width="186.3046875" height="15.5" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="289.84765625" y="4620" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="normal" font-style="normal" fill="#59616b">96. GameView {FINISHED, VICTORY}</text>
+<rect x="55" y="4645" width="3510" height="37" fill="#f6f9fc" stroke="#8b96a1" stroke-width="0.6"/>
+<text x="67" y="4663" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#20252b">Both full runs pay 5 customers. Activate on turn 4: $83.70, average 87.20. Keep unused with identical service priorities: $86.40, average 86.20. The choice changes money and satisfaction, not the victory label in these runs. Critic #6 cannot pay by turn 18.</text>
+<text x="35" y="4744" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" font-style="normal" fill="#59616b">Verified normal replay: 5 paid / $83.70 / 87.20. Same Stage 3 service priorities without Happy Hour: 5 paid / $86.40 / 86.20. Both complete 18 turns.</text>
+</svg>

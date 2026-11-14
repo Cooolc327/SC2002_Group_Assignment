@@ -1,0 +1,10 @@
+{
+  "source_session_filename": "rollout-2026-10-25T14-07-59-01a171ac-4ad0-7053-a39a-a46a3a3234c7.jsonl",
+  "source_session_sha256_at_export": "3b31f6af9834e20d051cf67a69a09ace4b337584f373cbde4f537203546d1908",
+  "start_utc": "2026-11-13T13:55:56.949Z",
+  "cutoff_utc": "2026-11-13T14:09:26.015Z",
+  "visible_messages": 5,
+  "messages_sha256": "b8ec8fe0e41cf3b4c120436371c67f38f77147218aa617467614e6a1d2221730",
+  "chat_sha256": "53c13cd3b3187256690339be3b7f67e3c7d59ca15951b7040f5a29f58abfb03b",
+  "scope": "User prompts and visible assistant text for diagram/change-document work; verbatim canonical JSON, trailing-whitespace-normalized Markdown; excludes later messages, hidden reasoning, system/developer content and tool payloads."
+}

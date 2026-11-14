@@ -1,6 +1,7 @@
 package view;
 
 import contracts.ChefAction;
+import contracts.HostAction;
 import contracts.OrderPort;
 import contracts.WaiterAction;
 import control.GameResult;
@@ -12,7 +13,8 @@ import java.util.List;
 public record GameView(int turn, TurnPhase phase, List<CustomerView> customers,
                        List<Integer> waitingCustomerIds, List<TableView> tables,
                        List<OrderView> orders, List<MenuItemView> menu,
-                       StaffView staff, GameSummary summary, GameResult result) {
+                       StaffView staff, GameSummary summary, GameResult result,
+                       boolean stage3Enabled, HappyHourView happyHour) {
     public GameView {
         customers = List.copyOf(customers);
         waitingCustomerIds = List.copyOf(waitingCustomerIds);
@@ -26,6 +28,8 @@ public record GameView(int turn, TurnPhase phase, List<CustomerView> customers,
 
     public record TableView(int id, Integer customerId) {}
 
+    public record HappyHourView(boolean canActivate, boolean used, int remainingTurns) {}
+
     public record MenuItemView(String name, int priceCents, int preparationUnits) {}
 
     public record OrderView(int id, int customerId, String itemName, int billCents,
@@ -34,10 +38,12 @@ public record GameView(int turn, TurnPhase phase, List<CustomerView> customers,
                             Integer servedTurn, Integer paidTurn,
                             Integer satisfactionAtPayment) {}
 
-    public record StaffView(boolean waiterAvailable, boolean chefAvailable,
+    public record StaffView(boolean hostAvailable, List<HostAction> hostOptions,
+                            boolean waiterAvailable, boolean chefAvailable,
                             boolean cashierAvailable, List<WaiterAction> waiterOptions,
                             List<ChefAction> chefOptions) {
         public StaffView {
+            hostOptions = List.copyOf(hostOptions);
             waiterOptions = List.copyOf(waiterOptions);
             chefOptions = List.copyOf(chefOptions);
         }

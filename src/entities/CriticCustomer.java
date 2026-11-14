@@ -23,9 +23,9 @@ public class CriticCustomer extends Customer {
 
     @Override
     public MenuItem chooseItem(Menu menu){
-        MenuItem best = menu.getItems().get(0);
+        MenuItem best = menu.getOrderableItems().get(0);
 
-        for (MenuItem item : menu.getItems()){
+        for (MenuItem item : menu.getOrderableItems()){
             if (item.getPrepUnits() > best.getPrepUnits()){
                 best = item;
             }

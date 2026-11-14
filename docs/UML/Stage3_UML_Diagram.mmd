@@ -1,0 +1,258 @@
+classDiagram
+direction LR
+class Main {
+  +main(String[] args) void$
+}
+class RestaurantCLI {
+  -Scanner in
+  +run() void
+  -chooseTurnStart(GameView view) void
+  -chooseHostAction(GameView view) void
+}
+class GameController {
+  -int currentTurn
+  -TurnPhase phase
+  +startTurn() GameView
+  +submitTurnStartDecision(boolean activate) ActionResult
+  +submitHostAction(HostAction action) ActionResult
+  +submitWaiterAction(WaiterAction action) ActionResult
+  +submitChefAction(ChefAction action) ActionResult
+  +finishTurn() GameView
+  +getView() GameView
+}
+class Restaurant {
+  -boolean stage3Enabled
+  -int currentTurn
+  -int lastTurnStartPolicyTurn
+  +Restaurant(OrderPort.Factory factory, boolean stage3Enabled)
+  +beginTurn(int turn) void
+  +registerArrival(Customer customer) void
+  +resolveTurnStart(boolean activate) ActionResult
+  +seatCustomer(int customerId, int tableId) ActionResult
+  +placeOrder(int customerId) ActionResult
+  +advancePreparation(int orderId, int turn) ActionResult
+  +serveOrder(int orderId, int turn) ActionResult
+  +settlePayment(int customerId, int turn) ActionResult
+  +applyWaitingPenalty(int turn) void
+  +getSummary() GameSummary
+}
+class HappyHourPolicy {
+  -Integer activationTurn
+  +int DURATION_TURNS$
+  +int SATISFACTION_RECOVERY$
+  +activate(int turn) void
+  +hasBeenUsed() boolean
+  +remainingTurns(int turn) int
+  +isActive(int turn) boolean
+}
+class StaffGateway {
+  <<interface>>
+  +executeHost(HostAction action, Restaurant restaurant, int turn) ActionResult
+  +executeWaiter(WaiterAction action, Restaurant restaurant, int turn) ActionResult
+  +executeChef(ChefAction action, Restaurant restaurant, int turn) ActionResult
+  +processPayment(Restaurant restaurant, int turn) ActionResult
+}
+class StaffTeam
+class Host {
+  -int lastActionTurn
+  +execute(HostAction action, Restaurant restaurant, int turn) ActionResult
+}
+class Waiter {
+  -int lastActionTurn
+  +execute(WaiterAction action, Restaurant restaurant, int turn) ActionResult
+}
+class Chef {
+  -int lastActionTurn
+  +execute(ChefAction action, Restaurant restaurant, int turn) ActionResult
+}
+class Cashier {
+  -int lastActionTurn
+  +processPayment(Restaurant restaurant, int turn) ActionResult
+}
+class Customer {
+  <<abstract>>
+  -int satisfaction
+  -CustomerState state
+  +chooseItem(Menu menu) MenuItem
+  +getBillDiscountPercent() int
+  +recoverWaitingSatisfaction(int points) void
+  +applyWaitingPenalty() void
+  +seat() void
+  +placeOrder() void
+  +serve(int turn) void
+  +finishedEating(int turn) boolean
+  +pay() void
+  +abandon() void
+}
+class RegularCustomer
+class VipCustomer {
+  +getBillDiscountPercent() int
+}
+class CriticCustomer {
+  +chooseItem(Menu menu) MenuItem
+}
+class CustomerFactory {
+  +createCustomer(int id) Customer
+  +getSeed() long
+}
+class SeatingArea {
+  +seat(Customer customer, int tableId) Table
+  +removeCustomer(Customer customer) void
+}
+class Table {
+  -int id
+  +isFree() boolean
+}
+class WaitingQueue {
+  +add(Customer customer) void
+  +remove(Customer customer) boolean
+}
+class Menu {
+  -boolean combosEnabled
+  +getItems() List~MenuItem~
+  +getCombos() List~ComboMeal~
+  +getOrderableItems() List~MenuItem~
+}
+class MenuItem {
+  -String name
+  -int priceCents
+  -int prepUnits
+  +getPriceCents() int
+  +getPrepUnits() int
+}
+class ComboMeal {
+  -List~MenuItem~ components
+  +ComboMeal(MenuItem first, MenuItem second)
+  +getComponents() List~MenuItem~
+}
+class Discount {
+  +apply(int cents, int percent) int$
+}
+class BillCalculator {
+  +billFor(Customer customer, MenuItem item) int$
+  +billFor(Customer customer, MenuItem item, boolean active) int$
+}
+class OrderPort {
+  <<interface>>
+  +advanceOneUnit(int turn) void
+  +markServed(int turn) void
+  +markPaid(int turn, int satisfaction) void
+  +cancel() void
+}
+class Order {
+  -int billCents
+  -int preparedUnits
+  -Integer readyTurn
+  -Integer servedTurn
+  -Integer paidTurn
+}
+class GameView {
+  <<record>>
+  -int turn
+  -boolean stage3Enabled
+}
+class HappyHourView {
+  <<record>>
+  -boolean canActivate
+  -boolean used
+  -int remainingTurns
+}
+class StaffView {
+  <<record>>
+  -boolean hostAvailable
+  -List~HostAction~ hostOptions
+}
+class GameSummary {
+  <<record>>
+  -int paidCount
+  -long revenueCents
+  -int paidSatisfactionSum
+  +averagePaidSatisfaction() OptionalDouble
+}
+class HostAction {
+  <<record>>
+  -int customerId
+  -int tableId
+  +seat(int customerId, int tableId) HostAction$
+  +waitTurn() HostAction$
+}
+class TurnPhase {
+  <<enumeration>>
+  NOT_STARTED
+  AWAIT_TURN_START
+  AWAIT_HOST
+  AWAIT_WAITER
+  AWAIT_CHEF
+  AUTO
+  TURN_ENDED
+  FINISHED
+}
+class CustomerState {
+  <<enumeration>>
+  WAITING
+  SEATED
+  ORDERED
+  SERVED
+  READY_TO_PAY
+  PAID
+  LEFT
+}
+class OrderStatus {
+  <<enumeration>>
+  PLACED
+  PREPARING
+  READY
+  SERVED
+  PAID
+  CANCELLED
+}
+Main ..> RestaurantCLI : wires
+Main ..> CustomerFactory : method reference
+RestaurantCLI --> GameController
+GameController --> Restaurant
+GameController --> StaffGateway
+GameController ..> GameView : returns detached snapshots
+GameController --> TurnPhase
+CustomerFactory ..> Customer : creates via injected function
+Restaurant "1" *-- "1" HappyHourPolicy : happyHour
+Restaurant "1" *-- "1" Menu : menu
+Restaurant "1" *-- "1" SeatingArea : seatingArea
+Restaurant "1" o-- "0..*" Customer : customers
+Restaurant "1" *-- "0..*" OrderPort : orders
+Restaurant ..> BillCalculator : locks bill at placement
+StaffTeam ..|> StaffGateway
+StaffTeam "1" *-- "1" Host
+StaffTeam "1" *-- "1" Waiter
+StaffTeam "1" *-- "1" Chef
+StaffTeam "1" *-- "1" Cashier
+Host ..> Restaurant : shared seating validation
+Host ..> HostAction
+Waiter ..> Restaurant
+Chef ..> Restaurant
+Cashier ..> Restaurant
+RegularCustomer --|> Customer
+VipCustomer --|> Customer
+CriticCustomer --|> Customer
+Customer --> CustomerState
+Customer ..> Menu : polymorphic choice
+SeatingArea "1" *-- "2" Table
+SeatingArea "1" *-- "1" WaitingQueue
+Table "0..1" --> "0..1" Customer : occupant
+WaitingQueue "0..1" o-- "0..*" Customer : queued
+Menu "1" *-- "3" MenuItem : base items
+Menu "1" *-- "3" ComboMeal : combos
+ComboMeal --|> MenuItem
+ComboMeal "0..*" --> "2" MenuItem : shared components
+ComboMeal ..> Discount
+BillCalculator ..> Customer : discount dispatch
+BillCalculator ..> Discount
+Order ..|> OrderPort
+Order "0..*" --> "1" MenuItem : item
+Order --> OrderStatus : status
+GameView *-- HappyHourView
+GameView *-- StaffView
+GameView --> GameSummary
+note for Restaurant "Only key members shown. OrderPort.Factory supplies fresh orders. No broad rewrite of the Order lifecycle."
+note for Customer "Encapsulation: guarded state and satisfaction operations. Polymorphism: loss, food choice, VIP discount."
+note for ComboMeal "Two shared component references; prep units add; combined price is discounted by 10%."
+note for OrderStatus "Java qualified name: contracts.OrderPort.Status"

@@ -1,0 +1,80 @@
+{
+  "exclusive_start_utc": "2026-11-13T14:09:26.015Z",
+  "inclusive_cutoff_utc": "2026-11-13T17:06:58.459Z",
+  "message_count": 12,
+  "role_counts": {
+    "user": 3,
+    "assistant": 9
+  },
+  "canonical_json": "messages-03.json",
+  "canonical_json_sha256": "301a972051a2c6a66f51e4998e8297eae8fdb4b2cc28b1490a66c00b53bd5ae8",
+  "excluded": [
+    "system and developer instructions",
+    "private reasoning",
+    "tool calls and payloads",
+    "environment metadata",
+    "messages after cutoff"
+  ],
+  "ordered_messages": [
+    {
+      "index": 1,
+      "timestamp_utc": "2026-11-13T14:12:50.374Z",
+      "content_sha256": "7de5d48d8329d7a96ad132fa54a90f2129c85ca8c5c8914955ea630aee1b49fe"
+    },
+    {
+      "index": 2,
+      "timestamp_utc": "2026-11-13T14:14:15.623Z",
+      "content_sha256": "0ca210e53ea0aff3013a2c8fab9984de921a5d70abcc04a545d663ed6fbe49bc"
+    },
+    {
+      "index": 3,
+      "timestamp_utc": "2026-11-13T17:00:52.097Z",
+      "content_sha256": "545cd971a1b5714341afdf8a4aaad8c67fafa4bbd312e78d9be69f226ff087a2"
+    },
+    {
+      "index": 4,
+      "timestamp_utc": "2026-11-13T17:00:56.518Z",
+      "content_sha256": "25707110ac6b02ccbb28578d8413a513c438d1b20b3cce2fb46e9ad363baeab0"
+    },
+    {
+      "index": 5,
+      "timestamp_utc": "2026-11-13T17:01:28.554Z",
+      "content_sha256": "d34891db078f43f7e4d3f995de11173096f74ef6fd13843cac40e476bb6e321b"
+    },
+    {
+      "index": 6,
+      "timestamp_utc": "2026-11-13T17:01:55.134Z",
+      "content_sha256": "9fed4c3e63ec2ddc50da8a3fb4dbed7cbd94f765aa472b6af88d9d91f9aea206"
+    },
+    {
+      "index": 7,
+      "timestamp_utc": "2026-11-13T17:04:40.222Z",
+      "content_sha256": "be457aae6b0921bf9e68faf82e4468139659317f8519f6a0cd05a4933ddde92b"
+    },
+    {
+      "index": 8,
+      "timestamp_utc": "2026-11-13T17:04:54.566Z",
+      "content_sha256": "a80c1dec7dbc6f6b1a4e8251613aa1c453556288715959575fc22af7ce466d5d"
+    },
+    {
+      "index": 9,
+      "timestamp_utc": "2026-11-13T17:05:24.846Z",
+      "content_sha256": "36ce75e9d38227511d5d715a2096e95ad928a0cba6257ea59ec58a28ec347999"
+    },
+    {
+      "index": 10,
+      "timestamp_utc": "2026-11-13T17:05:28.078Z",
+      "content_sha256": "5dd70baf2aa9bbe2a47285d801962f79499bd1555c332a39d5b5212099bd0555"
+    },
+    {
+      "index": 11,
+      "timestamp_utc": "2026-11-13T17:05:43.086Z",
+      "content_sha256": "0665b5747fc04080e650da8a9b0afe340ba3be6833dd783590f3c70b65bb684b"
+    },
+    {
+      "index": 12,
+      "timestamp_utc": "2026-11-13T17:06:58.459Z",
+      "content_sha256": "d40ffac160377378934168e69a9b13e43bed86d63f835d1d374dbe8b2dff7e46"
+    }
+  ]
+}

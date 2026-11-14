@@ -4,6 +4,7 @@ import config.GameConfig;
 import contracts.ActionResult;
 import contracts.OrderPort;
 import contracts.ChefAction;
+import contracts.HostAction;
 import contracts.WaiterAction;
 import entities.Customer;
 import entities.CustomerState;
@@ -27,6 +28,8 @@ import view.GameView.TableView;
 
 /** Coordinates cross-entity changes; staff allowances belong to member D. */
 public final class Restaurant {
+    private final boolean stage3Enabled;
+    private final HappyHourPolicy happyHour = new HappyHourPolicy();
     private final Menu menu;
     private final SeatingArea seatingArea;
     private final OrderPort.Factory orderFactory;
@@ -37,9 +40,15 @@ public final class Restaurant {
     private int lastPenaltyTurn;
     private int lastPaymentTurn;
     private int nextOrderId = 1;
+    private int lastTurnStartPolicyTurn;
 
     public Restaurant(OrderPort.Factory orderFactory) {
-        this.menu = new Menu();
+        this(orderFactory, false);
+    }
+
+    public Restaurant(OrderPort.Factory orderFactory, boolean stage3Enabled) {
+        this.stage3Enabled = stage3Enabled;
+        this.menu = new Menu(stage3Enabled);
         this.seatingArea = new SeatingArea(GameConfig.TABLE_COUNT);
         this.orderFactory = Objects.requireNonNull(orderFactory, "orderFactory");
     }
@@ -65,7 +74,7 @@ public final class Restaurant {
     }
 
     public ActionResult seatCustomer(int customerId, int tableId) {
-        if (!isOpenTurn(currentTurn)) {
+        if (!isActionTurnOpen(currentTurn)) {
             return ActionResult.rejected("No active turn");
         }
         Customer customer = customers.get(customerId);
@@ -83,7 +92,7 @@ public final class Restaurant {
     }
 
     public ActionResult placeOrder(int customerId) {
-        if (!isOpenTurn(currentTurn)) {
+        if (!isActionTurnOpen(currentTurn)) {
             return ActionResult.rejected("No active turn");
         }
         Customer customer = customers.get(customerId);
@@ -92,11 +101,12 @@ public final class Restaurant {
             return ActionResult.rejected("Customer " + customerId + " must be seated without an order");
         }
         MenuItem item = customer.chooseItem(menu);
-        if (!menu.getItems().contains(item)) {
+        if (!menu.getOrderableItems().contains(item)) {
             throw new IllegalStateException("Customer chose an item outside the menu");
         }
         // The bill includes the customer's discount and is fixed when ordering.
-        int billCents = BillCalculator.billFor(customer, item);
+        int billCents = BillCalculator.billFor(customer, item,
+                stage3Enabled && happyHour.isActive(currentTurn));
         OrderPort order = orderFactory.create(nextOrderId, customer, item, billCents);
         validateNewOrder(order, customerId, item, billCents);
         customer.placeOrder();
@@ -106,7 +116,7 @@ public final class Restaurant {
     }
 
     public ActionResult advancePreparation(int orderId, int turn) {
-        if (!isOpenTurn(turn)) {
+        if (!isActionTurnOpen(turn)) {
             return ActionResult.rejected("Preparation requires the current active turn");
         }
         OrderPort order = orders.get(orderId);
@@ -119,7 +129,7 @@ public final class Restaurant {
     }
 
     public ActionResult serveOrder(int orderId, int turn) {
-        if (!isOpenTurn(turn)) {
+        if (!isActionTurnOpen(turn)) {
             return ActionResult.rejected("Serving requires the current active turn");
         }
         OrderPort order = orders.get(orderId);
@@ -247,7 +257,7 @@ public final class Restaurant {
     }
 
     public List<MenuItemView> getMenuViews() {
-        return menu.getItems().stream().map(i -> new MenuItemView(i.getName(),
+        return menu.getOrderableItems().stream().map(i -> new MenuItemView(i.getName(),
                 i.getPriceCents(), i.prepUnits())).toList();
     }
 
@@ -273,6 +283,55 @@ public final class Restaurant {
             }
         }
         return List.copyOf(options);
+    }
+
+    public List<HostAction> getHostOptions() {
+        List<HostAction> options = new ArrayList<>();
+        options.add(HostAction.waitTurn());
+        for (WaiterAction action : getWaiterOptions(currentTurn)) {
+            if (action.type() == WaiterAction.Type.SEAT) {
+                options.add(HostAction.seat(action.customerId(), action.tableId()));
+            }
+        }
+        return List.copyOf(options);
+    }
+
+    /** Resolve once, before any staff action. A rejected activation performs no recovery. */
+    public ActionResult resolveTurnStart(boolean activateHappyHour) {
+        if (!stage3Enabled || !isOpenTurn(currentTurn) || lastTurnStartPolicyTurn == currentTurn) {
+            return ActionResult.rejected("Resolve Happy Hour only at the start of a Stage 3 turn");
+        }
+        if (activateHappyHour && happyHour.hasBeenUsed()) {
+            return ActionResult.rejected("Happy Hour has already been used this game");
+        }
+        if (activateHappyHour) {
+            happyHour.activate(currentTurn);
+        }
+        if (happyHour.isActive(currentTurn)) {
+            for (Customer customer : customers.values()) {
+                customer.recoverWaitingSatisfaction(HappyHourPolicy.SATISFACTION_RECOVERY);
+            }
+        }
+        lastTurnStartPolicyTurn = currentTurn;
+        return ActionResult.success(happyHour.isActive(currentTurn)
+                ? "Happy Hour active: waiting customers recover 15 satisfaction (maximum 100)"
+                : "Turn start complete; Happy Hour is inactive");
+    }
+
+    public boolean isStage3Enabled() {
+        return stage3Enabled;
+    }
+
+    public boolean hasUsedHappyHour() {
+        return happyHour.hasBeenUsed();
+    }
+
+    public int getHappyHourRemainingTurns() {
+        return happyHour.remainingTurns(currentTurn);
+    }
+
+    public boolean isActionTurnOpen(int turn) {
+        return isOpenTurn(turn) && (!stage3Enabled || lastTurnStartPolicyTurn == turn);
     }
 
     public List<ChefAction> getChefOptions() {

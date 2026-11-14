@@ -1,0 +1,2580 @@
+{
+  "participants": [
+    [
+      "M",
+      "Manager",
+      "<<actor>>"
+    ],
+    [
+      "CLI",
+      "cli:RestaurantCLI",
+      "<<boundary>>"
+    ],
+    [
+      "C",
+      "game:GameController",
+      "<<control>>"
+    ],
+    [
+      "Fn",
+      "factoryFn:IntFunction",
+      "<<method reference>>"
+    ],
+    [
+      "F",
+      "customers:CustomerFactory",
+      "<<factory>>"
+    ],
+    [
+      "S",
+      "staff:StaffTeam",
+      "<<StaffGateway>>"
+    ],
+    [
+      "H",
+      "host:Host",
+      "<<staff>>"
+    ],
+    [
+      "W",
+      "waiter:Waiter",
+      "<<staff>>"
+    ],
+    [
+      "Ch",
+      "chef:Chef",
+      "<<staff>>"
+    ],
+    [
+      "Ca",
+      "cashier:Cashier",
+      "<<staff>>"
+    ],
+    [
+      "R",
+      "restaurant:Restaurant",
+      "<<domain>>"
+    ],
+    [
+      "P",
+      "happyHour:HappyHourPolicy",
+      "<<policy>>"
+    ],
+    [
+      "V",
+      "vip:VipCustomer",
+      "<<created on turn 4>>"
+    ],
+    [
+      "B",
+      "BillCalculator",
+      "<<utility>>"
+    ],
+    [
+      "OFn",
+      "orderFn:OrderPort.Factory",
+      "<<Order::new>>"
+    ],
+    [
+      "O",
+      "order2:Order",
+      "<<created on turn 4>>"
+    ],
+    [
+      "A",
+      "seating:SeatingArea",
+      "<<entity>>"
+    ],
+    [
+      "G",
+      "GameResult",
+      "<<enumeration>>"
+    ]
+  ],
+  "events": [
+    {
+      "kind": "note",
+      "label": "Default seed 24369, entering turn 4 of stage3-victory.txt. Regular #1 is READY_TO_PAY from turn 3, at Table 1; Table 2 is free. VIP #2 arrives now. Normal branch activates Happy Hour on turn 4. Alternative keeps it unused with the same service priorities. All 18 turns still run."
+    },
+    {
+      "kind": "section",
+      "label": "TURN 4 - arrival, manager pricing choice and independent Host seating"
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "Fn",
+      "label": "apply(2) [arrival turn]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "F",
+      "label": "createCustomer(2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "F",
+      "b": "V",
+      "label": "VipCustomer(2)",
+      "ret": false,
+      "create": true
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "C",
+      "label": "vip {WAITING, satisfaction=100}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "registerArrival(vip)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "addToQueue(vip)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {AWAIT_TURN_START, canActivate=true}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[manager chooses Activate]",
+      "op": "alt"
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Happy Hour choice = 1",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitTurnStartDecision(true)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "resolveTurnStart(true)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "hasBeenUsed() = false; activate(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "isActive(4) = true",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[each registered customer; Customer guards recovery eligibility]",
+      "op": "loop"
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "recoverWaitingSatisfaction(15) [VIP 100 -> 100]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "Customer #1 is READY_TO_PAY, so receives no recovery. Each turn-start policy is applied only once; invalid or repeated choices leave state and staff capacity unchanged."
+    },
+    {
+      "kind": "divider",
+      "label": "[manager keeps Happy Hour unused]"
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Happy Hour choice = 0",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitTurnStartDecision(false)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "resolveTurnStart(false)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "ActionResult accepted; phase=AWAIT_HOST",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Host: seat VIP #2 at Table 2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitHostAction(HostAction.seat(2,2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeHost(action, r, 4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "H",
+      "label": "execute(action, r, 4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "H",
+      "b": "R",
+      "label": "seatCustomer(2,2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "seat(vip,2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "A",
+      "b": "V",
+      "label": "seat() [WAITING -> SEATED]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "accepted; phase=AWAIT_WAITER; fresh Waiter options",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "section",
+      "label": "TURN 4 - order choice, locked VIP/Happy Hour bill, READY and first waiting loss"
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Waiter: take VIP order",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(WaiterAction.takeOrder(2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(action,r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(action,r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "placeOrder(2)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "chooseItem(menu)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "Burger [customer choice, not manager choice]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "isActive(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "B",
+      "label": "billFor(vip,Burger,happyHourActive)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "V",
+      "label": "getBillDiscountPercent() = 10",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[Happy Hour active]",
+      "op": "alt"
+    },
+    {
+      "kind": "note",
+      "label": "Discount.apply: 1500 -> VIP 1350 -> Happy Hour 1080 cents, rounding each step. New orders only."
+    },
+    {
+      "kind": "divider",
+      "label": "[Happy Hour unused]"
+    },
+    {
+      "kind": "note",
+      "label": "Customer discount only: 1500 -> 1350 cents. Existing orders remain unchanged in either branch."
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "R",
+      "label": "billCents = 1080 [normal] / 1350 [alternative]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "OFn",
+      "label": "create(2,vip,Burger,billCents)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "OFn",
+      "b": "O",
+      "label": "Order(2,vip,Burger,billCents)",
+      "ret": false,
+      "create": true
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "placeOrder() [SEATED -> ORDERED]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "accepted; phase=AWAIT_CHEF",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Chef: prepare order 2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitChefAction(ChefAction.prepare(2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeChef(action,r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ch",
+      "label": "execute(action,r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ch",
+      "b": "R",
+      "label": "advancePreparation(2,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "advanceOneUnit(4) [1/1 -> READY; readyTurn=4]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "Chef may prepare the order taken this turn. The Waiter has already acted; a dish becoming READY on turn 4 cannot be served until a later turn."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Automatic cashier follows Restaurant.findOldestPayableCustomer / settlePayment: customer #1 pays $9.00 on turn 4; VIP #2 is not ready. The pre-existing Salad bill is unchanged by Happy Hour."
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "applyWaitingPenalty() [100 -> 95]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "completeTurn(4)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(r.getSummary())",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS [4 < 18]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "section",
+      "label": "TURN 5 - one turn remaining, recovery and later-turn serving"
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitTurnStartDecision(false) [no reactivation]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "resolveTurnStart(false)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[Happy Hour activated on turn 4]",
+      "op": "alt"
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "isActive(5)=true; remainingTurns(5)=1",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "recoverWaitingSatisfaction(15) [95 -> 100, cap 100]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "divider",
+      "label": "[Happy Hour remains unused]"
+    },
+    {
+      "kind": "note",
+      "label": "No recovery; VIP satisfaction remains 95."
+    },
+    {
+      "kind": "ref",
+      "label": "CLI displays updated GameView. Host chooses Wait through Controller -> StaffTeam -> Host; its capacity remains independent of Waiter."
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Waiter: serve order 2",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(WaiterAction.serve(2))",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(action,r,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(action,r,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "serveOrder(2,5)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markServed(5) [readyTurn=4 < 5]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "serve(5) [ORDERED -> SERVED]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Chef chooses Wait. finishTurn(5) cannot finish VIP eating in the same turn; no VIP payment or waiting loss occurs after service. completeTurn(5); GameResult remains IN_PROGRESS."
+    },
+    {
+      "kind": "section",
+      "label": "TURNS 6-7 - eating, deferred payment, locked bill and table release"
+    },
+    {
+      "kind": "ref",
+      "label": "Turn 6: startTurn; resolveTurnStart(false); Happy Hour remaining is 0. Host/Waiter/Chef choose Wait. These follow the same guarded interfaces."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn() [turn 6]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "finishedEating(6) [servedTurn=5 < 6]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "READY_TO_PAY; readyToPayTurn=6",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(6)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "VIP excluded [readyToPayTurn is not < 6]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "ref",
+      "label": "Turn 6 penalties/completion/result check run normally. Turn 7 registers Regular #3, resolves the opening, seats #3 with Host, takes its Pasta order and prepares the first unit. VIP #2 remains ready to pay."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn() [turn 7]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "customerId=2 [readyToPayTurn=6 < 7]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "settlePayment(2,7)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markPaid(7,satisfaction) [1080,100 / 1350,95]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "pay() [READY_TO_PAY -> PAID]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "removeCustomer(vip) [Table 2 released]",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "Revenue and average use the locked paid bill and recorded satisfaction. Happy Hour expiration does not recalculate the order. Normal branch: $10.80, satisfaction 100. Alternative: $13.50, satisfaction 95."
+    },
+    {
+      "kind": "section",
+      "label": "TURNS 8-18 - remaining mixed customers, combos and final result"
+    },
+    {
+      "kind": "frame",
+      "label": "[each remaining turn, up to turn 18]",
+      "op": "loop"
+    },
+    {
+      "kind": "ref",
+      "label": "Actual stage3-victory priorities: Host seats first queued customer; Waiter serves, otherwise takes order, otherwise seats; Chef prepares the first eligible order. New combos follow the same Order/Chef/Waiter/Cashier lifecycle."
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(currentTurn)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,currentTurn)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(currentTurn); completeTurn(currentTurn)",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(r.getSummary())",
+      "ret": false,
+      "create": false
+    },
+    {
+      "kind": "frame",
+      "label": "[turnsUsed < 18]",
+      "op": "alt"
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "divider",
+      "label": "[turnsUsed == 18]"
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "VICTORY [paid>=4, revenue>=4500, average>=60]",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {FINISHED, VICTORY}",
+      "ret": true,
+      "create": false
+    },
+    {
+      "kind": "note",
+      "label": "Both full runs pay 5 customers. Activate on turn 4: $83.70, average 87.20. Keep unused with identical service priorities: $86.40, average 86.20. The choice changes money and satisfaction, not the victory label in these runs. Critic #6 cannot pay by turn 18."
+    }
+  ],
+  "frames": [
+    {
+      "op": "alt",
+      "label": "[manager chooses Activate]",
+      "start": 11,
+      "end": 24,
+      "dividers": [
+        [
+          20,
+          "[manager keeps Happy Hour unused]"
+        ]
+      ]
+    },
+    {
+      "op": "loop",
+      "label": "[each registered customer; Customer guards recovery eligibility]",
+      "start": 17,
+      "end": 19,
+      "dividers": []
+    },
+    {
+      "op": "alt",
+      "label": "[Happy Hour active]",
+      "start": 44,
+      "end": 48,
+      "dividers": [
+        [
+          46,
+          "[Happy Hour unused]"
+        ]
+      ]
+    },
+    {
+      "op": "alt",
+      "label": "[Happy Hour activated on turn 4]",
+      "start": 75,
+      "end": 80,
+      "dividers": [
+        [
+          78,
+          "[Happy Hour remains unused]"
+        ]
+      ]
+    },
+    {
+      "op": "loop",
+      "label": "[each remaining turn, up to turn 18]",
+      "start": 112,
+      "end": 124,
+      "dividers": []
+    },
+    {
+      "op": "alt",
+      "label": "[turnsUsed < 18]",
+      "start": 119,
+      "end": 124,
+      "dividers": [
+        [
+          121,
+          "[turnsUsed == 18]"
+        ]
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "kind": "note",
+      "label": "Default seed 24369, entering turn 4 of stage3-victory.txt. Regular #1 is READY_TO_PAY from turn 3, at Table 1; Table 2 is free. VIP #2 arrives now. Normal branch activates Happy Hour on turn 4. Alternative keeps it unused with the same service priorities. All 18 turns still run.",
+      "y": 215,
+      "h": 49,
+      "lines": [
+        "Default seed 24369, entering turn 4 of stage3-victory.txt. Regular #1 is READY_TO_PAY from turn 3, at Table 1; Table 2 is free. VIP #2 arrives now. Normal branch activates Happy Hour on turn 4. Alternative keeps it unused with the same service priorities. All 18 turns still run."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 4 - arrival, manager pricing choice and independent Host seating",
+      "y": 264,
+      "h": 46,
+      "lines": [
+        "TURN 4 - arrival, manager pricing choice and independent Host seating"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false,
+      "y": 310,
+      "h": 30,
+      "lines": [
+        "startTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "Fn",
+      "label": "apply(2) [arrival turn]",
+      "ret": false,
+      "create": false,
+      "y": 340,
+      "h": 30,
+      "lines": [
+        "apply(2) [arrival turn]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "F",
+      "label": "createCustomer(2)",
+      "ret": false,
+      "create": false,
+      "y": 370,
+      "h": 30,
+      "lines": [
+        "createCustomer(2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "F",
+      "b": "V",
+      "label": "VipCustomer(2)",
+      "ret": false,
+      "create": true,
+      "y": 400,
+      "h": 65,
+      "lines": [
+        "VipCustomer(2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Fn",
+      "b": "C",
+      "label": "vip {WAITING, satisfaction=100}",
+      "ret": true,
+      "create": false,
+      "y": 465,
+      "h": 30,
+      "lines": [
+        "vip {WAITING, satisfaction=100}"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(4)",
+      "ret": false,
+      "create": false,
+      "y": 495,
+      "h": 30,
+      "lines": [
+        "beginTurn(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "registerArrival(vip)",
+      "ret": false,
+      "create": false,
+      "y": 525,
+      "h": 30,
+      "lines": [
+        "registerArrival(vip)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "addToQueue(vip)",
+      "ret": false,
+      "create": false,
+      "y": 555,
+      "h": 30,
+      "lines": [
+        "addToQueue(vip)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {AWAIT_TURN_START, canActivate=true}",
+      "ret": true,
+      "create": false,
+      "y": 585,
+      "h": 57,
+      "lines": [
+        "GameView",
+        "{AWAIT_TURN_START,",
+        "canActivate=true}"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[manager chooses Activate]",
+      "op": "alt",
+      "y": 642,
+      "h": 49,
+      "lines": [
+        "[manager chooses Activate]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Happy Hour choice = 1",
+      "ret": false,
+      "create": false,
+      "y": 691,
+      "h": 30,
+      "lines": [
+        "Happy Hour choice = 1"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitTurnStartDecision(true)",
+      "ret": false,
+      "create": false,
+      "y": 721,
+      "h": 30,
+      "lines": [
+        "submitTurnStartDecision(true)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "resolveTurnStart(true)",
+      "ret": false,
+      "create": false,
+      "y": 751,
+      "h": 30,
+      "lines": [
+        "resolveTurnStart(true)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "hasBeenUsed() = false; activate(4)",
+      "ret": false,
+      "create": false,
+      "y": 781,
+      "h": 30,
+      "lines": [
+        "hasBeenUsed() = false; activate(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "isActive(4) = true",
+      "ret": false,
+      "create": false,
+      "y": 811,
+      "h": 30,
+      "lines": [
+        "isActive(4) = true"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[each registered customer; Customer guards recovery eligibility]",
+      "op": "loop",
+      "y": 841,
+      "h": 49,
+      "lines": [
+        "[each registered customer; Customer guards recovery eligibility]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "recoverWaitingSatisfaction(15) [VIP 100 -> 100]",
+      "ret": false,
+      "create": false,
+      "y": 890,
+      "h": 30,
+      "lines": [
+        "recoverWaitingSatisfaction(15) [VIP 100 -> 100]"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Customer #1 is READY_TO_PAY, so receives no recovery. Each turn-start policy is applied only once; invalid or repeated choices leave state and staff capacity unchanged.",
+      "y": 920,
+      "h": 49,
+      "lines": [
+        "Customer #1 is READY_TO_PAY, so receives no recovery. Each turn-start policy is applied only once; invalid or repeated choices leave state and staff capacity unchanged."
+      ]
+    },
+    {
+      "kind": "divider",
+      "label": "[manager keeps Happy Hour unused]",
+      "y": 969,
+      "h": 49,
+      "lines": [
+        "[manager keeps Happy Hour unused]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Happy Hour choice = 0",
+      "ret": false,
+      "create": false,
+      "y": 1018,
+      "h": 30,
+      "lines": [
+        "Happy Hour choice = 0"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitTurnStartDecision(false)",
+      "ret": false,
+      "create": false,
+      "y": 1048,
+      "h": 30,
+      "lines": [
+        "submitTurnStartDecision(false)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "resolveTurnStart(false)",
+      "ret": false,
+      "create": false,
+      "y": 1078,
+      "h": 30,
+      "lines": [
+        "resolveTurnStart(false)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "ActionResult accepted; phase=AWAIT_HOST",
+      "ret": true,
+      "create": false,
+      "y": 1108,
+      "h": 43,
+      "lines": [
+        "ActionResult accepted;",
+        "phase=AWAIT_HOST"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Host: seat VIP #2 at Table 2",
+      "ret": false,
+      "create": false,
+      "y": 1151,
+      "h": 43,
+      "lines": [
+        "Choose Host: seat VIP #2 at Table",
+        "2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitHostAction(HostAction.seat(2,2))",
+      "ret": false,
+      "create": false,
+      "y": 1194,
+      "h": 30,
+      "lines": [
+        "submitHostAction(HostAction.seat(2,2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeHost(action, r, 4)",
+      "ret": false,
+      "create": false,
+      "y": 1224,
+      "h": 30,
+      "lines": [
+        "executeHost(action, r, 4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "H",
+      "label": "execute(action, r, 4)",
+      "ret": false,
+      "create": false,
+      "y": 1254,
+      "h": 30,
+      "lines": [
+        "execute(action, r, 4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "H",
+      "b": "R",
+      "label": "seatCustomer(2,2)",
+      "ret": false,
+      "create": false,
+      "y": 1284,
+      "h": 30,
+      "lines": [
+        "seatCustomer(2,2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "seat(vip,2)",
+      "ret": false,
+      "create": false,
+      "y": 1314,
+      "h": 30,
+      "lines": [
+        "seat(vip,2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "A",
+      "b": "V",
+      "label": "seat() [WAITING -> SEATED]",
+      "ret": false,
+      "create": false,
+      "y": 1344,
+      "h": 30,
+      "lines": [
+        "seat() [WAITING -> SEATED]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "accepted; phase=AWAIT_WAITER; fresh Waiter options",
+      "ret": true,
+      "create": false,
+      "y": 1374,
+      "h": 43,
+      "lines": [
+        "accepted; phase=AWAIT_WAITER;",
+        "fresh Waiter options"
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 4 - order choice, locked VIP/Happy Hour bill, READY and first waiting loss",
+      "y": 1417,
+      "h": 46,
+      "lines": [
+        "TURN 4 - order choice, locked VIP/Happy Hour bill, READY and first waiting loss"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Waiter: take VIP order",
+      "ret": false,
+      "create": false,
+      "y": 1463,
+      "h": 30,
+      "lines": [
+        "Choose Waiter: take VIP order"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(WaiterAction.takeOrder(2))",
+      "ret": false,
+      "create": false,
+      "y": 1493,
+      "h": 30,
+      "lines": [
+        "submitWaiterAction(WaiterAction.takeOrder(2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(action,r,4)",
+      "ret": false,
+      "create": false,
+      "y": 1523,
+      "h": 30,
+      "lines": [
+        "executeWaiter(action,r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(action,r,4)",
+      "ret": false,
+      "create": false,
+      "y": 1553,
+      "h": 30,
+      "lines": [
+        "execute(action,r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "placeOrder(2)",
+      "ret": false,
+      "create": false,
+      "y": 1583,
+      "h": 30,
+      "lines": [
+        "placeOrder(2)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "chooseItem(menu)",
+      "ret": false,
+      "create": false,
+      "y": 1613,
+      "h": 30,
+      "lines": [
+        "chooseItem(menu)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "Burger [customer choice, not manager choice]",
+      "ret": true,
+      "create": false,
+      "y": 1643,
+      "h": 30,
+      "lines": [
+        "Burger [customer choice, not manager choice]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "isActive(4)",
+      "ret": false,
+      "create": false,
+      "y": 1673,
+      "h": 30,
+      "lines": [
+        "isActive(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "B",
+      "label": "billFor(vip,Burger,happyHourActive)",
+      "ret": false,
+      "create": false,
+      "y": 1703,
+      "h": 30,
+      "lines": [
+        "billFor(vip,Burger,happyHourActive)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "V",
+      "label": "getBillDiscountPercent() = 10",
+      "ret": false,
+      "create": false,
+      "y": 1733,
+      "h": 30,
+      "lines": [
+        "getBillDiscountPercent() = 10"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[Happy Hour active]",
+      "op": "alt",
+      "y": 1763,
+      "h": 49,
+      "lines": [
+        "[Happy Hour active]"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Discount.apply: 1500 -> VIP 1350 -> Happy Hour 1080 cents, rounding each step. New orders only.",
+      "y": 1812,
+      "h": 49,
+      "lines": [
+        "Discount.apply: 1500 -> VIP 1350 -> Happy Hour 1080 cents, rounding each step. New orders only."
+      ]
+    },
+    {
+      "kind": "divider",
+      "label": "[Happy Hour unused]",
+      "y": 1861,
+      "h": 49,
+      "lines": [
+        "[Happy Hour unused]"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Customer discount only: 1500 -> 1350 cents. Existing orders remain unchanged in either branch.",
+      "y": 1910,
+      "h": 49,
+      "lines": [
+        "Customer discount only: 1500 -> 1350 cents. Existing orders remain unchanged in either branch."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "B",
+      "b": "R",
+      "label": "billCents = 1080 [normal] / 1350 [alternative]",
+      "ret": true,
+      "create": false,
+      "y": 1959,
+      "h": 30,
+      "lines": [
+        "billCents = 1080 [normal] / 1350 [alternative]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "OFn",
+      "label": "create(2,vip,Burger,billCents)",
+      "ret": false,
+      "create": false,
+      "y": 1989,
+      "h": 30,
+      "lines": [
+        "create(2,vip,Burger,billCents)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "OFn",
+      "b": "O",
+      "label": "Order(2,vip,Burger,billCents)",
+      "ret": false,
+      "create": true,
+      "y": 2019,
+      "h": 65,
+      "lines": [
+        "Order(2,vip,Burger,billCents)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "placeOrder() [SEATED -> ORDERED]",
+      "ret": false,
+      "create": false,
+      "y": 2084,
+      "h": 30,
+      "lines": [
+        "placeOrder() [SEATED -> ORDERED]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "accepted; phase=AWAIT_CHEF",
+      "ret": true,
+      "create": false,
+      "y": 2114,
+      "h": 30,
+      "lines": [
+        "accepted; phase=AWAIT_CHEF"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Chef: prepare order 2",
+      "ret": false,
+      "create": false,
+      "y": 2144,
+      "h": 30,
+      "lines": [
+        "Choose Chef: prepare order 2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitChefAction(ChefAction.prepare(2))",
+      "ret": false,
+      "create": false,
+      "y": 2174,
+      "h": 30,
+      "lines": [
+        "submitChefAction(ChefAction.prepare(2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeChef(action,r,4)",
+      "ret": false,
+      "create": false,
+      "y": 2204,
+      "h": 30,
+      "lines": [
+        "executeChef(action,r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ch",
+      "label": "execute(action,r,4)",
+      "ret": false,
+      "create": false,
+      "y": 2234,
+      "h": 30,
+      "lines": [
+        "execute(action,r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ch",
+      "b": "R",
+      "label": "advancePreparation(2,4)",
+      "ret": false,
+      "create": false,
+      "y": 2264,
+      "h": 30,
+      "lines": [
+        "advancePreparation(2,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "advanceOneUnit(4) [1/1 -> READY; readyTurn=4]",
+      "ret": false,
+      "create": false,
+      "y": 2294,
+      "h": 30,
+      "lines": [
+        "advanceOneUnit(4) [1/1 -> READY; readyTurn=4]"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Chef may prepare the order taken this turn. The Waiter has already acted; a dish becoming READY on turn 4 cannot be served until a later turn.",
+      "y": 2324,
+      "h": 49,
+      "lines": [
+        "Chef may prepare the order taken this turn. The Waiter has already acted; a dish becoming READY on turn 4 cannot be served until a later turn."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false,
+      "y": 2373,
+      "h": 30,
+      "lines": [
+        "finishTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(4)",
+      "ret": false,
+      "create": false,
+      "y": 2403,
+      "h": 30,
+      "lines": [
+        "advanceEating(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false,
+      "y": 2433,
+      "h": 30,
+      "lines": [
+        "processPayment(r,4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,4)",
+      "ret": false,
+      "create": false,
+      "y": 2463,
+      "h": 30,
+      "lines": [
+        "processPayment(r,4)"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Automatic cashier follows Restaurant.findOldestPayableCustomer / settlePayment: customer #1 pays $9.00 on turn 4; VIP #2 is not ready. The pre-existing Salad bill is unchanged by Happy Hour.",
+      "y": 2493,
+      "h": 49,
+      "lines": [
+        "Automatic cashier follows Restaurant.findOldestPayableCustomer / settlePayment: customer #1 pays $9.00 on turn 4; VIP #2 is not ready. The pre-existing Salad bill is unchanged by Happy Hour."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(4)",
+      "ret": false,
+      "create": false,
+      "y": 2542,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "applyWaitingPenalty() [100 -> 95]",
+      "ret": false,
+      "create": false,
+      "y": 2572,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty() [100 -> 95]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "completeTurn(4)",
+      "ret": false,
+      "create": false,
+      "y": 2602,
+      "h": 30,
+      "lines": [
+        "completeTurn(4)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(r.getSummary())",
+      "ret": false,
+      "create": false,
+      "y": 2632,
+      "h": 30,
+      "lines": [
+        "evaluate(r.getSummary())"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS [4 < 18]",
+      "ret": true,
+      "create": false,
+      "y": 2662,
+      "h": 30,
+      "lines": [
+        "IN_PROGRESS [4 < 18]"
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURN 5 - one turn remaining, recovery and later-turn serving",
+      "y": 2692,
+      "h": 46,
+      "lines": [
+        "TURN 5 - one turn remaining, recovery and later-turn serving"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "startTurn()",
+      "ret": false,
+      "create": false,
+      "y": 2738,
+      "h": 30,
+      "lines": [
+        "startTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "beginTurn(5)",
+      "ret": false,
+      "create": false,
+      "y": 2768,
+      "h": 30,
+      "lines": [
+        "beginTurn(5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitTurnStartDecision(false) [no reactivation]",
+      "ret": false,
+      "create": false,
+      "y": 2798,
+      "h": 43,
+      "lines": [
+        "submitTurnStartDecision(false) [no",
+        "reactivation]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "resolveTurnStart(false)",
+      "ret": false,
+      "create": false,
+      "y": 2841,
+      "h": 30,
+      "lines": [
+        "resolveTurnStart(false)"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[Happy Hour activated on turn 4]",
+      "op": "alt",
+      "y": 2871,
+      "h": 49,
+      "lines": [
+        "[Happy Hour activated on turn 4]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "P",
+      "label": "isActive(5)=true; remainingTurns(5)=1",
+      "ret": false,
+      "create": false,
+      "y": 2920,
+      "h": 43,
+      "lines": [
+        "isActive(5)=true;",
+        "remainingTurns(5)=1"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "recoverWaitingSatisfaction(15) [95 -> 100, cap 100]",
+      "ret": false,
+      "create": false,
+      "y": 2963,
+      "h": 30,
+      "lines": [
+        "recoverWaitingSatisfaction(15) [95 -> 100, cap 100]"
+      ]
+    },
+    {
+      "kind": "divider",
+      "label": "[Happy Hour remains unused]",
+      "y": 2993,
+      "h": 49,
+      "lines": [
+        "[Happy Hour remains unused]"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "No recovery; VIP satisfaction remains 95.",
+      "y": 3042,
+      "h": 49,
+      "lines": [
+        "No recovery; VIP satisfaction remains 95."
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "CLI displays updated GameView. Host chooses Wait through Controller -> StaffTeam -> Host; its capacity remains independent of Waiter.",
+      "y": 3091,
+      "h": 49,
+      "lines": [
+        "CLI displays updated GameView. Host chooses Wait through Controller -> StaffTeam -> Host; its capacity remains independent of Waiter."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "M",
+      "b": "CLI",
+      "label": "Choose Waiter: serve order 2",
+      "ret": false,
+      "create": false,
+      "y": 3140,
+      "h": 30,
+      "lines": [
+        "Choose Waiter: serve order 2"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "submitWaiterAction(WaiterAction.serve(2))",
+      "ret": false,
+      "create": false,
+      "y": 3170,
+      "h": 30,
+      "lines": [
+        "submitWaiterAction(WaiterAction.serve(2))"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "executeWaiter(action,r,5)",
+      "ret": false,
+      "create": false,
+      "y": 3200,
+      "h": 30,
+      "lines": [
+        "executeWaiter(action,r,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "W",
+      "label": "execute(action,r,5)",
+      "ret": false,
+      "create": false,
+      "y": 3230,
+      "h": 30,
+      "lines": [
+        "execute(action,r,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "W",
+      "b": "R",
+      "label": "serveOrder(2,5)",
+      "ret": false,
+      "create": false,
+      "y": 3260,
+      "h": 30,
+      "lines": [
+        "serveOrder(2,5)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markServed(5) [readyTurn=4 < 5]",
+      "ret": false,
+      "create": false,
+      "y": 3290,
+      "h": 30,
+      "lines": [
+        "markServed(5) [readyTurn=4 < 5]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "serve(5) [ORDERED -> SERVED]",
+      "ret": false,
+      "create": false,
+      "y": 3320,
+      "h": 30,
+      "lines": [
+        "serve(5) [ORDERED -> SERVED]"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Chef chooses Wait. finishTurn(5) cannot finish VIP eating in the same turn; no VIP payment or waiting loss occurs after service. completeTurn(5); GameResult remains IN_PROGRESS.",
+      "y": 3350,
+      "h": 49,
+      "lines": [
+        "Chef chooses Wait. finishTurn(5) cannot finish VIP eating in the same turn; no VIP payment or waiting loss occurs after service. completeTurn(5); GameResult remains IN_PROGRESS."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURNS 6-7 - eating, deferred payment, locked bill and table release",
+      "y": 3399,
+      "h": 46,
+      "lines": [
+        "TURNS 6-7 - eating, deferred payment, locked bill and table release"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Turn 6: startTurn; resolveTurnStart(false); Happy Hour remaining is 0. Host/Waiter/Chef choose Wait. These follow the same guarded interfaces.",
+      "y": 3445,
+      "h": 49,
+      "lines": [
+        "Turn 6: startTurn; resolveTurnStart(false); Happy Hour remaining is 0. Host/Waiter/Chef choose Wait. These follow the same guarded interfaces."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn() [turn 6]",
+      "ret": false,
+      "create": false,
+      "y": 3494,
+      "h": 30,
+      "lines": [
+        "finishTurn() [turn 6]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(6)",
+      "ret": false,
+      "create": false,
+      "y": 3524,
+      "h": 30,
+      "lines": [
+        "advanceEating(6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "finishedEating(6) [servedTurn=5 < 6]",
+      "ret": false,
+      "create": false,
+      "y": 3554,
+      "h": 30,
+      "lines": [
+        "finishedEating(6) [servedTurn=5 < 6]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "V",
+      "b": "R",
+      "label": "READY_TO_PAY; readyToPayTurn=6",
+      "ret": true,
+      "create": false,
+      "y": 3584,
+      "h": 30,
+      "lines": [
+        "READY_TO_PAY; readyToPayTurn=6"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,6)",
+      "ret": false,
+      "create": false,
+      "y": 3614,
+      "h": 30,
+      "lines": [
+        "processPayment(r,6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,6)",
+      "ret": false,
+      "create": false,
+      "y": 3644,
+      "h": 30,
+      "lines": [
+        "processPayment(r,6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(6)",
+      "ret": false,
+      "create": false,
+      "y": 3674,
+      "h": 30,
+      "lines": [
+        "findOldestPayableCustomer(6)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "VIP excluded [readyToPayTurn is not < 6]",
+      "ret": true,
+      "create": false,
+      "y": 3704,
+      "h": 43,
+      "lines": [
+        "VIP excluded [readyToPayTurn is",
+        "not < 6]"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Turn 6 penalties/completion/result check run normally. Turn 7 registers Regular #3, resolves the opening, seats #3 with Host, takes its Pasta order and prepares the first unit. VIP #2 remains ready to pay.",
+      "y": 3747,
+      "h": 49,
+      "lines": [
+        "Turn 6 penalties/completion/result check run normally. Turn 7 registers Regular #3, resolves the opening, seats #3 with Host, takes its Pasta order and prepares the first unit. VIP #2 remains ready to pay."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn() [turn 7]",
+      "ret": false,
+      "create": false,
+      "y": 3796,
+      "h": 30,
+      "lines": [
+        "finishTurn() [turn 7]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(7)",
+      "ret": false,
+      "create": false,
+      "y": 3826,
+      "h": 30,
+      "lines": [
+        "advanceEating(7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false,
+      "y": 3856,
+      "h": 30,
+      "lines": [
+        "processPayment(r,7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "S",
+      "b": "Ca",
+      "label": "processPayment(r,7)",
+      "ret": false,
+      "create": false,
+      "y": 3886,
+      "h": 30,
+      "lines": [
+        "processPayment(r,7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "findOldestPayableCustomer(7)",
+      "ret": false,
+      "create": false,
+      "y": 3916,
+      "h": 30,
+      "lines": [
+        "findOldestPayableCustomer(7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "Ca",
+      "label": "customerId=2 [readyToPayTurn=6 < 7]",
+      "ret": true,
+      "create": false,
+      "y": 3946,
+      "h": 43,
+      "lines": [
+        "customerId=2 [readyToPayTurn=6",
+        "< 7]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "Ca",
+      "b": "R",
+      "label": "settlePayment(2,7)",
+      "ret": false,
+      "create": false,
+      "y": 3989,
+      "h": 30,
+      "lines": [
+        "settlePayment(2,7)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "O",
+      "label": "markPaid(7,satisfaction) [1080,100 / 1350,95]",
+      "ret": false,
+      "create": false,
+      "y": 4019,
+      "h": 30,
+      "lines": [
+        "markPaid(7,satisfaction) [1080,100 / 1350,95]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "V",
+      "label": "pay() [READY_TO_PAY -> PAID]",
+      "ret": false,
+      "create": false,
+      "y": 4049,
+      "h": 30,
+      "lines": [
+        "pay() [READY_TO_PAY -> PAID]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "R",
+      "b": "A",
+      "label": "removeCustomer(vip) [Table 2 released]",
+      "ret": false,
+      "create": false,
+      "y": 4079,
+      "h": 30,
+      "lines": [
+        "removeCustomer(vip) [Table 2 released]"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Revenue and average use the locked paid bill and recorded satisfaction. Happy Hour expiration does not recalculate the order. Normal branch: $10.80, satisfaction 100. Alternative: $13.50, satisfaction 95.",
+      "y": 4109,
+      "h": 49,
+      "lines": [
+        "Revenue and average use the locked paid bill and recorded satisfaction. Happy Hour expiration does not recalculate the order. Normal branch: $10.80, satisfaction 100. Alternative: $13.50, satisfaction 95."
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "TURNS 8-18 - remaining mixed customers, combos and final result",
+      "y": 4158,
+      "h": 46,
+      "lines": [
+        "TURNS 8-18 - remaining mixed customers, combos and final result"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[each remaining turn, up to turn 18]",
+      "op": "loop",
+      "y": 4204,
+      "h": 49,
+      "lines": [
+        "[each remaining turn, up to turn 18]"
+      ]
+    },
+    {
+      "kind": "ref",
+      "label": "Actual stage3-victory priorities: Host seats first queued customer; Waiter serves, otherwise takes order, otherwise seats; Chef prepares the first eligible order. New combos follow the same Order/Chef/Waiter/Cashier lifecycle.",
+      "y": 4253,
+      "h": 49,
+      "lines": [
+        "Actual stage3-victory priorities: Host seats first queued customer; Waiter serves, otherwise takes order, otherwise seats; Chef prepares the first eligible order. New combos follow the same Order/Chef/Waiter/Cashier lifecycle."
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "CLI",
+      "b": "C",
+      "label": "finishTurn()",
+      "ret": false,
+      "create": false,
+      "y": 4302,
+      "h": 30,
+      "lines": [
+        "finishTurn()"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "advanceEating(currentTurn)",
+      "ret": false,
+      "create": false,
+      "y": 4332,
+      "h": 30,
+      "lines": [
+        "advanceEating(currentTurn)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "S",
+      "label": "processPayment(r,currentTurn)",
+      "ret": false,
+      "create": false,
+      "y": 4362,
+      "h": 30,
+      "lines": [
+        "processPayment(r,currentTurn)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "R",
+      "label": "applyWaitingPenalty(currentTurn); completeTurn(currentTurn)",
+      "ret": false,
+      "create": false,
+      "y": 4392,
+      "h": 30,
+      "lines": [
+        "applyWaitingPenalty(currentTurn); completeTurn(currentTurn)"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "G",
+      "label": "evaluate(r.getSummary())",
+      "ret": false,
+      "create": false,
+      "y": 4422,
+      "h": 30,
+      "lines": [
+        "evaluate(r.getSummary())"
+      ]
+    },
+    {
+      "kind": "frame",
+      "label": "[turnsUsed < 18]",
+      "op": "alt",
+      "y": 4452,
+      "h": 49,
+      "lines": [
+        "[turnsUsed < 18]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "IN_PROGRESS",
+      "ret": true,
+      "create": false,
+      "y": 4501,
+      "h": 30,
+      "lines": [
+        "IN_PROGRESS"
+      ]
+    },
+    {
+      "kind": "divider",
+      "label": "[turnsUsed == 18]",
+      "y": 4531,
+      "h": 49,
+      "lines": [
+        "[turnsUsed == 18]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "G",
+      "b": "C",
+      "label": "VICTORY [paid>=4, revenue>=4500, average>=60]",
+      "ret": true,
+      "create": false,
+      "y": 4580,
+      "h": 30,
+      "lines": [
+        "VICTORY [paid>=4, revenue>=4500, average>=60]"
+      ]
+    },
+    {
+      "kind": "message",
+      "a": "C",
+      "b": "CLI",
+      "label": "GameView {FINISHED, VICTORY}",
+      "ret": true,
+      "create": false,
+      "y": 4610,
+      "h": 30,
+      "lines": [
+        "GameView {FINISHED, VICTORY}"
+      ]
+    },
+    {
+      "kind": "note",
+      "label": "Both full runs pay 5 customers. Activate on turn 4: $83.70, average 87.20. Keep unused with identical service priorities: $86.40, average 86.20. The choice changes money and satisfaction, not the victory label in these runs. Critic #6 cannot pay by turn 18.",
+      "y": 4640,
+      "h": 49,
+      "lines": [
+        "Both full runs pay 5 customers. Activate on turn 4: $83.70, average 87.20. Keep unused with identical service priorities: $86.40, average 86.20. The choice changes money and satisfaction, not the victory label in these runs. Critic #6 cannot pay by turn 18."
+      ]
+    }
+  ],
+  "size": [
+    3620,
+    4764
+  ]
+}

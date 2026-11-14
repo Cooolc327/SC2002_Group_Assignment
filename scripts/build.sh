@@ -10,4 +10,4 @@ while IFS= read -r -d '' restaurant_source; do
     restaurant_sources+=("$restaurant_source")
 done < <(find src -name '*.java' -print0)
 javac --release 17 -Xlint:all -Werror -d "$restaurant_classes" "${restaurant_sources[@]}"
-printf 'BUILD_STAGE2=PASS classes=%s\n' "$restaurant_classes"
+printf 'BUILD_STAGE3=PASS classes=%s\n' "$restaurant_classes"

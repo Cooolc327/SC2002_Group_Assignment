@@ -3,80 +3,45 @@
 SC2002 Object-Oriented Design & Programming. Java 17+, offline command-line game.
 Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
-## Stage 2 release
+## Published runnable version: Stage 3
 
-Runnable snapshot: [`stage-2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2), published from personal branch
-[`lichen/stage_2`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_2). It extends
-[`stage-1`](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) and preserves B/C source history.
-The `main` branch now includes this Stage 2 implementation. The `stage-1` and
-`stage-2` tags retain their original runnable snapshots.
+The [stage-3 tag](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3)
+contains Host, ComboMeal and Happy Hour on top of the
+verified Stage 2 implementation merged to main as `b02de7b`. Bernice's three
+Stage 3 commits are merged with their original history. Further implementation
+and integration tests were added with AI assistance on `lichen/stage_3`.
+The user authorized publication on 14 November 2026. See the
+[release verification](docs/verification/Stage_3_Release_2026-11-14.md) for
+clean-archive checks, exact source identity and the limits of this release.
 
-The release includes VIP/Critic behaviour, customer-specific locked bills,
-matching class/sequence diagrams, reproducible inputs, full bounded personal
-AI history and verification evidence. The final annotated tag archive is
-validated before branch/tag publication; no E signature is claimed.
+`main` now includes this released Stage 3 implementation, merged from
+`lichen/stage_3` at `fa2d608`. The default build runs Stage 3. See the
+[main merge verification](docs/verification/Stage_3_Main_Merge_2026-11-14.md)
+for source identity, conflict resolution and regression results.
 
-| Stage | Features | Status | Tag |
-| --- | --- | --- | --- |
-| 1 | Regular customers, full turn sequence, both endings | Published runnable snapshot | [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
-| 2 | VIP/Critic behaviour and customer-specific billing | Available on main and tagged | [stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2) |
-| 3 | Host, ComboMeal, Happy Hour | Not implemented in this version | Pending |
+| Stage | Features | Snapshot |
+| --- | --- | --- |
+| 1 | Regular customers, full turn sequence, both endings | [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
+| 2 | VIP/Critic behaviour and customer-specific billing | [stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2), also merged to main |
+| 3 | Independent Host, combos and two-turn Happy Hour | [stage-3](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3), also merged to main |
 
-- [Stage 2 release verification](docs/verification/Stage_2_Release_2026-11-08.md)
-- [Acceptance checklist](docs/Stage2/Stage_2_Acceptance_Checklist_ZH.md)
-- [Reproducible test notes](docs/Stage2/Stage_2_Test_Notes.md)
-- [New/changed/deleted files and reasons](docs/Stage2/Stage_1_to_2_Changes.md)
-- [Formal Stage 1 to Stage 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2)
-- [Lichen's complete available Stage 2 AI history](ai-history/stage-2/README.md)
+## Build, play and replay
 
-## Build and run
-
-Requires JDK 17 or later; no external Java libraries or network services.
-From the repository root (macOS, Linux or Git Bash):
+Requires JDK 17 or later. Mandatory gameplay and checks need no external Java
+libraries or network connection. From the project root:
 
 ```bash
 bash scripts/build.sh
-bash scripts/run.sh
+bash scripts/run.sh                 # Stage 3, default mixed-customer base setting
+bash scripts/run.sh --stage2        # Stage 2 regression mode
+bash scripts/run.sh --regular       # Regular-only regression mode
+bash scripts/run.sh < test/replays/stage3-victory.txt
+bash scripts/run.sh < test/replays/stage3-defeat.txt
 ```
 
-The default game is Stage 2. It displays seed `24369` and produces this fixed
-arrival schedule; the same seed gives the same types on every run.
-
-| Customer ID | Arrival turn | Type | Waiting loss | Food rule / bill |
-| --- | --- | --- | --- | --- |
-| 1 | 1 | Regular | 8 | Salad; full price |
-| 2 | 4 | VIP | 5 | Burger; 10% off |
-| 3 | 7 | Regular | 8 | Pasta; full price |
-| 4 | 10 | Regular | 8 | Salad; full price |
-| 5 | 13 | Regular | 8 | Burger; full price |
-| 6 | 16 | Critic | 12 | Longest preparation time: Pasta; full price |
-
-Customer IDs are 1-6 in arrival order. They are not turn numbers. The manager
-chooses seating, ordering, serving and preparation priority, never the food.
-Regular and VIP food choice is `(id - 1) % menu.size()`. Critic overrides
-`chooseItem(Menu)` and chooses the most preparation units; a tie uses the first
-item in menu order. `BillCalculator` calls the customer's discount method and
-locks the integer-cent bill when ordering.
-
-The two tables, staff limits and complete 18-turn flow are unchanged. A dish
-completed this turn can be served on a later turn. A served customer finishes
-one full later turn of eating; payment occurs on a later turn again. Unserved
-customers lose satisfaction, reaching zero cancels unfinished orders and frees
-the table. Revenue and the satisfaction average include only paid orders.
-Victory after turn 18 requires all of: at least 4 paid, at least $45.00 revenue,
-and average paid satisfaction at least 60. The sixth customer cannot pay by
-turn 18. There is no early finish.
-
-To exercise Regular-only regression behaviour on the current implementation:
-
-```bash
-bash scripts/run.sh --regular
-```
-
-This flag does not restore the historical Stage 1 source. Use the immutable
-`stage-1` tag for the actual Stage 1 snapshot. `new GameController(restaurant,
-staff)` also retains Regular-only behaviour; the production entry point injects
-`CustomerFactory::createCustomer` through the three-argument constructor.
+`--stage3` explicitly selects the default. The historical tags preserve each
+stage's original source; regression flags run the current shared implementation.
+Older Stage 2 inputs require `--stage2`; older Stage 1 inputs require `--regular`.
 
 PowerShell build (syntax provided, not executed on Windows):
 
@@ -85,67 +50,109 @@ javac --release 17 -Xlint:all -Werror -d out (Get-ChildItem -Recurse src -Filter
 java -cp out Main
 ```
 
-## Automated checks and reproducible inputs
+## Base setting and turn choices
+
+There are 18 turns, two tables and six arrivals on turns 1, 4, 7, 10, 13 and 16.
+Default seed 24369 produces Regular, VIP, Regular, Regular, Regular, Critic.
+The win criteria remain: at least four paid customers, at least $45.00 revenue,
+and average satisfaction of paid customers at least 60 after turn 18.
+
+Every Stage 3 turn: arrivals -> Happy Hour opening decision -> Host -> Waiter
+-> Chef -> eating -> automatic Cashier payment -> waiting loss/abandonment.
+The Host can seat one queued customer or wait. The Waiter independently keeps
+one task: seat, take an order, serve a previously READY order, or wait. Chef
+advances one preparation unit or waits. Cashier handles at most one eligible
+payment automatically. Invalid input repeats the prompt without using capacity.
+
+A dish completed this turn cannot be served until a later turn. A customer
+served on turn t finishes eating on t+1 and can pay on t+2 at the earliest.
+A table remains occupied until payment or departure. The game always completes
+all 18 turns. Revenue and satisfaction averages include paid orders only.
+
+| Item | Price | Preparation units |
+| --- | --- | --- |
+| Salad | $9.00 | 1 |
+| Burger | $15.00 | 1 |
+| Pasta | $18.00 | 2 |
+| Salad + Burger Combo | $21.60 | 2 |
+| Salad + Pasta Combo | $24.30 | 3 |
+| Burger + Pasta Combo | $29.70 | 3 |
+
+Regular and VIP choices cycle through this ordered six-item list using
+`(id - 1) % menu.size()`. Critic chooses the most preparation units, using the
+first item to break ties: Salad + Pasta Combo. Customers choose food, never the
+manager. Stage 2 mode retains the original three-item list and Pasta-preferring
+Critic. Waiting losses are Regular 8, VIP 5 and Critic 12.
+
+Happy Hour can be activated once, at turn start, for the current and next turn.
+The CLI displays remaining active turns, including the current turn. At each
+active opening, WAITING/SEATED/ORDERED customers recover 15 satisfaction, capped
+at 100. Normal end-of-turn losses still apply. New orders get 20% off after the
+VIP discount; each step rounds to cents. Existing orders and customers who
+have left are unaffected. Prices are locked when ordering and remain fixed at
+payment, even after expiration. VIP Burger example: $15.00 -> $13.50 -> $10.80.
+
+## Verification
 
 ```bash
 bash scripts/test-stage1.sh
 bash scripts/test-stage2.sh
-bash scripts/run.sh < test/replays/stage2-victory.txt
-bash scripts/run.sh < test/replays/stage2-defeat.txt
+bash scripts/test-stage3.sh
 ```
 
-Both scripts compile all production and test sources with
-`--release 17 -Xlint:all -Werror`. The Stage 1 smoke suite now invokes
-`Main --regular`; the Stage 2 suite invokes real default `Main` with mixed
-customers. Core call-order tests use a recording staff double; the smoke and
-Stage 2 integration suites use production staff and orders.
+All scripts compile production and test sources using
+`--release 17 -Xlint:all -Werror`. Stage 2 CLI tests explicitly use `--stage2`;
+Stage 3 tests execute real default Main. Test logs are ignored under `build/`.
 
-| Check | Actual local result, 8 November 2026 |
+| Suite | Scenarios / assertions |
 | --- | --- |
-| Regular core with production Order | 14 scenarios / 344 assertions |
-| Regular production smoke | 9 scenarios / 94 assertions |
-| Actual VIP pricing and rounding | 5 scenarios / 26 assertions |
-| Menu and Order lifecycle | 7 scenarios / 65 assertions |
-| Mixed customer integration and real CLI | 14 scenarios / 506 assertions |
+| Regular core / production smoke | 14 / 344; 9 / 94 |
+| Billing / base menu and Order | 8 / 48; 7 / 65 |
+| Stage 2 integration | 14 / 506 |
+| ComboMeal / Stage 3 integration | 6 / 42; 18 / 550 |
 
-| Default Stage 2 replay | Paid | Revenue | Average satisfaction | Departures | Result |
+| Default Stage 3 replay | Paid | Revenue | Average | Departures | Result |
 | --- | --- | --- | --- | --- | --- |
-| `stage2-victory.txt` | 5 | $64.50 | 80.40 | 0 | VICTORY |
-| `stage2-defeat.txt` (all WAIT) | 0 | $0.00 | N/A | 1 | DEFEAT |
+| stage3-victory.txt | 5 | $83.70 | 87.20 | 0 | VICTORY |
+| stage3-defeat.txt | 0 | $0.00 | N/A | 1 | DEFEAT |
 
-Both run all 18 turns. The victory choices serve READY orders first, otherwise
-take orders, otherwise seat; the Chef prepares the oldest eligible order.
-The VIP Burger costs $13.50 and records satisfaction 90 at payment on turn 8.
-The suite also uses a Critic-first setup to verify its distinct Pasta choice,
-full-price payment and PLACED/PREPARING/READY cancellation. That setup is a test
-fixture; it does not change the default seed or CLI behaviour.
+The victory activates Happy Hour on turn 4 and includes real VIP/combo payment.
+Both runs complete all 18 turns. Tests also cover phase guards, independent
+Host/Waiter allowances, recovery eligibility/caps, locked prices, combo
+abandonment, immutable views, invalid input, BOM and EOF. These are agent-run
+checks, not an independent teammate acceptance signature.
 
-Logs are Git-ignored under `build/stage1-checks/` and `build/stage2-checks/`.
-These are agent-run checks, not an E signature or independent human acceptance.
-Exact committed-archive provenance is in the release verification record;
-the earlier pre-tag record is retained as historical evidence.
+## Design and stage evidence
 
-## Design and change evidence
+- [Stage 3 interfaces, ownership review and design choices](docs/Stage3/Stage_3_Design_and_Interfaces_EN.md).
+- [Stage 2 to 3 file changes and OO impact](docs/Stage3/Stage_2_to_3_Changes.md), [PDF](docs/Stage3/Stage_2_to_3_Changes.pdf).
+- [Stage 3 test notes and exact timeline](docs/Stage3/Stage_3_Test_Notes.md).
+- [Available ordered Stage 3 AI conversation and explicit cutoff](ai-history/stage-3/README.md).
+- [Stage 3 release verification and repeatable results](docs/verification/Stage_3_Release_2026-11-14.md).
+- [Stage 3 class diagram PDF](docs/UML/Stage3_UML_Diagram.pdf) and
+  [Happy Hour sequence PDF](docs/UML/Stage3_Happy_Hour_Sequence.pdf).
+- [Standalone class image](docs/UML/Stage3_UML_Diagram.png),
+  [sequence image](docs/UML/Stage3_Happy_Hour_Sequence.png), and
+  [editable sources, SVGs and diagram provenance](docs/UML/README.md).
+- [Stage 2 verification](docs/verification/Stage_2_Release_2026-11-08.md),
+  [changes from Stage 1](docs/Stage2/Stage_1_to_2_Changes.md),
+  [class diagram](docs/UML/Stage2_UML_Diagram.pdf), and
+  [historical VIP sequence](docs/UML/Stage2_VIP_Sequence_Diagram.pdf).
+- [Stage 1 implemented design](docs/Stage_1_Implemented_Design_EN.md),
+  [class diagram](docs/UML/Stage1_UML_Diagram.pdf), and
+  [verification](docs/verification/Stage_1_Release_2026-11-08.md).
+- [Stage 1 to 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2).
+- [Exact Stage 2 to Stage 3 implementation comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...3f5e682f775734a6a305fc159abd89aaf76257c3),
+  [implementation commit](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/3f5e682f775734a6a305fc159abd89aaf76257c3).
+- [Formal Stage 2 to Stage 3 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...stage-3).
+  It also includes documentation, diagram exports and release evidence added
+  after the implementation commit; the linked file analysis explains code changes.
 
-- [Stage 2 integration notes](docs/Stage2/Integration_Notes.md): provenance,
-  changes, constraints and remaining steps.
-- [B customer changes](docs/Stage2/MemberBChanges.md).
-- [Stage 1 class diagram](docs/UML/Stage1_UML_Diagram.pdf), matching the Stage 1
-  snapshot, not the current Stage 2 working code.
-- [Stage 1 implemented design](docs/Stage_1_Implemented_Design_EN.md).
-- [Stage 1 release verification](docs/verification/Stage_1_Release_2026-11-08.md).
-- [Stage 1 reproducible test notes](docs/Stage_1_Test_Notes.md).
-- [Stage 2 class diagram](docs/UML/Stage2_UML_Diagram.pdf) and
-  [VIP complex sequence diagram](docs/UML/Stage2_VIP_Sequence_Diagram.pdf).
-  [Diagram notes](docs/Stage2/Diagram_Notes.md) link editable sources, source
-  hashes and a replayed single-choice alternative (average 77.80).
-- [Stage 1 to Stage 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2);
-  [tested implementation f8a7025](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/f8a70258fe3300318a00cb913d45abefa1a552b5).
-- Stage 2 to 3 comparison: pending Stage 3.
-
-The briefing requires three class diagrams (one per stage) and one complex
-sequence diagram from Stage 2 or 3. Existing Stage 1 diagrams are retained as
-Stage 1 evidence and have not been presented as current Stage 2 diagrams.
+Stage 3 PDF/SVG/PNG exports have been visually checked against implementation
+3f5e682. Native drawio files retain editable nodes, text and arrows; compact
+Mermaid discussion models are also retained. Diagram notes record source
+hashes, notation and replay values. The historical Stage 2 sequence remains
+evidence for its tag and is not relabelled as the Stage 3 flow.
 
 ## Team and final submission
 
@@ -177,7 +184,9 @@ TODO entries still require verification by their owners.
 | Advika Bhambri | [Advika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history) (TODO) |
 | Rishika Garg | [Rishika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history) (TODO) |
 
-The final group ZIP is due **15 November 2026, 23:59 Singapore time** and also
-needs the report with individual reflections, approximately 15-minute group
-video with README timestamps, three stage diagrams, the selected sequence
-diagram, accessible GitHub links and signed original-work/GAI declarations.
+The final group ZIP is due **15 November 2026, 23:59 Singapore time**. Remaining
+group deliverables are the final PDF report incorporating the reviewed diagram exports,
+individual reflections, approximately 15-minute video with README timestamps,
+accessible links, signed original-work/GAI declarations and final packaging.
+The stage-3 tag publishes the runnable snapshot; it does not certify completion
+of those final group deliverables or an unrecorded teammate acceptance.
