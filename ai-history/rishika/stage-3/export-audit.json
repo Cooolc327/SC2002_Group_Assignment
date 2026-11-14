@@ -1,0 +1,11 @@
+{
+  "source_session_filename": "90d42321-8c35-4152-aa41-f9543cabe771.jsonl",
+  "source_session_sha256_at_export": "47073bdc710a34ca62b4d36a8bd09270d7ec516d8c3c5c95a9a90a3aa796056c",
+  "visible_messages": 36,
+  "user_messages": 4,
+  "assistant_messages": 32,
+  "reinserted_progress_messages": 9,
+  "messages_sha256": "dead2e1b572809e52c79417fbd2d9c7979552422411120031595b6a0fcb7c946",
+  "chat_sha256": "35f17ecf8b0de8f9c38a8ad7b0843fbc39214afb815e700859d2e638d4f865e5",
+  "scope": "User prompts and visible assistant text for Stage 3 testing (Phases 1-4); verbatim canonical JSON, trailing-whitespace-normalized Markdown; excludes the export request, timestamps, hidden reasoning, system/developer content and tool payloads. Nine short user-visible progress messages were not stored as text blocks in the session file and were re-inserted verbatim from the conversation view at their original positions."
+}
