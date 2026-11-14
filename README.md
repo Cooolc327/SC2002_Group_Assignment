@@ -194,7 +194,7 @@ Each member's AI history is linked below.
 | Xavier Kee | Pending |
 | Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-3/chat-01.md) |
 | Advika Bhambri | Pending |
-| Rishika Garg | Pending |
+| Rishika Garg | [AI history (branch `Rishika`)](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history/rishika) |
 
 ## Submission materials
 
