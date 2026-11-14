@@ -161,12 +161,17 @@ Confirm lab/group identifier and contribution details before final submission.
 Each member must keep their own full ordered AI conversations on a personal
 branch; summaries alone do not satisfy the briefing. [Lichen's Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1)
 is published. [Lichen's Stage 2 archive](ai-history/stage-2/README.md) preserves the
-full available continuation with an explicit cutoff. Known team AI-history links
-are listed below; TODO entries still require verification by their owners.
+full available continuation with an explicit cutoff.
+[Lichen's Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_3/ai-history/stage-3)
+records AI-assisted implementation/integration, UML and change-document work,
+and release preparation. It provides ordered conversation exports, canonical
+message files and export audits. Each part declares its cutoff; later messages
+are outside that part's scope. Known team AI-history links are listed below;
+TODO entries still require verification by their owners.
 
 | Member | AI history folder |
 | --- | --- |
-| Lichen Yin | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1), [Stage 2 archive](ai-history/stage-2/README.md) |
+| Lichen Yin | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1), [Stage 2 archive](ai-history/stage-2/README.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_3/ai-history/stage-3) |
 | Xavier Kee | [Xavier](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Xavier/ai-history) (TODO) |
 | Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-3/chat-01.md) |
 | Advika Bhambri | [Advika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history) (TODO) |
