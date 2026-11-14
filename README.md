@@ -3,27 +3,16 @@
 SC2002 Object-Oriented Design & Programming. Java 17+, offline command-line game.
 Repository: https://github.com/Cooolc327/SC2002_Group_Assignment
 
-## Published runnable version: Stage 3
+## Stages
 
-The [stage-3 tag](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3)
-contains Host, ComboMeal and Happy Hour on top of the
-verified Stage 2 implementation merged to main as `b02de7b`. Bernice's three
-Stage 3 commits are merged with their original history. Further implementation
-and integration tests were added with AI assistance on `lichen/stage_3`.
-The user authorized publication on 14 November 2026. See the
-[release verification](docs/verification/Stage_3_Release_2026-11-14.md) for
-clean-archive checks, exact source identity and the limits of this release.
-
-`main` now includes this released Stage 3 implementation, merged from
-`lichen/stage_3` at `fa2d608`. The default build runs Stage 3. See the
-[main merge verification](docs/verification/Stage_3_Main_Merge_2026-11-14.md)
-for source identity, conflict resolution and regression results.
+`main` runs Stage 3, adding Host, ComboMeal and Happy Hour to Stage 2.
+Each tag below preserves the runnable source for that stage.
 
 | Stage | Features | Snapshot |
 | --- | --- | --- |
 | 1 | Regular customers, full turn sequence, both endings | [stage-1](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-1) |
-| 2 | VIP/Critic behaviour and customer-specific billing | [stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2), also merged to main |
-| 3 | Independent Host, combos and two-turn Happy Hour | [stage-3](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3), also merged to main |
+| 2 | VIP/Critic behaviour and customer-specific billing | [stage-2](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-2) |
+| 3 | Independent Host, combos and two-turn Happy Hour | [stage-3](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/stage-3) |
 
 ## Build, play and replay
 
@@ -119,40 +108,73 @@ Stage 3 tests execute real default Main. Test logs are ignored under `build/`.
 The victory activates Happy Hour on turn 4 and includes real VIP/combo payment.
 Both runs complete all 18 turns. Tests also cover phase guards, independent
 Host/Waiter allowances, recovery eligibility/caps, locked prices, combo
-abandonment, immutable views, invalid input, BOM and EOF. These are agent-run
-checks, not an independent teammate acceptance signature.
+abandonment, immutable views, invalid input, BOM and EOF.
 
 ## Design and stage evidence
 
-- [Stage 3 interfaces, ownership review and design choices](docs/Stage3/Stage_3_Design_and_Interfaces_EN.md).
-- [Stage 2 to 3 file changes and OO impact](docs/Stage3/Stage_2_to_3_Changes.md), [PDF](docs/Stage3/Stage_2_to_3_Changes.pdf).
-- [Stage 3 test notes and exact timeline](docs/Stage3/Stage_3_Test_Notes.md).
-- [Available ordered Stage 3 AI conversation and explicit cutoff](ai-history/stage-3/README.md).
-- [Stage 3 release verification and repeatable results](docs/verification/Stage_3_Release_2026-11-14.md).
-- [Stage 3 class diagram PDF](docs/UML/Stage3_UML_Diagram.pdf) and
-  [Happy Hour sequence PDF](docs/UML/Stage3_Happy_Hour_Sequence.pdf).
+### Stage 1
+
+- [Implemented design](docs/Stage_1_Implemented_Design_EN.md)
+- [Class diagram PDF](docs/UML/Stage1_UML_Diagram.pdf)
+- [Release verification](docs/verification/Stage_1_Release_2026-11-08.md)
+
+### Stage 2
+
+Changes from Stage 1:
+
+- **Added:** `VipCustomer`, `CriticCustomer`, `CustomerFactory` and
+  `BillCalculator` for customer behaviour, reproducible arrivals and pricing.
+- **Updated:** `Customer` and `MenuItem` expose the behaviour and preparation
+  information used by the new types. `Restaurant` calculates and locks bills;
+  `GameController`, `Main` and `RestaurantCLI` connect and display mixed customers.
+
+Documentation and comparisons:
+
+- [Class diagram PDF](docs/UML/Stage2_UML_Diagram.pdf)
+- [VIP sequence diagram PDF](docs/UML/Stage2_VIP_Sequence_Diagram.pdf)
+- [Release verification](docs/verification/Stage_2_Release_2026-11-08.md)
+- [Stage 1 to 2 file changes and reasons](docs/Stage2/Stage_1_to_2_Changes.md)
+- [Stage 1 to 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2)
+
+### Stage 3
+
+Changes from Stage 2:
+
+- **Added:** `ComboMeal` and `Discount` for composed items and shared pricing;
+  `Host` and `HostAction` for independent seating; `HappyHourPolicy` for activation
+  and duration.
+- **Updated:** `Menu`, `BillCalculator`, `Customer` and `CriticCustomer` support
+  combo choices, discounts and satisfaction recovery. `Restaurant`,
+  `GameController` and `TurnPhase` coordinate the new actions. `StaffGateway`
+  and `StaffTeam` connect the Host; `GameView`, `RestaurantCLI` and `Main` expose
+  the new choices, policy status and stage modes.
+
+Documentation and comparisons:
+
+- [Design and interfaces](docs/Stage3/Stage_3_Design_and_Interfaces_EN.md)
+- [Class diagram PDF](docs/UML/Stage3_UML_Diagram.pdf) and
+  [Happy Hour sequence PDF](docs/UML/Stage3_Happy_Hour_Sequence.pdf)
 - [Standalone class image](docs/UML/Stage3_UML_Diagram.png),
   [sequence image](docs/UML/Stage3_Happy_Hour_Sequence.png), and
-  [editable sources, SVGs and diagram provenance](docs/UML/README.md).
-- [Stage 2 verification](docs/verification/Stage_2_Release_2026-11-08.md),
-  [changes from Stage 1](docs/Stage2/Stage_1_to_2_Changes.md),
-  [class diagram](docs/UML/Stage2_UML_Diagram.pdf), and
-  [historical VIP sequence](docs/UML/Stage2_VIP_Sequence_Diagram.pdf).
-- [Stage 1 implemented design](docs/Stage_1_Implemented_Design_EN.md),
-  [class diagram](docs/UML/Stage1_UML_Diagram.pdf), and
-  [verification](docs/verification/Stage_1_Release_2026-11-08.md).
-- [Stage 1 to 2 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-1...stage-2).
+  [editable diagram sources and SVGs](docs/UML/README.md)
+- [Stage 2 to 3 file changes and OO impact](docs/Stage3/Stage_2_to_3_Changes.md),
+  [PDF](docs/Stage3/Stage_2_to_3_Changes.pdf)
+- [Test notes and exact timeline](docs/Stage3/Stage_3_Test_Notes.md)
+- [Release verification and repeatable results](docs/verification/Stage_3_Release_2026-11-14.md)
+- [Stage 3 AI history](ai-history/stage-3/README.md)
 - [Exact Stage 2 to Stage 3 implementation comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...3f5e682f775734a6a305fc159abd89aaf76257c3),
-  [implementation commit](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/3f5e682f775734a6a305fc159abd89aaf76257c3).
-- [Formal Stage 2 to Stage 3 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...stage-3).
-  It also includes documentation, diagram exports and release evidence added
-  after the implementation commit; the linked file analysis explains code changes.
+  [implementation commit](https://github.com/Cooolc327/SC2002_Group_Assignment/commit/3f5e682f775734a6a305fc159abd89aaf76257c3)
+- [Formal Stage 2 to Stage 3 tag comparison](https://github.com/Cooolc327/SC2002_Group_Assignment/compare/stage-2...stage-3)
+  includes documentation, diagram exports and release evidence added after the
+  implementation commit; the file analysis explains the code changes.
 
-Stage 3 PDF/SVG/PNG exports have been visually checked against implementation
-3f5e682. Native drawio files retain editable nodes, text and arrows; compact
-Mermaid discussion models are also retained. Diagram notes record source
-hashes, notation and replay values. The historical Stage 2 sequence remains
-evidence for its tag and is not relabelled as the Stage 3 flow.
+Stage 3 diagrams are available as PDF, SVG and PNG, with editable drawio
+sources. Diagram notes identify the corresponding code version and replay
+values. The VIP sequence describes Stage 2; the Happy Hour sequence describes
+Stage 3.
+
+No production files were deleted in either transition. The change records
+include the complete source, test and documentation file lists.
 
 ## Team and final submission
 
@@ -164,29 +186,24 @@ evidence for its tag and is not relabelled as the Stage 3 flow.
 | Advika Bhambri | D: staff (Waiter, Chef, Cashier) and command-line interface |
 | Rishika Garg | E: integration (`Main`, `Order`, `StaffTeam`), testing and report |
 
-Confirm lab/group identifier and contribution details before final submission.
-Each member must keep their own full ordered AI conversations on a personal
-branch; summaries alone do not satisfy the briefing. [Lichen's Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1)
-is published. [Lichen's Stage 2 archive](ai-history/stage-2/README.md) preserves the
-full available continuation with an explicit cutoff.
-[Lichen's Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_3/ai-history/stage-3)
-records AI-assisted implementation/integration, UML and change-document work,
-and release preparation. It provides ordered conversation exports, canonical
-message files and export audits. Each part declares its cutoff; later messages
-are outside that part's scope. Known team AI-history links are listed below;
-TODO entries still require verification by their owners.
+Each member's AI history is linked below.
 
-| Member | AI history folder |
+| Member | AI history |
 | --- | --- |
 | Lichen Yin | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1), [Stage 2 archive](ai-history/stage-2/README.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_3/ai-history/stage-3) |
-| Xavier Kee | [Xavier](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Xavier/ai-history) (TODO) |
+| Xavier Kee | Pending |
 | Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-3/chat-01.md) |
-| Advika Bhambri | [Advika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history) (TODO) |
-| Rishika Garg | [Rishika](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history) (TODO) |
+| Advika Bhambri | Pending |
+| Rishika Garg | Pending |
 
-The final group ZIP is due **15 November 2026, 23:59 Singapore time**. Remaining
-group deliverables are the final PDF report incorporating the reviewed diagram exports,
-individual reflections, approximately 15-minute video with README timestamps,
-accessible links, signed original-work/GAI declarations and final packaging.
-The stage-3 tag publishes the runnable snapshot; it does not certify completion
-of those final group deliverables or an unrecorded teammate acceptance.
+## Submission materials
+
+| Item | Status or link |
+| --- | --- |
+| Lab and group identifier | Pending |
+| Final PDF report, including individual reflections | Pending |
+| Presentation video | Pending |
+| Video timestamps for the required demonstration segments | Pending |
+| Signed original-work and GAI declarations | Pending |
+
+Submission deadline: **15 November 2026, 23:59 Singapore time**.
