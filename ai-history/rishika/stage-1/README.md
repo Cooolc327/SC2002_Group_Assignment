@@ -7,8 +7,8 @@ project summary or a personal reflection.
 
 ## Conversation index
 
-| File | Date | User messages | Assistant messages | Topic |
-| --- | --- | --- | --- | --- |
+| File | Topic |
+| --- | --- |
 | [chat-01.md](chat-01.md) | Stage 1 testing: code map, test plan, plain-Java rule tests and scripted victory/defeat runs |
 
 Total: **17 messages** (3 user, 14 assistant).
