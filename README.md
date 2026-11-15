@@ -198,7 +198,7 @@ Each member's AI history is linked below.
 
 ## Video
 
-[Watch the video](LINK)
+[Watch the video]([LINK](https://github.com/Cooolc327/SC2002_Group_Assignment/releases/download/stage-3/VideoRecording_SC2002_GroupProject.mp4))
 
 ### Required segments
 
