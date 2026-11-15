@@ -195,15 +195,3 @@ Each member's AI history is linked below.
 | Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-3/chat-01.md) |
 | Advika Bhambri | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history/advika/stage-1), [Stage 2 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history/advika/stage-2), [Stage 3 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history/advika/stage-3) |
 | Rishika Garg | [AI history (branch `Rishika`)](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history/rishika) |
-
-## Submission materials
-
-| Item | Status or link |
-| --- | --- |
-| Lab and group identifier | Pending |
-| Final PDF report, including individual reflections | Pending |
-| Presentation video | Pending |
-| Video timestamps for the required demonstration segments | Pending |
-| Signed original-work and GAI declarations | Pending |
-
-Submission deadline: **15 November 2026, 23:59 Singapore time**.
