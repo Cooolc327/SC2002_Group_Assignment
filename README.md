@@ -198,7 +198,10 @@ Each member's AI history is linked below.
 
 ## Video
 
-[Watch the video]([LINK](https://github.com/Cooolc327/SC2002_Group_Assignment/releases/download/stage-3/VideoRecording_SC2002_GroupProject.mp4))
+
+📹 **[Download the presentation video (MP4)](https://github.com/Cooolc327/SC2002_Group_Assignment/releases/download/stage-3/VideoRecording_SC2002_GroupProject.mp4)**
+
+Also available on the [stage-3 release page](https://github.com/Cooolc327/SC2002_Group_Assignment/releases/tag/stage-3).
 
 ### Required segments
 
