@@ -196,14 +196,58 @@ Each member's AI history is linked below.
 | Advika Bhambri | Pending |
 | Rishika Garg | [AI history (branch `Rishika`)](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history/rishika) |
 
+## Video
+
+[Watch the video](LINK)
+
+### Required segments
+
+| # | Segment | Timestamp | Speaker |
+|---|---|---|---|
+| 1 | Game launching from the submitted project (`build.sh`, `run.sh`) | 01:40 | Li Chen |
+| 2 | Meaningful manager choices: turn flow and input validation | 04:46 | Xavier |
+|   | Decision where staff are constrained (turn 16, waiter has one task) | 06:03 | Xavier |
+| 3 | A dish going READY → SERVED → payment (turns 1 to 4) | 05:17 | Xavier |
+| 4 | Critic behaviour (orders the longest-cooking combo) | 06:23 | Xavier |
+|   | VIP behaviour (10% discount with Happy Hour pricing) | 07:30 | Bernice |
+| 5 | Stage 3 features: Host, Happy Hour and Combo Meals | 06:57 | Bernice |
+| 6 | Victory run (replayed from a saved input file) | 10:19 | Advika |
+|   | Defeat run (same seed, every staff member waits) | 10:40 | Advika |
+| 7 | Stage tag comparisons (stage-1 → stage-2 → stage-3) | 10:55 | Advika |
+|   | Class diagrams across the three stages | 13:02 | Rishika |
+
+### Design explanations: UML class and sequence diagrams
+
+| Topic | Timestamp | Speaker |
+|---|---|---|
+| Layered architecture (CLI, view, control, domain) | 02:14 | Li Chen |
+| Simplified Stage 3 class diagram overview | 02:38 | Li Chen |
+| Dependency inversion: GameController and StaffGateway | 03:02 | Li Chen |
+| Encapsulation and the template method in Customer | 03:39 | Xavier |
+| Composition, aggregation and association | 04:19 | Xavier |
+| Polymorphism: VIP and Critic subclasses | 06:30 | Xavier |
+| Liskov substitution: ComboMeal as a MenuItem | 08:18 | Bernice |
+| Single responsibility: pricing classes | 08:40 | Bernice |
+| Sequence diagram walkthrough | 09:15 | Bernice |
+| Sequence diagram: alt fragment for the Happy Hour choice (turn 4) | 09:36 | Bernice |
+| Sequence diagram: order and locked price | 09:44 | Bernice |
+| Sequence diagram: payment and table release (turn 7) | 10:06 | Bernice |
+| How the class diagram grew across stages | 13:02 | Rishika |
+| Real Stage 3 class diagram: interface realisation (DIP) | 13:40 | Rishika |
+| Visibility, abstract class, enum and static constants | 13:55 | Rishika |
+| Notation legend | 14:37 | Rishika |
+| Design trade-offs | 14:57 | Rishika |
+| Alternative design we rejected | 15:30 | Rishika |
+| Summary | 15:36 | Rishika |
+
 ## Submission materials
 
 | Item | Status or link |
 | --- | --- |
 | Lab and group identifier | Pending |
 | Final PDF report, including individual reflections | Pending |
-| Presentation video | Pending |
-| Video timestamps for the required demonstration segments | Pending |
+| Presentation video | [Watch the video](LINK) |
+| Video timestamps for the required demonstration segments | [Video section](#video) |
 | Signed original-work and GAI declarations | Pending |
 
 Submission deadline: **15 November 2026, 23:59 Singapore time**.

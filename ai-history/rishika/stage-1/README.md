@@ -9,7 +9,7 @@ project summary or a personal reflection.
 
 | File | Date | User messages | Assistant messages | Topic |
 | --- | --- | --- | --- | --- |
-| [chat-01.md](chat-01.md) | 2026-11-14 | 3 | 14 | Stage 1 testing: code map, test plan, plain-Java rule tests and scripted victory/defeat runs |
+| [chat-01.md](chat-01.md) | Stage 1 testing: code map, test plan, plain-Java rule tests and scripted victory/defeat runs |
 
 Total: **17 messages** (3 user, 14 assistant).
 
