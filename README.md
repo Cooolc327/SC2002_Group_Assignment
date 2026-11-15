@@ -191,7 +191,7 @@ Each member's AI history is linked below.
 | Member | AI history |
 | --- | --- |
 | Lichen Yin | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_1/ai-history/stage-1), [Stage 2 archive](ai-history/stage-2/README.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/lichen/stage_3/ai-history/stage-3) |
-| Xavier Kee | Pending |
+| Xavier Kee | No use of AI |
 | Bernice Koh | [Stage 2 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-2/chat-01.md), [Stage 3 AI review](https://github.com/Cooolc327/SC2002_Group_Assignment/blob/bernice-ai-history/ai-history/stage-3/chat-01.md) |
 | Advika Bhambri | [Stage 1 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history/advika/stage-1), [Stage 2 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history/advika/stage-2), [Stage 3 archive](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Advika/ai-history/advika/stage-3) |
 | Rishika Garg | [AI history (branch `Rishika`)](https://github.com/Cooolc327/SC2002_Group_Assignment/tree/Rishika/ai-history/rishika) |
